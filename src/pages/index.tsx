@@ -16,7 +16,7 @@ const IndexPage = (props: Props) => {
 
   return (
     <div>
-      <Heading variant="h1" color="red.700">
+      <Heading as="h1" variant="hero">
         HOMEPAGE
       </Heading>
     </div>

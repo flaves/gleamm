@@ -13,7 +13,7 @@ export interface Props {
   ogType?: `article` | `website`;
 }
 
-export const Seo = (props: Props) => {
+export function Seo(props: Props) {
   const { site } = useStaticQuery(query);
 
   const metaTitle = props.title || (site.siteMetadata.title as string);
@@ -38,7 +38,7 @@ export const Seo = (props: Props) => {
       {props.children}
     </>
   );
-};
+}
 
 export const query = graphql`
   query {

@@ -1,30 +1,49 @@
 import { SystemStyleObject } from '@chakra-ui/react';
 
-const baseStyle: SystemStyleObject = {};
+const baseStyle: SystemStyleObject = {
+  color: `text.primary`,
+};
 
 const variants: SystemStyleObject = {
-  h1: {
-    fontSize: [`3rem`, null, `3.5rem`, null, `4rem`],
+  hero: {
+    fontSize: [`2.5rem`, null, `6rem`],
+    lineHeight: [`44px`, null, `96px`],
+    fontWeight: 700,
   },
-  h2: {
-    fontSize: [`2.25rem`, null, `2.5rem`, null, `3rem`],
+  review: {
+    fontSize: `1.125rem`,
+    lineHeight: `normal`,
+    fontWeight: 600,
   },
-  h3: {
-    fontSize: [`1.75rem`, null, `2rem`, null, `2.5rem`],
+  section: {
+    fontSize: [`2rem`, null, `4rem`],
+    lineHeight: [`40px`, null, `normal`],
+    fontWeight: 700,
   },
-  h4: {
-    fontSize: [`1.5rem`, null, `1.5rem`, null, `2rem`],
+  step: {
+    fontSize: [`1.5rem`, null, `2rem`],
+    lineHeight: `normal`,
+    fontWeight: 600,
   },
-  h5: {
-    fontSize: [`1.25rem`, null, `1.5rem`, null, `1.5rem`],
+  faq: {
+    fontSize: [`1.125rem`, null, `1.25rem`],
+    lineHeight: `normal`,
+    fontWeight: 600,
   },
-  h6: {
-    fontSize: [`mobile.h6`, null, `desktop.h6`],
+  panel: {
+    fontSize: `1.125rem`,
+    lineHeight: `22px`,
+    fontWeight: 600,
+  },
+  footer: {
+    fontSize: `1rem`,
+    lineHeight: `normal`,
+    fontWeight: 600,
   },
 };
 
 const defaultProps: SystemStyleObject = {
-  variant: `h4`,
+  variant: `section`,
 };
 
 export const Heading = {
