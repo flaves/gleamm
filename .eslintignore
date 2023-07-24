@@ -1,0 +1,18 @@
+# Node
+node_modules
+
+# Gatsby
+.cache
+public
+
+# JetBrains
+.idea
+
+# Env
+.env.development
+
+# macOS
+.DS_Store
+
+# Generated
+src/domain/entities/gatsby.ts

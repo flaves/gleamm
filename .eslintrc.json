@@ -1,0 +1,103 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "react-hooks",
+    "unused-imports"
+  ],
+  "extends": [
+    "plugin:prettier/recommended",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true
+      }
+    ],
+    "curly": [
+      "error",
+      "all"
+    ],
+    "quotes": [
+      "error",
+      "backtick"
+    ],
+    // Handled by ESLint
+    "jsx-a11y/anchor-is-valid": "off",
+    // Handled by Prettier
+    "jsx-quotes": "off",
+    // At odds with TypeScript when using React.forwardRef
+    "react/display-name": "off",
+    // Handled by Prettier
+    "react/jsx-closing-tag-location": "off",
+    // Doesn't work with tsx
+    "react/jsx-filename-extension": "off",
+    // Handled by Prettier
+    "react/jsx-indent": "off",
+    // Handled by Prettier
+    "react/jsx-indent-props": "off",
+    // Subjective nonsense
+    "react/jsx-no-bind": "off",
+    // Subjective nonsense,
+    "react/jsx-no-useless-fragment": "off",
+    // Handled by Prettier,
+    "react/jsx-one-expression-per-line": "off",
+    // Handled by Prettier
+    "react/jsx-props-no-multi-spaces": "off",
+    // The idea is good, but it triggers too many errors in the codebase to be activated right now
+    "react/jsx-props-no-spreading": "off",
+    // Handled by Prettier
+    "react/jsx-tag-spacing": "off",
+    // Handled by Prettier
+    "react/jsx-wrap-multilines": "off",
+    // Doesn't fit all cases
+    "react/no-array-index-key": "off",
+    // The idea is good, but the rule triggers for render functions as well,
+    "react/no-unstable-nested-components": "off",
+    // Handled by TS,
+    "react/prop-types": "off",
+    // Doesn't work well with TS
+    "react/require-default-props": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "unused-imports/no-unused-vars-ts": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react-dom",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react*",
+            "group": "builtin",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react",
+          "react-dom"
+        ]
+      }
+    ]
+  }
+}
