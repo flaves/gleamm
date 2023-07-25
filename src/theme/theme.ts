@@ -1,5 +1,5 @@
-import { colors, typography } from './foundations';
-import { Heading } from './components';
+import { colors } from './foundations';
+import { Badge, Button, Heading, Text } from './components';
 
 export const theme = {
   styles: {
@@ -9,9 +9,11 @@ export const theme = {
       },
     },
   },
-  colors,
-  ...typography,
+  ...colors,
   components: {
+    Badge,
+    Button,
     Heading,
+    Text,
   },
 };
