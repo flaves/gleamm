@@ -1,14 +1,16 @@
 import {
   faCircleCheck,
-  faComment,
+  faComments,
   faPaperPlane,
   faPlus,
+  faSparkles,
   faTooth,
 } from '@fortawesome/pro-regular-svg-icons';
+import { faShieldCheck } from '@fortawesome/pro-solid-svg-icons';
 import {
   faFacebook,
   faInstagram,
-  faLinkedin,
+  faPinterest,
 } from '@fortawesome/free-brands-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
@@ -21,11 +23,13 @@ export type Icons =
 
 export const Icon: { [K in Icons]?: IconDefinition } = {
   'circle-check': faCircleCheck,
-  comment: faComment,
+  comments: faComments,
   tooth: faTooth,
   'paper-plane': faPaperPlane,
   facebook: faFacebook,
-  linkedin: faLinkedin,
+  pinterest: faPinterest,
   instagram: faInstagram,
   plus: faPlus,
+  sparkles: faSparkles,
+  shield: faShieldCheck,
 };

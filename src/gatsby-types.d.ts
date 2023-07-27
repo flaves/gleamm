@@ -1898,12 +1898,16 @@ type PrismicHomePageConnection_sumArgs = {
 type PrismicHomePageData = {
   /** A Rich Text field. */
   readonly cta_badge: PrismicRichTextField;
-  /** A Rich Text field. */
-  readonly cta_button: PrismicRichTextField;
+  /** A Key Text field. */
+  readonly cta_button_label: Maybe<Scalars['String']>;
+  /** A Key Text field. */
+  readonly cta_button_path: Maybe<Scalars['String']>;
   /** A Rich Text field. */
   readonly cta_heading: PrismicRichTextField;
-  /** A Rich Text field. */
-  readonly faq_banner_button: PrismicRichTextField;
+  /** A Key Text field. */
+  readonly faq_banner_button_label: Maybe<Scalars['String']>;
+  /** A Key Text field. */
+  readonly faq_banner_button_path: Maybe<Scalars['String']>;
   /** A Rich Text field. */
   readonly faq_banner_description: PrismicRichTextField;
   /** A Rich Text field. */
@@ -1912,8 +1916,10 @@ type PrismicHomePageData = {
   readonly faq_banner_image: Maybe<PrismicImageField>;
   /** A Rich Text field. */
   readonly faq_heading: PrismicRichTextField;
-  /** A Rich Text field. */
-  readonly hero_button: PrismicRichTextField;
+  /** A Key Text field. */
+  readonly hero_button_label: Maybe<Scalars['String']>;
+  /** A Key Text field. */
+  readonly hero_button_path: Maybe<Scalars['String']>;
   /** A Rich Text field. */
   readonly hero_description: PrismicRichTextField;
   /** A Rich Text field. */
@@ -1923,11 +1929,15 @@ type PrismicHomePageData = {
   /** A Rich Text field. */
   readonly hero_result_badge: PrismicRichTextField;
   /** A Rich Text field. */
+  readonly hero_review_author: PrismicRichTextField;
+  /** A Rich Text field. */
   readonly hero_review_badge: PrismicRichTextField;
   /** A Rich Text field. */
   readonly hero_review_description: PrismicRichTextField;
   /** A Rich Text field. */
   readonly hero_review_heading: PrismicRichTextField;
+  /** A Number field. */
+  readonly hero_review_number: Maybe<Scalars['Float']>;
   /** An Image field. */
   readonly hero_right_image: Maybe<PrismicImageField>;
   /** A Group field. */
@@ -1943,10 +1953,6 @@ type PrismicHomePageData = {
   /** A Group field. */
   readonly questions: ReadonlyArray<PrismicHomePageDataQuestionsItem>;
   /** A Rich Text field. */
-  readonly review_author: PrismicRichTextField;
-  /** A Number field. */
-  readonly review_number: Maybe<Scalars['Float']>;
-  /** A Rich Text field. */
   readonly right_text: PrismicRichTextField;
   /** A Key Text field. */
   readonly seo_description: Maybe<Scalars['String']>;
@@ -1956,21 +1962,26 @@ type PrismicHomePageData = {
 
 type PrismicHomePageDataFieldSelector = {
   readonly cta_badge: InputMaybe<PrismicRichTextFieldFieldSelector>;
-  readonly cta_button: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly cta_button_label: InputMaybe<FieldSelectorEnum>;
+  readonly cta_button_path: InputMaybe<FieldSelectorEnum>;
   readonly cta_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
-  readonly faq_banner_button: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly faq_banner_button_label: InputMaybe<FieldSelectorEnum>;
+  readonly faq_banner_button_path: InputMaybe<FieldSelectorEnum>;
   readonly faq_banner_description: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly faq_banner_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly faq_banner_image: InputMaybe<PrismicImageFieldFieldSelector>;
   readonly faq_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
-  readonly hero_button: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly hero_button_label: InputMaybe<FieldSelectorEnum>;
+  readonly hero_button_path: InputMaybe<FieldSelectorEnum>;
   readonly hero_description: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly hero_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly hero_left_image: InputMaybe<PrismicImageFieldFieldSelector>;
   readonly hero_result_badge: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly hero_review_author: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly hero_review_badge: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly hero_review_description: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly hero_review_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly hero_review_number: InputMaybe<FieldSelectorEnum>;
   readonly hero_right_image: InputMaybe<PrismicImageFieldFieldSelector>;
   readonly images: InputMaybe<PrismicHomePageDataImagesItemFieldSelector>;
   readonly left_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
@@ -1978,8 +1989,6 @@ type PrismicHomePageDataFieldSelector = {
   readonly process_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly process_steps: InputMaybe<PrismicHomePageDataProcessStepsItemFieldSelector>;
   readonly questions: InputMaybe<PrismicHomePageDataQuestionsItemFieldSelector>;
-  readonly review_author: InputMaybe<PrismicRichTextFieldFieldSelector>;
-  readonly review_number: InputMaybe<FieldSelectorEnum>;
   readonly right_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly seo_description: InputMaybe<FieldSelectorEnum>;
   readonly seo_title: InputMaybe<FieldSelectorEnum>;
@@ -1987,21 +1996,26 @@ type PrismicHomePageDataFieldSelector = {
 
 type PrismicHomePageDataFilterInput = {
   readonly cta_badge: InputMaybe<PrismicRichTextFieldFilterInput>;
-  readonly cta_button: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly cta_button_label: InputMaybe<StringQueryOperatorInput>;
+  readonly cta_button_path: InputMaybe<StringQueryOperatorInput>;
   readonly cta_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
-  readonly faq_banner_button: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly faq_banner_button_label: InputMaybe<StringQueryOperatorInput>;
+  readonly faq_banner_button_path: InputMaybe<StringQueryOperatorInput>;
   readonly faq_banner_description: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly faq_banner_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly faq_banner_image: InputMaybe<PrismicImageFieldFilterInput>;
   readonly faq_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
-  readonly hero_button: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly hero_button_label: InputMaybe<StringQueryOperatorInput>;
+  readonly hero_button_path: InputMaybe<StringQueryOperatorInput>;
   readonly hero_description: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly hero_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly hero_left_image: InputMaybe<PrismicImageFieldFilterInput>;
   readonly hero_result_badge: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly hero_review_author: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly hero_review_badge: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly hero_review_description: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly hero_review_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly hero_review_number: InputMaybe<FloatQueryOperatorInput>;
   readonly hero_right_image: InputMaybe<PrismicImageFieldFilterInput>;
   readonly images: InputMaybe<PrismicHomePageDataImagesItemFilterListInput>;
   readonly left_text: InputMaybe<PrismicRichTextFieldFilterInput>;
@@ -2009,8 +2023,6 @@ type PrismicHomePageDataFilterInput = {
   readonly process_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly process_steps: InputMaybe<PrismicHomePageDataProcessStepsItemFilterListInput>;
   readonly questions: InputMaybe<PrismicHomePageDataQuestionsItemFilterListInput>;
-  readonly review_author: InputMaybe<PrismicRichTextFieldFilterInput>;
-  readonly review_number: InputMaybe<FloatQueryOperatorInput>;
   readonly right_text: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly seo_description: InputMaybe<StringQueryOperatorInput>;
   readonly seo_title: InputMaybe<StringQueryOperatorInput>;
@@ -2046,23 +2058,23 @@ type PrismicHomePageDataImagesItemSortInput = {
 /** An item for a Group field. */
 type PrismicHomePageDataProcessStepsItem = {
   /** A Rich Text field. */
-  readonly process_description: PrismicRichTextField;
+  readonly process_step_description: PrismicRichTextField;
   /** A Rich Text field. */
-  readonly process_heading1: PrismicRichTextField;
+  readonly process_step_heading: PrismicRichTextField;
   /** A Key Text field. */
-  readonly process_number: Maybe<Scalars['String']>;
+  readonly process_step_number: Maybe<Scalars['String']>;
 };
 
 type PrismicHomePageDataProcessStepsItemFieldSelector = {
-  readonly process_description: InputMaybe<PrismicRichTextFieldFieldSelector>;
-  readonly process_heading1: InputMaybe<PrismicRichTextFieldFieldSelector>;
-  readonly process_number: InputMaybe<FieldSelectorEnum>;
+  readonly process_step_description: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly process_step_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly process_step_number: InputMaybe<FieldSelectorEnum>;
 };
 
 type PrismicHomePageDataProcessStepsItemFilterInput = {
-  readonly process_description: InputMaybe<PrismicRichTextFieldFilterInput>;
-  readonly process_heading1: InputMaybe<PrismicRichTextFieldFilterInput>;
-  readonly process_number: InputMaybe<StringQueryOperatorInput>;
+  readonly process_step_description: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly process_step_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly process_step_number: InputMaybe<StringQueryOperatorInput>;
 };
 
 type PrismicHomePageDataProcessStepsItemFilterListInput = {
@@ -2070,16 +2082,16 @@ type PrismicHomePageDataProcessStepsItemFilterListInput = {
 };
 
 type PrismicHomePageDataProcessStepsItemSortInput = {
-  readonly process_description: InputMaybe<PrismicRichTextFieldSortInput>;
-  readonly process_heading1: InputMaybe<PrismicRichTextFieldSortInput>;
-  readonly process_number: InputMaybe<SortOrderEnum>;
+  readonly process_step_description: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly process_step_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly process_step_number: InputMaybe<SortOrderEnum>;
 };
 
 /** An item for a Group field. */
 type PrismicHomePageDataQuestionsItem = {
   /** A Rich Text field. */
   readonly question_heading: PrismicRichTextField;
-  /** A Select field with a default value. **Default value**: teeth */
+  /** A Select field with a default value. **Default value**: tooth */
   readonly question_icon: Maybe<Scalars['String']>;
   /** A Rich Text field. */
   readonly question_text: PrismicRichTextField;
@@ -2109,21 +2121,26 @@ type PrismicHomePageDataQuestionsItemSortInput = {
 
 type PrismicHomePageDataSortInput = {
   readonly cta_badge: InputMaybe<PrismicRichTextFieldSortInput>;
-  readonly cta_button: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly cta_button_label: InputMaybe<SortOrderEnum>;
+  readonly cta_button_path: InputMaybe<SortOrderEnum>;
   readonly cta_heading: InputMaybe<PrismicRichTextFieldSortInput>;
-  readonly faq_banner_button: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly faq_banner_button_label: InputMaybe<SortOrderEnum>;
+  readonly faq_banner_button_path: InputMaybe<SortOrderEnum>;
   readonly faq_banner_description: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly faq_banner_heading: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly faq_banner_image: InputMaybe<PrismicImageFieldSortInput>;
   readonly faq_heading: InputMaybe<PrismicRichTextFieldSortInput>;
-  readonly hero_button: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly hero_button_label: InputMaybe<SortOrderEnum>;
+  readonly hero_button_path: InputMaybe<SortOrderEnum>;
   readonly hero_description: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly hero_heading: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly hero_left_image: InputMaybe<PrismicImageFieldSortInput>;
   readonly hero_result_badge: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly hero_review_author: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly hero_review_badge: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly hero_review_description: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly hero_review_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly hero_review_number: InputMaybe<SortOrderEnum>;
   readonly hero_right_image: InputMaybe<PrismicImageFieldSortInput>;
   readonly images: InputMaybe<PrismicHomePageDataImagesItemSortInput>;
   readonly left_text: InputMaybe<PrismicRichTextFieldSortInput>;
@@ -2131,8 +2148,6 @@ type PrismicHomePageDataSortInput = {
   readonly process_heading: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly process_steps: InputMaybe<PrismicHomePageDataProcessStepsItemSortInput>;
   readonly questions: InputMaybe<PrismicHomePageDataQuestionsItemSortInput>;
-  readonly review_author: InputMaybe<PrismicRichTextFieldSortInput>;
-  readonly review_number: InputMaybe<SortOrderEnum>;
   readonly right_text: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly seo_description: InputMaybe<SortOrderEnum>;
   readonly seo_title: InputMaybe<SortOrderEnum>;
@@ -4359,6 +4374,21 @@ type GatsbyImageSharpFluid_withWebp_noBase64Fragment = { readonly aspectRatio: n
 type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
+
+type HomePageCtaSectionFragmentFragment = { readonly cta_button_label: string | null, readonly cta_button_path: string | null, readonly cta_badge: { readonly text: string | null }, readonly cta_heading: { readonly richText: any } };
+
+type HomePageFaqSectionFragmentFragment = { readonly faq_banner_button_label: string | null, readonly faq_banner_button_path: string | null, readonly faq_heading: { readonly text: string | null }, readonly questions: ReadonlyArray<{ readonly question_icon: string | null, readonly question_heading: { readonly text: string | null }, readonly question_text: { readonly text: string | null } }>, readonly faq_banner_heading: { readonly text: string | null }, readonly faq_banner_description: { readonly text: string | null }, readonly faq_banner_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null };
+
+type HomePageGallerySectionFragmentFragment = { readonly left_text: { readonly text: string | null }, readonly right_text: { readonly text: string | null }, readonly images: ReadonlyArray<{ readonly image_before: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null, readonly image_after: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null }> };
+
+type HomePageHeroSectionFragmentFragment = { readonly hero_button_label: string | null, readonly hero_button_path: string | null, readonly hero_review_number: number | null, readonly hero_result_badge: { readonly text: string | null }, readonly hero_heading: { readonly richText: any }, readonly hero_description: { readonly richText: any }, readonly hero_left_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null, readonly hero_right_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null, readonly hero_review_badge: { readonly text: string | null }, readonly hero_review_heading: { readonly text: string | null }, readonly hero_review_description: { readonly text: string | null }, readonly hero_review_author: { readonly text: string | null } };
+
+type HomePageProcessSectionFragmentFragment = { readonly process_heading: { readonly richText: any }, readonly process_steps: ReadonlyArray<{ readonly process_step_number: string | null, readonly process_step_heading: { readonly text: string | null }, readonly process_step_description: { readonly text: string | null } }>, readonly process_end_heading: { readonly text: string | null } };
+
+type LayoutQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutQueryQuery = { readonly navigation: { readonly data: { readonly button_label: string | null, readonly button_path: string | null, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }> } } | null, readonly footer: { readonly data: { readonly contact_address: { readonly richText: any }, readonly contact_email: { readonly text: string | null }, readonly anchors_heading: { readonly text: string | null }, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly legal_heading: { readonly text: string | null }, readonly legal_links: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly socials: ReadonlyArray<{ readonly social: string | null, readonly path: string | null }> } } | null };
 
 
 }
