@@ -21,30 +21,63 @@ export function HomePageHeroSection(props: Props) {
   const { data } = props;
 
   return (
-    <factory.div mb={40}>
+    <factory.div>
       <Container>
         <factory.div position="relative">
-          <factory.div position="absolute" left={100} top={0}>
+          <factory.div
+            display={[`none`, null, null, `block`]}
+            position="absolute"
+            left={100}
+            top={0}
+          >
             <Star variant="solid" fill="base" />
           </factory.div>
-          <factory.div position="absolute" left={425} top="44px">
+          <factory.div
+            display={[`none`, null, null, `block`]}
+            position="absolute"
+            left={425}
+            top="44px"
+          >
             <Star variant="solid" fill="base" />
           </factory.div>
-          <factory.div position="absolute" left={571} bottom={284}>
+          <factory.div
+            display={[`none`, null, null, `block`]}
+            position="absolute"
+            left={571}
+            bottom={284}
+          >
             <Star variant="solid" fill="base" />
           </factory.div>
-          <factory.div position="absolute" left={405} bottom={170}>
+          <factory.div
+            display={[`none`, null, null, `block`]}
+            position="absolute"
+            left={405}
+            bottom={170}
+          >
             <Star variant="solid" fill="base" />
           </factory.div>
-          <factory.div display="flex" justifyContent="space-between">
-            <factory.div mt={20} ml={10}>
+          <factory.div
+            display="flex"
+            flexDirection={[`column`, null, null, `row`]}
+            justifyContent="space-between"
+            alignItems={[`center`, null, null, null, `flex-start`]}
+          >
+            <factory.div
+              display="flex"
+              flexDirection="column"
+              alignItems={[`center`, null, null, `flex-start`]}
+              textAlign={[`center`, null, null, `left`]}
+              mt={[0, null, null, 20]}
+              ml={[0, null, null, 10]}
+              mb={[4, null, null, 0]}
+            >
               <factory.div mb={4}>
                 <Badge icon="sparkles">{data.badge}</Badge>
               </factory.div>
               <factory.div mb={10}>
                 <Heading variant="hero">{data.heading}</Heading>
               </factory.div>
-              <factory.div mb={4}>
+              <factory.div mb={[2, null, null, 4]}>
                 <Link to={data.button.path || ``}>
                   <Button>{data.button.label}</Button>
                 </Link>
@@ -54,15 +87,27 @@ export function HomePageHeroSection(props: Props) {
               </factory.div>
             </factory.div>
             <factory.div display="flex" alignItems="flex-start" gap={5}>
-              <factory.div overflow="hidden" borderRadius={40}>
-                <Image image={data.leftImage} />
+              <factory.div
+                display={[`none`, null, null, `block`]}
+                overflow="hidden"
+                borderRadius={40}
+              >
+                <Image height={500} image={data.leftImage} />
               </factory.div>
               <factory.div overflow="hidden" borderRadius={40}>
-                <Image image={data.rightImage} />
+                <Image
+                  height={[400, null, null, 600]}
+                  image={data.rightImage}
+                />
               </factory.div>
             </factory.div>
           </factory.div>
-          <factory.div position="absolute" bottom={-45} left={528}>
+          <factory.div
+            display={[`none`, null, null, `block`]}
+            position="absolute"
+            bottom={-45}
+            left={528}
+          >
             <ReviewCard
               badge={data.reviewBadge}
               heading={data.reviewHeading}

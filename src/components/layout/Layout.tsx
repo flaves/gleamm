@@ -18,7 +18,7 @@ export function Layout(props: Props) {
   const layout = useStaticQuery<LayoutQuery>(layoutQuery);
 
   return (
-    <factory.section>
+    <factory.section id="top">
       <Navigation data={layout.navigation} />
       <factory.div>{children}</factory.div>
       <Footer data={layout.footer} />

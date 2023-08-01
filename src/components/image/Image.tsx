@@ -1,9 +1,11 @@
 import React, { ElementType } from 'react';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
-import { Image as ChakraImage } from '@chakra-ui/react';
+import { Image as ChakraImage, ImageProps } from '@chakra-ui/react';
 
 export type Props = {
   image: ImageDataLike & { alt: string };
+  height?: ImageProps[`height`];
+  width?: ImageProps[`width`];
 };
 
 export const Image = (props: Props) => {

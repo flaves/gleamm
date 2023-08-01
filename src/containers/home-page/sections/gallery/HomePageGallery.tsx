@@ -23,7 +23,12 @@ export function HomePageGallerySection(props: Props) {
   const rightImages = columns?.[2];
 
   return (
-    <factory.div mb={40}>
+    <factory.div
+      id="galerie"
+      pt={20}
+      mb={40}
+      display={[`none`, null, null, `block`]}
+    >
       <Container>
         <factory.div
           display="flex"

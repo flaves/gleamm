@@ -7,10 +7,15 @@ export type Props = {
   to: string;
   target?: string;
   rel?: string;
+  isAnchor?: boolean;
 };
 
 export function Link(props: Props) {
-  const { children, to, target } = props;
+  const { children, to, target, isAnchor = false } = props;
+
+  if (isAnchor) {
+    return <a href={to as string}>{children}</a>;
+  }
 
   return (
     <ChakraLink

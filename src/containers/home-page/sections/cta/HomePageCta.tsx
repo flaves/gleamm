@@ -16,7 +16,7 @@ export function HomePageCtaSection(props: Props) {
   const { data } = props;
 
   return (
-    <factory.div mb={20}>
+    <factory.div mb={[10, 20]}>
       <Container>
         <factory.div textAlign="center">
           <factory.div display="flex" justifyContent="center" mb={4}>

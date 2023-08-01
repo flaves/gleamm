@@ -9,9 +9,14 @@ type Props = _Question & {};
 
 export function Question(props: Props) {
   const { heading, description, icon } = props;
-  console.log(icon, `icon`);
+
   return (
-    <factory.div display="flex" gap={6}>
+    <factory.div
+      display="flex"
+      flexDirection={[`column`, `row`]}
+      alignItems={[`center`, `flex-start`]}
+      gap={6}
+    >
       <factory.div>
         <factory.div
           display="flex"
@@ -28,10 +33,10 @@ export function Question(props: Props) {
         </factory.div>
       </factory.div>
       <factory.div>
-        <factory.div mb={3}>
+        <factory.div mb={3} textAlign={[`center`, `left`]}>
           <Heading variant="faq">{heading}</Heading>
         </factory.div>
-        <factory.div>
+        <factory.div textAlign={[`center`, `left`]}>
           <Text>{description}</Text>
         </factory.div>
       </factory.div>

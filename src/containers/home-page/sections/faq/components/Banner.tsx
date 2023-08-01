@@ -15,6 +15,7 @@ export function Banner(props: Props) {
   return (
     <factory.div
       display="flex"
+      flexDirection={[`column`, null, `row`]}
       alignItems="center"
       py={5}
       px={10}
@@ -22,20 +23,26 @@ export function Banner(props: Props) {
       borderWidth={1}
       borderColor="gray.100"
     >
-      <factory.div mr={5} borderRadius="full" overflow="hidden">
+      <factory.div
+        mr={[0, null, 5]}
+        mb={[5, null, 0]}
+        borderRadius="full"
+        overflow="hidden"
+      >
         <Image image={image} />
       </factory.div>
       <factory.div
         width="100%"
         display="flex"
+        flexDirection={[`column`, null, `row`]}
         justifyContent="space-between"
         alignItems="center"
       >
         <factory.div>
-          <factory.div>
+          <factory.div textAlign={[`center`, null, `left`]} mb={[1, null, 0]}>
             <Heading variant="panel">{heading}</Heading>
           </factory.div>
-          <factory.div>
+          <factory.div textAlign={[`center`, null, `left`]} mb={[5, null, 0]}>
             <Text>{description}</Text>
           </factory.div>
         </factory.div>

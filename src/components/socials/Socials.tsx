@@ -13,11 +13,7 @@ export function Socials(props: Props) {
   const { socials } = props;
 
   return (
-    <factory.div
-      display="flex"
-      justifyContent={[`flex-start`, null, null, `flex-end`]}
-      mt={[10, null, null, 0]}
-    >
+    <factory.div display="flex">
       {socials.map((social, key) => (
         <factory.div key={key} mr={7} _last={{ mr: 0 }}>
           <Link

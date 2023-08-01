@@ -6,6 +6,7 @@ import { Icons } from '../../config/icons';
 export type Props = {
   children?: ReactNode;
   icon?: Icons;
+  onClick?: () => void;
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
