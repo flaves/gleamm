@@ -4,6 +4,7 @@ const baseStyle: SystemStyleObject = {};
 
 const variants: SystemStyleObject = {
   default: {
+    minWidth: `max-content`,
     height: `40px`,
     px: 5,
     fontSize: `0.875rem`,

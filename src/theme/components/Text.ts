@@ -19,6 +19,10 @@ const variants: SystemStyleObject = {
     fontSize: `0.875rem`,
     lineHeight: `20px`,
     fontWeight: 500,
+    transition: `0.2s`,
+    _hover: {
+      color: `text.primary`,
+    },
   },
   reviewBody: {
     fontSize: `0.875rem`,

@@ -1,0 +1,3462 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: Query
+}
+
+"Define parent-child relations between types. This is used to add `child*` and `children*` convenience fields like `childImageSharp`."
+directive @childOf(
+    "A list of mime-types this type is a child of. Usually these are the mime-types handled by a transformer plugin."
+    mimeTypes: [String!]! = [],
+    "A list of types this type is a child of. Usually these are the types handled by a transformer plugin."
+    types: [String!]! = []
+) on OBJECT
+
+"Add date formatting options."
+directive @dateformat(difference: String, formatString: String, fromNow: Boolean, locale: String) on FIELD_DEFINITION
+
+"Do not infer field types from field values."
+directive @dontInfer on OBJECT
+
+"Link to File node by relative path."
+directive @fileByRelativePath(from: String) on FIELD_DEFINITION
+
+"Infer field types from field values."
+directive @infer on OBJECT
+
+"Link to node by foreign-key relation."
+directive @link(by: String! = "id", from: String, on: String) on FIELD_DEFINITION
+
+"Define the mime-types handled by this type."
+directive @mimeTypes(
+    "The mime-types handled by this type."
+    types: [String!]! = []
+) on OBJECT
+
+"""
+
+DEPRECATED: Use interface inheritance instead, i.e. "interface Foo implements Node".
+
+Adds root query fields for an interface. All implementing types must also implement the Node interface.
+"""
+directive @nodeInterface on INTERFACE
+
+"Proxy resolver from another field."
+directive @proxy(from: String!, fromNode: Boolean! = false) on FIELD_DEFINITION
+
+"Node Interface"
+interface Node {
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    parent: Node
+}
+
+"An Image field."
+interface PrismicImageFieldBase {
+    "An alternative text for the image."
+    alt: String
+    "Copyright information for the image."
+    copyright: String
+    "The image's width and height."
+    dimensions: PrismicImageFieldDimensions
+    "`gatsby-plugin-image` image data."
+    gatsbyImageData: JSON
+    "The locally download image file if the field is configured to download locally."
+    localFile: File
+    "The image's URL."
+    url: String
+}
+
+"A collection of fields used in flexible content areas (called Slice Zones) of a Prismic document."
+interface PrismicSharedSlice {
+    id: ID!
+    slice_label: String
+    slice_type: String!
+    variation: String!
+    version: String!
+}
+
+"A collection of fields used in flexible content areas (called Slice Zones) of a Prismic document."
+interface PrismicSlice {
+    id: ID!
+    slice_label: String
+    slice_type: String!
+}
+
+union PrismicAllDocumentTypes = PrismicFooter | PrismicHomePage | PrismicNavigation
+
+type Directory implements Node {
+    absolutePath: String!
+    accessTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    atime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    atimeMs: Float!
+    base: String!
+    birthTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+    birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+    changeTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    children: [Node!]!
+    ctime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    ctimeMs: Float!
+    dev: Int!
+    dir: String!
+    ext: String!
+    extension: String!
+    gid: Int!
+    id: ID!
+    ino: Float!
+    internal: Internal!
+    mode: Int!
+    modifiedTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    mtime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    mtimeMs: Float!
+    name: String!
+    nlink: Int!
+    parent: Node
+    prettySize: String!
+    rdev: Int!
+    relativeDirectory: String!
+    relativePath: String!
+    root: String!
+    size: Int!
+    sourceInstanceName: String!
+    uid: Int!
+}
+
+type DirectoryConnection {
+    distinct(field: DirectoryFieldSelector!): [String!]!
+    edges: [DirectoryEdge!]!
+    group(field: DirectoryFieldSelector!, limit: Int, skip: Int): [DirectoryGroupConnection!]!
+    max(field: DirectoryFieldSelector!): Float
+    min(field: DirectoryFieldSelector!): Float
+    nodes: [Directory!]!
+    pageInfo: PageInfo!
+    sum(field: DirectoryFieldSelector!): Float
+    totalCount: Int!
+}
+
+type DirectoryEdge {
+    next: Directory
+    node: Directory!
+    previous: Directory
+}
+
+type DirectoryGroupConnection {
+    distinct(field: DirectoryFieldSelector!): [String!]!
+    edges: [DirectoryEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: DirectoryFieldSelector!, limit: Int, skip: Int): [DirectoryGroupConnection!]!
+    max(field: DirectoryFieldSelector!): Float
+    min(field: DirectoryFieldSelector!): Float
+    nodes: [Directory!]!
+    pageInfo: PageInfo!
+    sum(field: DirectoryFieldSelector!): Float
+    totalCount: Int!
+}
+
+type File implements Node {
+    absolutePath: String!
+    accessTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    atime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    atimeMs: Float!
+    base: String!
+    birthTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+    birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+    changeTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    "Returns the first child node of type ImageSharp or null if there are no children of given type on this node"
+    childImageSharp: ImageSharp
+    children: [Node!]!
+    "Returns all children nodes filtered by type ImageSharp"
+    childrenImageSharp: [ImageSharp]
+    ctime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    ctimeMs: Float!
+    dev: Int!
+    dir: String!
+    ext: String!
+    extension: String!
+    gid: Int!
+    id: ID!
+    ino: Float!
+    internal: Internal!
+    mode: Int!
+    modifiedTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    mtime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    mtimeMs: Float!
+    name: String!
+    nlink: Int!
+    parent: Node
+    prettySize: String!
+    rdev: Int!
+    relativeDirectory: String!
+    relativePath: String!
+    root: String!
+    size: Int!
+    sourceInstanceName: String!
+    uid: Int!
+}
+
+type FileConnection {
+    distinct(field: FileFieldSelector!): [String!]!
+    edges: [FileEdge!]!
+    group(field: FileFieldSelector!, limit: Int, skip: Int): [FileGroupConnection!]!
+    max(field: FileFieldSelector!): Float
+    min(field: FileFieldSelector!): Float
+    nodes: [File!]!
+    pageInfo: PageInfo!
+    sum(field: FileFieldSelector!): Float
+    totalCount: Int!
+}
+
+type FileEdge {
+    next: File
+    node: File!
+    previous: File
+}
+
+type FileGroupConnection {
+    distinct(field: FileFieldSelector!): [String!]!
+    edges: [FileEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: FileFieldSelector!, limit: Int, skip: Int): [FileGroupConnection!]!
+    max(field: FileFieldSelector!): Float
+    min(field: FileFieldSelector!): Float
+    nodes: [File!]!
+    pageInfo: PageInfo!
+    sum(field: FileFieldSelector!): Float
+    totalCount: Int!
+}
+
+type ImageSharp implements Node {
+    children: [Node!]!
+    fixed(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpFixed
+    fluid(
+        background: String = "rgba(0,0,0,1)",
+        base64Width: Int,
+        cropFocus: ImageCropFocus = ATTENTION,
+        duotone: DuotoneGradient,
+        fit: ImageFit = COVER,
+        grayscale: Boolean = false,
+        jpegProgressive: Boolean = true,
+        jpegQuality: Int,
+        maxHeight: Int,
+        maxWidth: Int,
+        pngCompressionSpeed: Int = 4,
+        pngQuality: Int,
+        quality: Int,
+        rotate: Int = 0,
+        sizes: String = "",
+        "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
+        srcSetBreakpoints: [Int] = [],
+        toFormat: ImageFormat = AUTO,
+        toFormatBase64: ImageFormat = AUTO,
+        traceSVG: Potrace,
+        trim: Float = 0.0,
+        webpQuality: Int
+    ): ImageSharpFluid
+    gatsbyImageData(
+        """
+
+        If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+        If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+        """
+        aspectRatio: Float,
+        "Options to pass to sharp when generating AVIF images."
+        avifOptions: AVIFOptions,
+        "Background color applied to the wrapper. Also passed to sharp to use as a background when \"letterboxing\" an image to another aspect ratio."
+        backgroundColor: String,
+        "Options for the low-resolution placeholder image. Set placeholder to \"BLURRED\" to use this"
+        blurredOptions: BlurredOptions,
+        """
+
+        Specifies the image widths to generate. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+        based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+        It will never generate any images larger than the source.
+        """
+        breakpoints: [Int],
+        """
+
+        The image formats to generate. Valid values are "AUTO" (meaning the same format as the source image), "JPG", "PNG", "WEBP" and "AVIF".
+        The default value is [AUTO, WEBP], and you should rarely need to change this. Take care if you specify JPG or PNG when you do
+        not know the formats of the source images, as this could lead to unwanted results such as converting JPEGs to PNGs. Specifying
+        both PNG and JPG is not supported and will be ignored.
+        """
+        formats: [ImageFormat],
+        """
+
+        The display height of the generated image for layout = FIXED, and the maximum display height of the largest image for layout = CONSTRAINED.
+        The image will be cropped if the aspect ratio does not match the source image. If omitted, it is calculated from the supplied width,
+        matching the aspect ratio of the source image.
+        """
+        height: Int,
+        "Options to pass to sharp when generating JPG images."
+        jpgOptions: JPGOptions,
+        """
+
+        The layout for the image.
+        FIXED: A static image sized, that does not resize according to the screen width
+        FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+        CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+        """
+        layout: ImageLayout = CONSTRAINED,
+        """
+
+        A list of image pixel densities to generate. It will never generate images larger than the source, and will always include a 1x image.
+        Default is [ 1, 2 ] for FIXED images, meaning 1x and 2x and [0.25, 0.5, 1, 2] for CONSTRAINED. In this case, an image with a constrained layout
+        and width = 400 would generate images at 100, 200, 400 and 800px wide. Ignored for FULL_WIDTH images, which use breakpoints instead
+        """
+        outputPixelDensities: [Float],
+        """
+
+        Format of generated placeholder image, displayed while the main image loads.
+        BLURRED: a blurred, low resolution image, encoded as a base64 data URI
+        DOMINANT_COLOR: a solid color, calculated from the dominant color of the image (default).
+        TRACED_SVG: deprecated. Will use DOMINANT_COLOR.
+        NONE: no placeholder. Set "background" to use a fixed background color.
+        """
+        placeholder: ImagePlaceholder,
+        "Options to pass to sharp when generating PNG images."
+        pngOptions: PNGOptions,
+        "The default quality. This is overridden by any format-specific options"
+        quality: Int,
+        """
+
+        The "sizes" property, passed to the img tag. This describes the display size of the image.
+        This does not affect the generated images, but is used by the browser to decide which images to download.
+        You should usually leave this blank, and a suitable value will be calculated. The exception is if a FULL_WIDTH image
+        does not actually span the full width of the screen, in which case you should pass the correct size here.
+        """
+        sizes: String,
+        "Options for traced placeholder SVGs. You also should set placeholder to \"TRACED_SVG\"."
+        tracedSVGOptions: Potrace,
+        "Options to pass to sharp to control cropping and other image manipulations."
+        transformOptions: TransformOptions,
+        "Options to pass to sharp when generating WebP images."
+        webpOptions: WebPOptions,
+        """
+
+        The display width of the generated image for layout = FIXED, and the maximum display width of the largest image for layout = CONSTRAINED.
+        Ignored if layout = FLUID.
+        """
+        width: Int
+    ): GatsbyImageData!
+    id: ID!
+    internal: Internal!
+    original: ImageSharpOriginal
+    parent: Node
+    resize(background: String = "rgba(0,0,0,1)", base64: Boolean = false, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResize
+}
+
+type ImageSharpConnection {
+    distinct(field: ImageSharpFieldSelector!): [String!]!
+    edges: [ImageSharpEdge!]!
+    group(field: ImageSharpFieldSelector!, limit: Int, skip: Int): [ImageSharpGroupConnection!]!
+    max(field: ImageSharpFieldSelector!): Float
+    min(field: ImageSharpFieldSelector!): Float
+    nodes: [ImageSharp!]!
+    pageInfo: PageInfo!
+    sum(field: ImageSharpFieldSelector!): Float
+    totalCount: Int!
+}
+
+type ImageSharpEdge {
+    next: ImageSharp
+    node: ImageSharp!
+    previous: ImageSharp
+}
+
+type ImageSharpFixed {
+    aspectRatio: Float
+    base64: String
+    height: Float!
+    originalName: String
+    src: String!
+    srcSet: String!
+    srcSetWebp: String
+    srcWebp: String
+    tracedSVG: String
+    width: Float!
+}
+
+type ImageSharpFluid {
+    aspectRatio: Float!
+    base64: String
+    originalImg: String
+    originalName: String
+    presentationHeight: Int!
+    presentationWidth: Int!
+    sizes: String!
+    src: String!
+    srcSet: String!
+    srcSetWebp: String
+    srcWebp: String
+    tracedSVG: String
+}
+
+type ImageSharpGroupConnection {
+    distinct(field: ImageSharpFieldSelector!): [String!]!
+    edges: [ImageSharpEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: ImageSharpFieldSelector!, limit: Int, skip: Int): [ImageSharpGroupConnection!]!
+    max(field: ImageSharpFieldSelector!): Float
+    min(field: ImageSharpFieldSelector!): Float
+    nodes: [ImageSharp!]!
+    pageInfo: PageInfo!
+    sum(field: ImageSharpFieldSelector!): Float
+    totalCount: Int!
+}
+
+type ImageSharpOriginal {
+    height: Float
+    src: String
+    width: Float
+}
+
+type ImageSharpResize {
+    aspectRatio: Float
+    height: Int
+    originalName: String
+    src: String
+    tracedSVG: String
+    width: Int
+}
+
+type Internal {
+    content: String
+    contentDigest: String!
+    contentFilePath: String
+    description: String
+    fieldOwners: [String]
+    ignoreType: Boolean
+    mediaType: String
+    owner: String!
+    type: String!
+}
+
+type PageInfo {
+    currentPage: Int!
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    itemCount: Int!
+    pageCount: Int!
+    perPage: Int
+    totalCount: Int!
+}
+
+"Metadata for alternate versions of a document in different languages."
+type PrismicAlternateLanguage {
+    document: PrismicAllDocumentTypes!
+    id: ID!
+    lang: String!
+    raw: JSON!
+    type: String!
+    uid: String
+    "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+"oEmbed content from an oEmbed-enabled URL."
+type PrismicEmbedField implements Node {
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    parent: Node
+}
+
+type PrismicEmbedFieldConnection {
+    distinct(field: PrismicEmbedFieldFieldSelector!): [String!]!
+    edges: [PrismicEmbedFieldEdge!]!
+    group(field: PrismicEmbedFieldFieldSelector!, limit: Int, skip: Int): [PrismicEmbedFieldGroupConnection!]!
+    max(field: PrismicEmbedFieldFieldSelector!): Float
+    min(field: PrismicEmbedFieldFieldSelector!): Float
+    nodes: [PrismicEmbedField!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicEmbedFieldFieldSelector!): Float
+    totalCount: Int!
+}
+
+type PrismicEmbedFieldEdge {
+    next: PrismicEmbedField
+    node: PrismicEmbedField!
+    previous: PrismicEmbedField
+}
+
+type PrismicEmbedFieldGroupConnection {
+    distinct(field: PrismicEmbedFieldFieldSelector!): [String!]!
+    edges: [PrismicEmbedFieldEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: PrismicEmbedFieldFieldSelector!, limit: Int, skip: Int): [PrismicEmbedFieldGroupConnection!]!
+    max(field: PrismicEmbedFieldFieldSelector!): Float
+    min(field: PrismicEmbedFieldFieldSelector!): Float
+    nodes: [PrismicEmbedField!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicEmbedFieldFieldSelector!): Float
+    totalCount: Int!
+}
+
+"A footer document from Prismic."
+type PrismicFooter implements Node {
+    "Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews."
+    _previewable: ID!
+    "Alternate versions of the document in different languages."
+    alternate_languages: [PrismicAlternateLanguage!]!
+    children: [Node!]!
+    "Content for the document."
+    data: PrismicFooterData!
+    "**Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred."
+    dataRaw: JSON!
+    "The timestamp at which the document was first published."
+    first_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    "The URL to fetch this document's JSON value from the Prismic REST API."
+    href: String!
+    id: ID!
+    internal: Internal!
+    "The language of the Prismic document."
+    lang: String!
+    "The timestamp at which the document was last published."
+    last_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    parent: Node
+    "The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository."
+    prismicId: ID!
+    "**Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API."
+    raw: JSON!
+    "Tags associated with the Prismic document."
+    tags: [String!]!
+    "The type of the Prismic document."
+    type: String!
+    "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+type PrismicFooterConnection {
+    distinct(field: PrismicFooterFieldSelector!): [String!]!
+    edges: [PrismicFooterEdge!]!
+    group(field: PrismicFooterFieldSelector!, limit: Int, skip: Int): [PrismicFooterGroupConnection!]!
+    max(field: PrismicFooterFieldSelector!): Float
+    min(field: PrismicFooterFieldSelector!): Float
+    nodes: [PrismicFooter!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicFooterFieldSelector!): Float
+    totalCount: Int!
+}
+
+type PrismicFooterData {
+    "A Group field."
+    anchors: [PrismicFooterDataAnchorsItem!]!
+    "A Rich Text field."
+    anchors_heading: PrismicRichTextField!
+    "A Rich Text field."
+    contact_address: PrismicRichTextField!
+    "A Rich Text field."
+    contact_email: PrismicRichTextField!
+    "A Rich Text field."
+    legal_heading: PrismicRichTextField!
+    "A Group field."
+    legal_links: [PrismicFooterDataLegalLinksItem!]!
+    "A Group field."
+    socials: [PrismicFooterDataSocialsItem!]!
+}
+
+"An item for a Group field."
+type PrismicFooterDataAnchorsItem {
+    "A Key Text field."
+    label: String
+    "A Key Text field."
+    path: String
+}
+
+"An item for a Group field."
+type PrismicFooterDataLegalLinksItem {
+    "A Key Text field."
+    label: String
+    "A Key Text field."
+    path: String
+}
+
+"An item for a Group field."
+type PrismicFooterDataSocialsItem {
+    "A Key Text field."
+    path: String
+    "A Select field with a default value. **Default value**: facebook"
+    social: String
+}
+
+type PrismicFooterEdge {
+    next: PrismicFooter
+    node: PrismicFooter!
+    previous: PrismicFooter
+}
+
+type PrismicFooterGroupConnection {
+    distinct(field: PrismicFooterFieldSelector!): [String!]!
+    edges: [PrismicFooterEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: PrismicFooterFieldSelector!, limit: Int, skip: Int): [PrismicFooterGroupConnection!]!
+    max(field: PrismicFooterFieldSelector!): Float
+    min(field: PrismicFooterFieldSelector!): Float
+    nodes: [PrismicFooter!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicFooterFieldSelector!): Float
+    totalCount: Int!
+}
+
+"Geolocation coordinates."
+type PrismicGeoPointField {
+    "The latitude value of the GeoPoint field."
+    latitude: Float
+    "The longitude value of the GeoPoint field."
+    longitude: Float
+}
+
+"A home_page document from Prismic."
+type PrismicHomePage implements Node {
+    "Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews."
+    _previewable: ID!
+    "Alternate versions of the document in different languages."
+    alternate_languages: [PrismicAlternateLanguage!]!
+    children: [Node!]!
+    "Content for the document."
+    data: PrismicHomePageData!
+    "**Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred."
+    dataRaw: JSON!
+    "The timestamp at which the document was first published."
+    first_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    "The URL to fetch this document's JSON value from the Prismic REST API."
+    href: String!
+    id: ID!
+    internal: Internal!
+    "The language of the Prismic document."
+    lang: String!
+    "The timestamp at which the document was last published."
+    last_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    parent: Node
+    "The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository."
+    prismicId: ID!
+    "**Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API."
+    raw: JSON!
+    "Tags associated with the Prismic document."
+    tags: [String!]!
+    "The type of the Prismic document."
+    type: String!
+    "The unique identifier for the Prismic document. It is guaranteed to be unique within all documents of the same type from the same Prismic repository."
+    uid: String!
+    "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+type PrismicHomePageConnection {
+    distinct(field: PrismicHomePageFieldSelector!): [String!]!
+    edges: [PrismicHomePageEdge!]!
+    group(field: PrismicHomePageFieldSelector!, limit: Int, skip: Int): [PrismicHomePageGroupConnection!]!
+    max(field: PrismicHomePageFieldSelector!): Float
+    min(field: PrismicHomePageFieldSelector!): Float
+    nodes: [PrismicHomePage!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicHomePageFieldSelector!): Float
+    totalCount: Int!
+}
+
+type PrismicHomePageData {
+    "A Rich Text field."
+    cta_badge: PrismicRichTextField!
+    "A Key Text field."
+    cta_button_label: String
+    "A Key Text field."
+    cta_button_path: String
+    "A Rich Text field."
+    cta_heading: PrismicRichTextField!
+    "A Key Text field."
+    faq_banner_button_label: String
+    "A Key Text field."
+    faq_banner_button_path: String
+    "A Rich Text field."
+    faq_banner_description: PrismicRichTextField!
+    "A Rich Text field."
+    faq_banner_heading: PrismicRichTextField!
+    "An Image field."
+    faq_banner_image: PrismicImageField
+    "A Rich Text field."
+    faq_heading: PrismicRichTextField!
+    "A Key Text field."
+    hero_button_label: String
+    "A Key Text field."
+    hero_button_path: String
+    "A Rich Text field."
+    hero_description: PrismicRichTextField!
+    "A Rich Text field."
+    hero_heading: PrismicRichTextField!
+    "An Image field."
+    hero_left_image: PrismicImageField
+    "A Rich Text field."
+    hero_result_badge: PrismicRichTextField!
+    "A Rich Text field."
+    hero_review_author: PrismicRichTextField!
+    "A Rich Text field."
+    hero_review_badge: PrismicRichTextField!
+    "A Rich Text field."
+    hero_review_description: PrismicRichTextField!
+    "A Rich Text field."
+    hero_review_heading: PrismicRichTextField!
+    "A Number field."
+    hero_review_number: Float
+    "An Image field."
+    hero_right_image: PrismicImageField
+    "A Group field."
+    images: [PrismicHomePageDataImagesItem!]!
+    "A Rich Text field."
+    left_text: PrismicRichTextField!
+    "A Rich Text field."
+    process_end_heading: PrismicRichTextField!
+    "A Rich Text field."
+    process_heading: PrismicRichTextField!
+    "A Group field."
+    process_steps: [PrismicHomePageDataProcessStepsItem!]!
+    "A Group field."
+    questions: [PrismicHomePageDataQuestionsItem!]!
+    "A Rich Text field."
+    right_text: PrismicRichTextField!
+    "A Key Text field."
+    seo_description: String
+    "A Key Text field."
+    seo_title: String
+}
+
+"An item for a Group field."
+type PrismicHomePageDataImagesItem {
+    "An Image field."
+    image_after: PrismicImageField
+    "An Image field."
+    image_before: PrismicImageField
+}
+
+"An item for a Group field."
+type PrismicHomePageDataProcessStepsItem {
+    "A Rich Text field."
+    process_step_description: PrismicRichTextField!
+    "A Rich Text field."
+    process_step_heading: PrismicRichTextField!
+    "A Key Text field."
+    process_step_number: String
+}
+
+"An item for a Group field."
+type PrismicHomePageDataQuestionsItem {
+    "A Rich Text field."
+    question_heading: PrismicRichTextField!
+    "A Select field with a default value. **Default value**: tooth"
+    question_icon: String
+    "A Rich Text field."
+    question_text: PrismicRichTextField!
+}
+
+type PrismicHomePageEdge {
+    next: PrismicHomePage
+    node: PrismicHomePage!
+    previous: PrismicHomePage
+}
+
+type PrismicHomePageGroupConnection {
+    distinct(field: PrismicHomePageFieldSelector!): [String!]!
+    edges: [PrismicHomePageEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: PrismicHomePageFieldSelector!, limit: Int, skip: Int): [PrismicHomePageGroupConnection!]!
+    max(field: PrismicHomePageFieldSelector!): Float
+    min(field: PrismicHomePageFieldSelector!): Float
+    nodes: [PrismicHomePage!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicHomePageFieldSelector!): Float
+    totalCount: Int!
+}
+
+"An Image field."
+type PrismicImageField implements PrismicImageFieldBase {
+    "An alternative text for the image."
+    alt: String
+    "Copyright information for the image."
+    copyright: String
+    "The image's width and height."
+    dimensions: PrismicImageFieldDimensions
+    gatsbyImageData(
+        """
+
+        If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+        If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+        """
+        aspectRatio: Float,
+        "Background color applied to the wrapper, or when \"letterboxing\" an image to another aspect ratio."
+        backgroundColor: String,
+        """
+
+        Specifies the image widths to generate. You should rarely need to change this. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+        based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+        It will never generate any images larger than the source.
+        """
+        breakpoints: [Int],
+        """
+
+        The image formats to generate. Valid values are AUTO (meaning the same format as the source image), JPG, PNG, WEBP and AVIF.
+        The default value is [AUTO, WEBP], and you should rarely need to change this. Take care if you specify JPG or PNG when you do
+        not know the formats of the source images, as this could lead to unwanted results such as converting JPEGs to PNGs. Specifying
+        both PNG and JPG is not supported and will be ignored.
+        """
+        formats: [GatsbyImageFormat] = [NO_CHANGE, WEBP],
+        "If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image."
+        height: Int,
+        imgixParams: PrismicImgixURLParams,
+        """
+
+        The layout for the image.
+        FIXED: A static image sized, that does not resize according to the screen width
+        FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+        CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+        """
+        layout: GatsbyImageLayout,
+        placeholder: PrismicGatsbyImageDataPlaceholder = DOMINANT_COLOR,
+        placeholderImgixParams: PrismicImgixURLParams,
+        """
+
+        The "sizes" property, passed to the img tag. This describes the display size of the image.
+        This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+        container will be the full width of the screen. In these cases we will generate an appropriate value.
+        """
+        sizes: String,
+        """
+
+        The display width of the generated image for layout = FIXED, and the display width of the largest image for layout = CONSTRAINED.
+        The actual largest image resolution will be this value multiplied by the largest value in outputPixelDensities
+        Ignored if layout = FLUID.
+        """
+        width: Int
+    ): JSON
+    "The locally download image file if the field is configured to download locally."
+    localFile: File
+    "The image's URL."
+    url(
+        "Parameters to modify the image output using Imgix's URL API. To learn more, see: https://docs.imgix.com/apis/rendering"
+        imgixParams: PrismicImgixURLParams
+    ): String
+}
+
+"Width and height of an image."
+type PrismicImageFieldDimensions {
+    "The image's height in pixels."
+    height: Int!
+    "The image's width in pixels."
+    width: Int!
+}
+
+"A link to the web, a document in the Prismic repository, or a file in the Prismic Media Library"
+type PrismicLinkField {
+    "The Prismic document if the field links to a document."
+    document: PrismicAllDocumentTypes
+    "The ID of the selected Prismic document if the field links to a document."
+    id: ID
+    "Determines if the linked document exists."
+    isBroken: Boolean
+    "The language of the selected Prismic document if the field links to a document."
+    lang: String
+    "The type of link for this field value."
+    link_type: PrismicLinkType
+    "The locally download file if the field links to a media file and the field is configured to download locally."
+    localFile: File
+    "**Do not use this field unless you know what you are doing**. The unprocessed field value returned from the Prismic REST API."
+    raw: JSON!
+    "The file size of the linked file."
+    size: Int
+    "The slug of the selected Prismic document if the field links to a document."
+    slug: String
+    "The list of tags for the selected Prismic document if the field links to a document."
+    tags: [String!]
+    "`_blank` if the field value is configured to \"Open in a new window,\" `null` otherwise."
+    target: String
+    "The type of the selected Prismic document if the field links to a document."
+    type: String
+    "The UID of the selected Prismic document if the field links to a document that contains a UID field."
+    uid: String
+    "The URL of the linked website, Prismic document, or file. If the field value is a Prismic document, the URL is determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+"A navigation document from Prismic."
+type PrismicNavigation implements Node {
+    "Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews."
+    _previewable: ID!
+    "Alternate versions of the document in different languages."
+    alternate_languages: [PrismicAlternateLanguage!]!
+    children: [Node!]!
+    "Content for the document."
+    data: PrismicNavigationData!
+    "**Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred."
+    dataRaw: JSON!
+    "The timestamp at which the document was first published."
+    first_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    "The URL to fetch this document's JSON value from the Prismic REST API."
+    href: String!
+    id: ID!
+    internal: Internal!
+    "The language of the Prismic document."
+    lang: String!
+    "The timestamp at which the document was last published."
+    last_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    parent: Node
+    "The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository."
+    prismicId: ID!
+    "**Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API."
+    raw: JSON!
+    "Tags associated with the Prismic document."
+    tags: [String!]!
+    "The type of the Prismic document."
+    type: String!
+    "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+type PrismicNavigationConnection {
+    distinct(field: PrismicNavigationFieldSelector!): [String!]!
+    edges: [PrismicNavigationEdge!]!
+    group(field: PrismicNavigationFieldSelector!, limit: Int, skip: Int): [PrismicNavigationGroupConnection!]!
+    max(field: PrismicNavigationFieldSelector!): Float
+    min(field: PrismicNavigationFieldSelector!): Float
+    nodes: [PrismicNavigation!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicNavigationFieldSelector!): Float
+    totalCount: Int!
+}
+
+type PrismicNavigationData {
+    "A Group field."
+    anchors: [PrismicNavigationDataAnchorsItem!]!
+    "A Key Text field."
+    button_label: String
+    "A Key Text field."
+    button_path: String
+}
+
+"An item for a Group field."
+type PrismicNavigationDataAnchorsItem {
+    "A Key Text field."
+    label: String
+    "A Key Text field."
+    path: String
+}
+
+type PrismicNavigationEdge {
+    next: PrismicNavigation
+    node: PrismicNavigation!
+    previous: PrismicNavigation
+}
+
+type PrismicNavigationGroupConnection {
+    distinct(field: PrismicNavigationFieldSelector!): [String!]!
+    edges: [PrismicNavigationEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: PrismicNavigationFieldSelector!, limit: Int, skip: Int): [PrismicNavigationGroupConnection!]!
+    max(field: PrismicNavigationFieldSelector!): Float
+    min(field: PrismicNavigationFieldSelector!): Float
+    nodes: [PrismicNavigation!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicNavigationFieldSelector!): Float
+    totalCount: Int!
+}
+
+"Rich Text provided in various formats."
+type PrismicRichTextField {
+    "The Rich Text value formatted as HTML."
+    html: String
+    "The Rich Text value in its \"raw\" form."
+    raw: PrismicRichText! @deprecated(reason: "This field has been renamed to `richText`. The `richText` field has the same value the `raw` field.")
+    "The Rich Text value in its \"raw\" form."
+    richText: PrismicRichText!
+    "The Rich Text value formatted as text."
+    text: String
+}
+
+type Query {
+    allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: [DirectorySortInput]): DirectoryConnection!
+    allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: [FileSortInput]): FileConnection!
+    allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: [ImageSharpSortInput]): ImageSharpConnection!
+    allPrismicEmbedField(filter: PrismicEmbedFieldFilterInput, limit: Int, skip: Int, sort: [PrismicEmbedFieldSortInput]): PrismicEmbedFieldConnection!
+    allPrismicFooter(filter: PrismicFooterFilterInput, limit: Int, skip: Int, sort: [PrismicFooterSortInput]): PrismicFooterConnection!
+    allPrismicHomePage(filter: PrismicHomePageFilterInput, limit: Int, skip: Int, sort: [PrismicHomePageSortInput]): PrismicHomePageConnection!
+    allPrismicNavigation(filter: PrismicNavigationFilterInput, limit: Int, skip: Int, sort: [PrismicNavigationSortInput]): PrismicNavigationConnection!
+    allSite(filter: SiteFilterInput, limit: Int, skip: Int, sort: [SiteSortInput]): SiteConnection!
+    allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: [SiteBuildMetadataSortInput]): SiteBuildMetadataConnection!
+    allSiteFunction(filter: SiteFunctionFilterInput, limit: Int, skip: Int, sort: [SiteFunctionSortInput]): SiteFunctionConnection!
+    allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: [SitePageSortInput]): SitePageConnection!
+    allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: [SitePluginSortInput]): SitePluginConnection!
+    directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
+    file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
+    imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
+    prismicEmbedField(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): PrismicEmbedField
+    prismicFooter(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicFooterDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFooter
+    prismicHomePage(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicHomePageDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicHomePage
+    prismicNavigation(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicNavigationDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicNavigation
+    site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, graphqlTypegen: SiteGraphqlTypegenFilterInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
+    siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
+    siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
+    sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, pageContext: JSONQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput): SitePage
+    sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: JSONQueryOperatorInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: JSONQueryOperatorInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
+}
+
+type Site implements Node {
+    buildTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date
+    children: [Node!]!
+    graphqlTypegen: SiteGraphqlTypegen
+    host: String
+    id: ID!
+    internal: Internal!
+    jsxRuntime: String
+    parent: Node
+    pathPrefix: String
+    polyfill: Boolean
+    port: Int
+    siteMetadata: SiteSiteMetadata
+    trailingSlash: String
+}
+
+type SiteBuildMetadata implements Node {
+    buildTime(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    parent: Node
+}
+
+type SiteBuildMetadataConnection {
+    distinct(field: SiteBuildMetadataFieldSelector!): [String!]!
+    edges: [SiteBuildMetadataEdge!]!
+    group(field: SiteBuildMetadataFieldSelector!, limit: Int, skip: Int): [SiteBuildMetadataGroupConnection!]!
+    max(field: SiteBuildMetadataFieldSelector!): Float
+    min(field: SiteBuildMetadataFieldSelector!): Float
+    nodes: [SiteBuildMetadata!]!
+    pageInfo: PageInfo!
+    sum(field: SiteBuildMetadataFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SiteBuildMetadataEdge {
+    next: SiteBuildMetadata
+    node: SiteBuildMetadata!
+    previous: SiteBuildMetadata
+}
+
+type SiteBuildMetadataGroupConnection {
+    distinct(field: SiteBuildMetadataFieldSelector!): [String!]!
+    edges: [SiteBuildMetadataEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: SiteBuildMetadataFieldSelector!, limit: Int, skip: Int): [SiteBuildMetadataGroupConnection!]!
+    max(field: SiteBuildMetadataFieldSelector!): Float
+    min(field: SiteBuildMetadataFieldSelector!): Float
+    nodes: [SiteBuildMetadata!]!
+    pageInfo: PageInfo!
+    sum(field: SiteBuildMetadataFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SiteConnection {
+    distinct(field: SiteFieldSelector!): [String!]!
+    edges: [SiteEdge!]!
+    group(field: SiteFieldSelector!, limit: Int, skip: Int): [SiteGroupConnection!]!
+    max(field: SiteFieldSelector!): Float
+    min(field: SiteFieldSelector!): Float
+    nodes: [Site!]!
+    pageInfo: PageInfo!
+    sum(field: SiteFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SiteEdge {
+    next: Site
+    node: Site!
+    previous: Site
+}
+
+type SiteFunction implements Node {
+    absoluteCompiledFilePath: String!
+    children: [Node!]!
+    functionRoute: String!
+    id: ID!
+    internal: Internal!
+    matchPath: String
+    originalAbsoluteFilePath: String!
+    originalRelativeFilePath: String!
+    parent: Node
+    pluginName: String!
+    relativeCompiledFilePath: String!
+}
+
+type SiteFunctionConnection {
+    distinct(field: SiteFunctionFieldSelector!): [String!]!
+    edges: [SiteFunctionEdge!]!
+    group(field: SiteFunctionFieldSelector!, limit: Int, skip: Int): [SiteFunctionGroupConnection!]!
+    max(field: SiteFunctionFieldSelector!): Float
+    min(field: SiteFunctionFieldSelector!): Float
+    nodes: [SiteFunction!]!
+    pageInfo: PageInfo!
+    sum(field: SiteFunctionFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SiteFunctionEdge {
+    next: SiteFunction
+    node: SiteFunction!
+    previous: SiteFunction
+}
+
+type SiteFunctionGroupConnection {
+    distinct(field: SiteFunctionFieldSelector!): [String!]!
+    edges: [SiteFunctionEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: SiteFunctionFieldSelector!, limit: Int, skip: Int): [SiteFunctionGroupConnection!]!
+    max(field: SiteFunctionFieldSelector!): Float
+    min(field: SiteFunctionFieldSelector!): Float
+    nodes: [SiteFunction!]!
+    pageInfo: PageInfo!
+    sum(field: SiteFunctionFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SiteGraphqlTypegen {
+    documentSearchPaths: [String]
+    generateOnBuild: Boolean
+    typesOutputPath: String
+}
+
+type SiteGroupConnection {
+    distinct(field: SiteFieldSelector!): [String!]!
+    edges: [SiteEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: SiteFieldSelector!, limit: Int, skip: Int): [SiteGroupConnection!]!
+    max(field: SiteFieldSelector!): Float
+    min(field: SiteFieldSelector!): Float
+    nodes: [Site!]!
+    pageInfo: PageInfo!
+    sum(field: SiteFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SitePage implements Node {
+    children: [Node!]!
+    component: String!
+    componentChunkName: String!
+    id: ID!
+    internal: Internal!
+    internalComponentName: String!
+    matchPath: String
+    pageContext: JSON
+    parent: Node
+    path: String!
+    pluginCreator: SitePlugin
+}
+
+type SitePageConnection {
+    distinct(field: SitePageFieldSelector!): [String!]!
+    edges: [SitePageEdge!]!
+    group(field: SitePageFieldSelector!, limit: Int, skip: Int): [SitePageGroupConnection!]!
+    max(field: SitePageFieldSelector!): Float
+    min(field: SitePageFieldSelector!): Float
+    nodes: [SitePage!]!
+    pageInfo: PageInfo!
+    sum(field: SitePageFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SitePageEdge {
+    next: SitePage
+    node: SitePage!
+    previous: SitePage
+}
+
+type SitePageGroupConnection {
+    distinct(field: SitePageFieldSelector!): [String!]!
+    edges: [SitePageEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: SitePageFieldSelector!, limit: Int, skip: Int): [SitePageGroupConnection!]!
+    max(field: SitePageFieldSelector!): Float
+    min(field: SitePageFieldSelector!): Float
+    nodes: [SitePage!]!
+    pageInfo: PageInfo!
+    sum(field: SitePageFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SitePlugin implements Node {
+    browserAPIs: [String]
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    name: String
+    nodeAPIs: [String]
+    packageJson: JSON
+    parent: Node
+    pluginFilepath: String
+    pluginOptions: JSON
+    resolve: String
+    ssrAPIs: [String]
+    version: String
+}
+
+type SitePluginConnection {
+    distinct(field: SitePluginFieldSelector!): [String!]!
+    edges: [SitePluginEdge!]!
+    group(field: SitePluginFieldSelector!, limit: Int, skip: Int): [SitePluginGroupConnection!]!
+    max(field: SitePluginFieldSelector!): Float
+    min(field: SitePluginFieldSelector!): Float
+    nodes: [SitePlugin!]!
+    pageInfo: PageInfo!
+    sum(field: SitePluginFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SitePluginEdge {
+    next: SitePlugin
+    node: SitePlugin!
+    previous: SitePlugin
+}
+
+type SitePluginGroupConnection {
+    distinct(field: SitePluginFieldSelector!): [String!]!
+    edges: [SitePluginEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: SitePluginFieldSelector!, limit: Int, skip: Int): [SitePluginGroupConnection!]!
+    max(field: SitePluginFieldSelector!): Float
+    min(field: SitePluginFieldSelector!): Float
+    nodes: [SitePlugin!]!
+    pageInfo: PageInfo!
+    sum(field: SitePluginFieldSelector!): Float
+    totalCount: Int!
+}
+
+type SiteSiteMetadata {
+    description: String
+    siteUrl: String
+    title: String
+}
+
+enum FieldSelectorEnum {
+    SELECT
+}
+
+enum GatsbyImageFormat {
+    AUTO
+    AVIF
+    JPG
+    NO_CHANGE
+    PNG
+    WEBP
+}
+
+enum GatsbyImageLayout {
+    CONSTRAINED
+    FIXED
+    FULL_WIDTH
+}
+
+enum GatsbyImagePlaceholder {
+    BLURRED
+    DOMINANT_COLOR
+    NONE
+    TRACED_SVG
+}
+
+enum ImageCropFocus {
+    ATTENTION
+    CENTER
+    EAST
+    ENTROPY
+    NORTH
+    NORTHEAST
+    NORTHWEST
+    SOUTH
+    SOUTHEAST
+    SOUTHWEST
+    WEST
+}
+
+enum ImageFit {
+    CONTAIN
+    COVER
+    FILL
+    INSIDE
+    OUTSIDE
+}
+
+enum ImageFormat {
+    AUTO
+    AVIF
+    JPG
+    NO_CHANGE
+    PNG
+    WEBP
+}
+
+enum ImageLayout {
+    CONSTRAINED
+    FIXED
+    FULL_WIDTH
+}
+
+enum ImagePlaceholder {
+    BLURRED
+    DOMINANT_COLOR
+    NONE
+    TRACED_SVG
+}
+
+enum PotraceTurnPolicy {
+    TURNPOLICY_BLACK
+    TURNPOLICY_LEFT
+    TURNPOLICY_MAJORITY
+    TURNPOLICY_MINORITY
+    TURNPOLICY_RIGHT
+    TURNPOLICY_WHITE
+}
+
+"The style of temporary image shown while the full image loads."
+enum PrismicGatsbyImageDataPlaceholder {
+    "This generates a very low-resolution version of the source image and displays it as a blurred background."
+    BLURRED
+    "The default placeholder. This calculates the dominant color of the source image and uses it as a solid background color."
+    DOMINANT_COLOR
+    "No placeholder. You can use the background color option to set a static background if you wish."
+    NONE
+}
+
+"Types of a Prismic Link field value."
+enum PrismicLinkType {
+    "An unknown link type."
+    Any
+    "A link to a document in the Prismic repository."
+    Document
+    "A link to a file in the Prismic Media Library."
+    Media
+    "A link to the web."
+    Web
+}
+
+enum SortOrderEnum {
+    ASC
+    DESC
+}
+
+"A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+
+scalar GatsbyImageData
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
+
+"Text content with rich formatting capabilities used in Prismic documents."
+scalar PrismicRichText
+
+input AVIFOptions {
+    lossless: Boolean
+    quality: Int
+    speed: Int
+}
+
+input BlurredOptions {
+    "Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this"
+    toFormat: ImageFormat
+    "Width of the generated low-res preview. Default is 20px"
+    width: Int
+}
+
+input BooleanQueryOperatorInput {
+    eq: Boolean
+    in: [Boolean]
+    ne: Boolean
+    nin: [Boolean]
+}
+
+input DateQueryOperatorInput {
+    eq: Date
+    gt: Date
+    gte: Date
+    in: [Date]
+    lt: Date
+    lte: Date
+    ne: Date
+    nin: [Date]
+}
+
+input DirectoryFieldSelector {
+    absolutePath: FieldSelectorEnum
+    accessTime: FieldSelectorEnum
+    atime: FieldSelectorEnum
+    atimeMs: FieldSelectorEnum
+    base: FieldSelectorEnum
+    birthTime: FieldSelectorEnum
+    birthtime: FieldSelectorEnum
+    birthtimeMs: FieldSelectorEnum
+    changeTime: FieldSelectorEnum
+    children: NodeFieldSelector
+    ctime: FieldSelectorEnum
+    ctimeMs: FieldSelectorEnum
+    dev: FieldSelectorEnum
+    dir: FieldSelectorEnum
+    ext: FieldSelectorEnum
+    extension: FieldSelectorEnum
+    gid: FieldSelectorEnum
+    id: FieldSelectorEnum
+    ino: FieldSelectorEnum
+    internal: InternalFieldSelector
+    mode: FieldSelectorEnum
+    modifiedTime: FieldSelectorEnum
+    mtime: FieldSelectorEnum
+    mtimeMs: FieldSelectorEnum
+    name: FieldSelectorEnum
+    nlink: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prettySize: FieldSelectorEnum
+    rdev: FieldSelectorEnum
+    relativeDirectory: FieldSelectorEnum
+    relativePath: FieldSelectorEnum
+    root: FieldSelectorEnum
+    size: FieldSelectorEnum
+    sourceInstanceName: FieldSelectorEnum
+    uid: FieldSelectorEnum
+}
+
+input DirectoryFilterInput {
+    absolutePath: StringQueryOperatorInput
+    accessTime: DateQueryOperatorInput
+    atime: DateQueryOperatorInput
+    atimeMs: FloatQueryOperatorInput
+    base: StringQueryOperatorInput
+    birthTime: DateQueryOperatorInput
+    birthtime: DateQueryOperatorInput
+    birthtimeMs: FloatQueryOperatorInput
+    changeTime: DateQueryOperatorInput
+    children: NodeFilterListInput
+    ctime: DateQueryOperatorInput
+    ctimeMs: FloatQueryOperatorInput
+    dev: IntQueryOperatorInput
+    dir: StringQueryOperatorInput
+    ext: StringQueryOperatorInput
+    extension: StringQueryOperatorInput
+    gid: IntQueryOperatorInput
+    id: StringQueryOperatorInput
+    ino: FloatQueryOperatorInput
+    internal: InternalFilterInput
+    mode: IntQueryOperatorInput
+    modifiedTime: DateQueryOperatorInput
+    mtime: DateQueryOperatorInput
+    mtimeMs: FloatQueryOperatorInput
+    name: StringQueryOperatorInput
+    nlink: IntQueryOperatorInput
+    parent: NodeFilterInput
+    prettySize: StringQueryOperatorInput
+    rdev: IntQueryOperatorInput
+    relativeDirectory: StringQueryOperatorInput
+    relativePath: StringQueryOperatorInput
+    root: StringQueryOperatorInput
+    size: IntQueryOperatorInput
+    sourceInstanceName: StringQueryOperatorInput
+    uid: IntQueryOperatorInput
+}
+
+input DirectorySortInput {
+    absolutePath: SortOrderEnum
+    accessTime: SortOrderEnum
+    atime: SortOrderEnum
+    atimeMs: SortOrderEnum
+    base: SortOrderEnum
+    birthTime: SortOrderEnum
+    birthtime: SortOrderEnum
+    birthtimeMs: SortOrderEnum
+    changeTime: SortOrderEnum
+    children: NodeSortInput
+    ctime: SortOrderEnum
+    ctimeMs: SortOrderEnum
+    dev: SortOrderEnum
+    dir: SortOrderEnum
+    ext: SortOrderEnum
+    extension: SortOrderEnum
+    gid: SortOrderEnum
+    id: SortOrderEnum
+    ino: SortOrderEnum
+    internal: InternalSortInput
+    mode: SortOrderEnum
+    modifiedTime: SortOrderEnum
+    mtime: SortOrderEnum
+    mtimeMs: SortOrderEnum
+    name: SortOrderEnum
+    nlink: SortOrderEnum
+    parent: NodeSortInput
+    prettySize: SortOrderEnum
+    rdev: SortOrderEnum
+    relativeDirectory: SortOrderEnum
+    relativePath: SortOrderEnum
+    root: SortOrderEnum
+    size: SortOrderEnum
+    sourceInstanceName: SortOrderEnum
+    uid: SortOrderEnum
+}
+
+input DuotoneGradient {
+    highlight: String!
+    opacity: Int
+    shadow: String!
+}
+
+input FileFieldSelector {
+    absolutePath: FieldSelectorEnum
+    accessTime: FieldSelectorEnum
+    atime: FieldSelectorEnum
+    atimeMs: FieldSelectorEnum
+    base: FieldSelectorEnum
+    birthTime: FieldSelectorEnum
+    birthtime: FieldSelectorEnum
+    birthtimeMs: FieldSelectorEnum
+    changeTime: FieldSelectorEnum
+    childImageSharp: ImageSharpFieldSelector
+    children: NodeFieldSelector
+    childrenImageSharp: ImageSharpFieldSelector
+    ctime: FieldSelectorEnum
+    ctimeMs: FieldSelectorEnum
+    dev: FieldSelectorEnum
+    dir: FieldSelectorEnum
+    ext: FieldSelectorEnum
+    extension: FieldSelectorEnum
+    gid: FieldSelectorEnum
+    id: FieldSelectorEnum
+    ino: FieldSelectorEnum
+    internal: InternalFieldSelector
+    mode: FieldSelectorEnum
+    modifiedTime: FieldSelectorEnum
+    mtime: FieldSelectorEnum
+    mtimeMs: FieldSelectorEnum
+    name: FieldSelectorEnum
+    nlink: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prettySize: FieldSelectorEnum
+    rdev: FieldSelectorEnum
+    relativeDirectory: FieldSelectorEnum
+    relativePath: FieldSelectorEnum
+    root: FieldSelectorEnum
+    size: FieldSelectorEnum
+    sourceInstanceName: FieldSelectorEnum
+    uid: FieldSelectorEnum
+}
+
+input FileFilterInput {
+    absolutePath: StringQueryOperatorInput
+    accessTime: DateQueryOperatorInput
+    atime: DateQueryOperatorInput
+    atimeMs: FloatQueryOperatorInput
+    base: StringQueryOperatorInput
+    birthTime: DateQueryOperatorInput
+    birthtime: DateQueryOperatorInput
+    birthtimeMs: FloatQueryOperatorInput
+    changeTime: DateQueryOperatorInput
+    childImageSharp: ImageSharpFilterInput
+    children: NodeFilterListInput
+    childrenImageSharp: ImageSharpFilterListInput
+    ctime: DateQueryOperatorInput
+    ctimeMs: FloatQueryOperatorInput
+    dev: IntQueryOperatorInput
+    dir: StringQueryOperatorInput
+    ext: StringQueryOperatorInput
+    extension: StringQueryOperatorInput
+    gid: IntQueryOperatorInput
+    id: StringQueryOperatorInput
+    ino: FloatQueryOperatorInput
+    internal: InternalFilterInput
+    mode: IntQueryOperatorInput
+    modifiedTime: DateQueryOperatorInput
+    mtime: DateQueryOperatorInput
+    mtimeMs: FloatQueryOperatorInput
+    name: StringQueryOperatorInput
+    nlink: IntQueryOperatorInput
+    parent: NodeFilterInput
+    prettySize: StringQueryOperatorInput
+    rdev: IntQueryOperatorInput
+    relativeDirectory: StringQueryOperatorInput
+    relativePath: StringQueryOperatorInput
+    root: StringQueryOperatorInput
+    size: IntQueryOperatorInput
+    sourceInstanceName: StringQueryOperatorInput
+    uid: IntQueryOperatorInput
+}
+
+input FileSortInput {
+    absolutePath: SortOrderEnum
+    accessTime: SortOrderEnum
+    atime: SortOrderEnum
+    atimeMs: SortOrderEnum
+    base: SortOrderEnum
+    birthTime: SortOrderEnum
+    birthtime: SortOrderEnum
+    birthtimeMs: SortOrderEnum
+    changeTime: SortOrderEnum
+    childImageSharp: ImageSharpSortInput
+    children: NodeSortInput
+    childrenImageSharp: ImageSharpSortInput
+    ctime: SortOrderEnum
+    ctimeMs: SortOrderEnum
+    dev: SortOrderEnum
+    dir: SortOrderEnum
+    ext: SortOrderEnum
+    extension: SortOrderEnum
+    gid: SortOrderEnum
+    id: SortOrderEnum
+    ino: SortOrderEnum
+    internal: InternalSortInput
+    mode: SortOrderEnum
+    modifiedTime: SortOrderEnum
+    mtime: SortOrderEnum
+    mtimeMs: SortOrderEnum
+    name: SortOrderEnum
+    nlink: SortOrderEnum
+    parent: NodeSortInput
+    prettySize: SortOrderEnum
+    rdev: SortOrderEnum
+    relativeDirectory: SortOrderEnum
+    relativePath: SortOrderEnum
+    root: SortOrderEnum
+    size: SortOrderEnum
+    sourceInstanceName: SortOrderEnum
+    uid: SortOrderEnum
+}
+
+input FloatQueryOperatorInput {
+    eq: Float
+    gt: Float
+    gte: Float
+    in: [Float]
+    lt: Float
+    lte: Float
+    ne: Float
+    nin: [Float]
+}
+
+input GatsbyImageDataQueryOperatorInput {
+    eq: GatsbyImageData
+    in: [GatsbyImageData]
+    ne: GatsbyImageData
+    nin: [GatsbyImageData]
+}
+
+input IDQueryOperatorInput {
+    eq: ID
+    in: [ID]
+    ne: ID
+    nin: [ID]
+}
+
+input ImageSharpFieldSelector {
+    children: NodeFieldSelector
+    fixed: ImageSharpFixedFieldSelector
+    fluid: ImageSharpFluidFieldSelector
+    gatsbyImageData: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    original: ImageSharpOriginalFieldSelector
+    parent: NodeFieldSelector
+    resize: ImageSharpResizeFieldSelector
+}
+
+input ImageSharpFilterInput {
+    children: NodeFilterListInput
+    fixed: ImageSharpFixedFilterInput
+    fluid: ImageSharpFluidFilterInput
+    gatsbyImageData: GatsbyImageDataQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    original: ImageSharpOriginalFilterInput
+    parent: NodeFilterInput
+    resize: ImageSharpResizeFilterInput
+}
+
+input ImageSharpFilterListInput {
+    elemMatch: ImageSharpFilterInput
+}
+
+input ImageSharpFixedFieldSelector {
+    aspectRatio: FieldSelectorEnum
+    base64: FieldSelectorEnum
+    height: FieldSelectorEnum
+    originalName: FieldSelectorEnum
+    src: FieldSelectorEnum
+    srcSet: FieldSelectorEnum
+    srcSetWebp: FieldSelectorEnum
+    srcWebp: FieldSelectorEnum
+    tracedSVG: FieldSelectorEnum
+    width: FieldSelectorEnum
+}
+
+input ImageSharpFixedFilterInput {
+    aspectRatio: FloatQueryOperatorInput
+    base64: StringQueryOperatorInput
+    height: FloatQueryOperatorInput
+    originalName: StringQueryOperatorInput
+    src: StringQueryOperatorInput
+    srcSet: StringQueryOperatorInput
+    srcSetWebp: StringQueryOperatorInput
+    srcWebp: StringQueryOperatorInput
+    tracedSVG: StringQueryOperatorInput
+    width: FloatQueryOperatorInput
+}
+
+input ImageSharpFixedSortInput {
+    aspectRatio: SortOrderEnum
+    base64: SortOrderEnum
+    height: SortOrderEnum
+    originalName: SortOrderEnum
+    src: SortOrderEnum
+    srcSet: SortOrderEnum
+    srcSetWebp: SortOrderEnum
+    srcWebp: SortOrderEnum
+    tracedSVG: SortOrderEnum
+    width: SortOrderEnum
+}
+
+input ImageSharpFluidFieldSelector {
+    aspectRatio: FieldSelectorEnum
+    base64: FieldSelectorEnum
+    originalImg: FieldSelectorEnum
+    originalName: FieldSelectorEnum
+    presentationHeight: FieldSelectorEnum
+    presentationWidth: FieldSelectorEnum
+    sizes: FieldSelectorEnum
+    src: FieldSelectorEnum
+    srcSet: FieldSelectorEnum
+    srcSetWebp: FieldSelectorEnum
+    srcWebp: FieldSelectorEnum
+    tracedSVG: FieldSelectorEnum
+}
+
+input ImageSharpFluidFilterInput {
+    aspectRatio: FloatQueryOperatorInput
+    base64: StringQueryOperatorInput
+    originalImg: StringQueryOperatorInput
+    originalName: StringQueryOperatorInput
+    presentationHeight: IntQueryOperatorInput
+    presentationWidth: IntQueryOperatorInput
+    sizes: StringQueryOperatorInput
+    src: StringQueryOperatorInput
+    srcSet: StringQueryOperatorInput
+    srcSetWebp: StringQueryOperatorInput
+    srcWebp: StringQueryOperatorInput
+    tracedSVG: StringQueryOperatorInput
+}
+
+input ImageSharpFluidSortInput {
+    aspectRatio: SortOrderEnum
+    base64: SortOrderEnum
+    originalImg: SortOrderEnum
+    originalName: SortOrderEnum
+    presentationHeight: SortOrderEnum
+    presentationWidth: SortOrderEnum
+    sizes: SortOrderEnum
+    src: SortOrderEnum
+    srcSet: SortOrderEnum
+    srcSetWebp: SortOrderEnum
+    srcWebp: SortOrderEnum
+    tracedSVG: SortOrderEnum
+}
+
+input ImageSharpOriginalFieldSelector {
+    height: FieldSelectorEnum
+    src: FieldSelectorEnum
+    width: FieldSelectorEnum
+}
+
+input ImageSharpOriginalFilterInput {
+    height: FloatQueryOperatorInput
+    src: StringQueryOperatorInput
+    width: FloatQueryOperatorInput
+}
+
+input ImageSharpOriginalSortInput {
+    height: SortOrderEnum
+    src: SortOrderEnum
+    width: SortOrderEnum
+}
+
+input ImageSharpResizeFieldSelector {
+    aspectRatio: FieldSelectorEnum
+    height: FieldSelectorEnum
+    originalName: FieldSelectorEnum
+    src: FieldSelectorEnum
+    tracedSVG: FieldSelectorEnum
+    width: FieldSelectorEnum
+}
+
+input ImageSharpResizeFilterInput {
+    aspectRatio: FloatQueryOperatorInput
+    height: IntQueryOperatorInput
+    originalName: StringQueryOperatorInput
+    src: StringQueryOperatorInput
+    tracedSVG: StringQueryOperatorInput
+    width: IntQueryOperatorInput
+}
+
+input ImageSharpResizeSortInput {
+    aspectRatio: SortOrderEnum
+    height: SortOrderEnum
+    originalName: SortOrderEnum
+    src: SortOrderEnum
+    tracedSVG: SortOrderEnum
+    width: SortOrderEnum
+}
+
+input ImageSharpSortInput {
+    children: NodeSortInput
+    fixed: ImageSharpFixedSortInput
+    fluid: ImageSharpFluidSortInput
+    gatsbyImageData: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    original: ImageSharpOriginalSortInput
+    parent: NodeSortInput
+    resize: ImageSharpResizeSortInput
+}
+
+input IntQueryOperatorInput {
+    eq: Int
+    gt: Int
+    gte: Int
+    in: [Int]
+    lt: Int
+    lte: Int
+    ne: Int
+    nin: [Int]
+}
+
+input InternalFieldSelector {
+    content: FieldSelectorEnum
+    contentDigest: FieldSelectorEnum
+    contentFilePath: FieldSelectorEnum
+    description: FieldSelectorEnum
+    fieldOwners: FieldSelectorEnum
+    ignoreType: FieldSelectorEnum
+    mediaType: FieldSelectorEnum
+    owner: FieldSelectorEnum
+    type: FieldSelectorEnum
+}
+
+input InternalFilterInput {
+    content: StringQueryOperatorInput
+    contentDigest: StringQueryOperatorInput
+    contentFilePath: StringQueryOperatorInput
+    description: StringQueryOperatorInput
+    fieldOwners: StringQueryOperatorInput
+    ignoreType: BooleanQueryOperatorInput
+    mediaType: StringQueryOperatorInput
+    owner: StringQueryOperatorInput
+    type: StringQueryOperatorInput
+}
+
+input InternalSortInput {
+    content: SortOrderEnum
+    contentDigest: SortOrderEnum
+    contentFilePath: SortOrderEnum
+    description: SortOrderEnum
+    fieldOwners: SortOrderEnum
+    ignoreType: SortOrderEnum
+    mediaType: SortOrderEnum
+    owner: SortOrderEnum
+    type: SortOrderEnum
+}
+
+input JPGOptions {
+    progressive: Boolean = true
+    quality: Int
+}
+
+input JSONQueryOperatorInput {
+    eq: JSON
+    glob: JSON
+    in: [JSON]
+    ne: JSON
+    nin: [JSON]
+    regex: JSON
+}
+
+input NodeFieldSelector {
+    children: NodeFieldSelector
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    parent: NodeFieldSelector
+}
+
+input NodeFilterInput {
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    parent: NodeFilterInput
+}
+
+input NodeFilterListInput {
+    elemMatch: NodeFilterInput
+}
+
+input NodeSortInput {
+    children: NodeSortInput
+    id: SortOrderEnum
+    internal: InternalSortInput
+    parent: NodeSortInput
+}
+
+input PNGOptions {
+    compressionSpeed: Int = 4
+    quality: Int
+}
+
+input Potrace {
+    alphaMax: Float
+    background: String
+    blackOnWhite: Boolean
+    color: String
+    optCurve: Boolean
+    optTolerance: Float
+    threshold: Int
+    turdSize: Float
+    turnPolicy: PotraceTurnPolicy
+}
+
+input PrismicAlternateLanguageFieldSelector {
+    id: FieldSelectorEnum
+    lang: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    type: FieldSelectorEnum
+    uid: FieldSelectorEnum
+    url: FieldSelectorEnum
+}
+
+input PrismicAlternateLanguageFilterInput {
+    id: IDQueryOperatorInput
+    lang: StringQueryOperatorInput
+    raw: JSONQueryOperatorInput
+    type: StringQueryOperatorInput
+    uid: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicAlternateLanguageFilterListInput {
+    elemMatch: PrismicAlternateLanguageFilterInput
+}
+
+input PrismicAlternateLanguageSortInput {
+    id: SortOrderEnum
+    lang: SortOrderEnum
+    raw: SortOrderEnum
+    type: SortOrderEnum
+    uid: SortOrderEnum
+    url: SortOrderEnum
+}
+
+input PrismicEmbedFieldFieldSelector {
+    children: NodeFieldSelector
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    parent: NodeFieldSelector
+}
+
+input PrismicEmbedFieldFilterInput {
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    parent: NodeFilterInput
+}
+
+input PrismicEmbedFieldSortInput {
+    children: NodeSortInput
+    id: SortOrderEnum
+    internal: InternalSortInput
+    parent: NodeSortInput
+}
+
+input PrismicFooterDataAnchorsItemFieldSelector {
+    label: FieldSelectorEnum
+    path: FieldSelectorEnum
+}
+
+input PrismicFooterDataAnchorsItemFilterInput {
+    label: StringQueryOperatorInput
+    path: StringQueryOperatorInput
+}
+
+input PrismicFooterDataAnchorsItemFilterListInput {
+    elemMatch: PrismicFooterDataAnchorsItemFilterInput
+}
+
+input PrismicFooterDataAnchorsItemSortInput {
+    label: SortOrderEnum
+    path: SortOrderEnum
+}
+
+input PrismicFooterDataFieldSelector {
+    anchors: PrismicFooterDataAnchorsItemFieldSelector
+    anchors_heading: PrismicRichTextFieldFieldSelector
+    contact_address: PrismicRichTextFieldFieldSelector
+    contact_email: PrismicRichTextFieldFieldSelector
+    legal_heading: PrismicRichTextFieldFieldSelector
+    legal_links: PrismicFooterDataLegalLinksItemFieldSelector
+    socials: PrismicFooterDataSocialsItemFieldSelector
+}
+
+input PrismicFooterDataFilterInput {
+    anchors: PrismicFooterDataAnchorsItemFilterListInput
+    anchors_heading: PrismicRichTextFieldFilterInput
+    contact_address: PrismicRichTextFieldFilterInput
+    contact_email: PrismicRichTextFieldFilterInput
+    legal_heading: PrismicRichTextFieldFilterInput
+    legal_links: PrismicFooterDataLegalLinksItemFilterListInput
+    socials: PrismicFooterDataSocialsItemFilterListInput
+}
+
+input PrismicFooterDataLegalLinksItemFieldSelector {
+    label: FieldSelectorEnum
+    path: FieldSelectorEnum
+}
+
+input PrismicFooterDataLegalLinksItemFilterInput {
+    label: StringQueryOperatorInput
+    path: StringQueryOperatorInput
+}
+
+input PrismicFooterDataLegalLinksItemFilterListInput {
+    elemMatch: PrismicFooterDataLegalLinksItemFilterInput
+}
+
+input PrismicFooterDataLegalLinksItemSortInput {
+    label: SortOrderEnum
+    path: SortOrderEnum
+}
+
+input PrismicFooterDataSocialsItemFieldSelector {
+    path: FieldSelectorEnum
+    social: FieldSelectorEnum
+}
+
+input PrismicFooterDataSocialsItemFilterInput {
+    path: StringQueryOperatorInput
+    social: StringQueryOperatorInput
+}
+
+input PrismicFooterDataSocialsItemFilterListInput {
+    elemMatch: PrismicFooterDataSocialsItemFilterInput
+}
+
+input PrismicFooterDataSocialsItemSortInput {
+    path: SortOrderEnum
+    social: SortOrderEnum
+}
+
+input PrismicFooterDataSortInput {
+    anchors: PrismicFooterDataAnchorsItemSortInput
+    anchors_heading: PrismicRichTextFieldSortInput
+    contact_address: PrismicRichTextFieldSortInput
+    contact_email: PrismicRichTextFieldSortInput
+    legal_heading: PrismicRichTextFieldSortInput
+    legal_links: PrismicFooterDataLegalLinksItemSortInput
+    socials: PrismicFooterDataSocialsItemSortInput
+}
+
+input PrismicFooterFieldSelector {
+    _previewable: FieldSelectorEnum
+    alternate_languages: PrismicAlternateLanguageFieldSelector
+    children: NodeFieldSelector
+    data: PrismicFooterDataFieldSelector
+    dataRaw: FieldSelectorEnum
+    first_publication_date: FieldSelectorEnum
+    href: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    lang: FieldSelectorEnum
+    last_publication_date: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prismicId: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    tags: FieldSelectorEnum
+    type: FieldSelectorEnum
+    url: FieldSelectorEnum
+}
+
+input PrismicFooterFilterInput {
+    _previewable: IDQueryOperatorInput
+    alternate_languages: PrismicAlternateLanguageFilterListInput
+    children: NodeFilterListInput
+    data: PrismicFooterDataFilterInput
+    dataRaw: JSONQueryOperatorInput
+    first_publication_date: DateQueryOperatorInput
+    href: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lang: StringQueryOperatorInput
+    last_publication_date: DateQueryOperatorInput
+    parent: NodeFilterInput
+    prismicId: IDQueryOperatorInput
+    raw: JSONQueryOperatorInput
+    tags: StringQueryOperatorInput
+    type: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicFooterSortInput {
+    _previewable: SortOrderEnum
+    alternate_languages: PrismicAlternateLanguageSortInput
+    children: NodeSortInput
+    data: PrismicFooterDataSortInput
+    dataRaw: SortOrderEnum
+    first_publication_date: SortOrderEnum
+    href: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    lang: SortOrderEnum
+    last_publication_date: SortOrderEnum
+    parent: NodeSortInput
+    prismicId: SortOrderEnum
+    raw: SortOrderEnum
+    tags: SortOrderEnum
+    type: SortOrderEnum
+    url: SortOrderEnum
+}
+
+input PrismicHomePageDataFieldSelector {
+    cta_badge: PrismicRichTextFieldFieldSelector
+    cta_button_label: FieldSelectorEnum
+    cta_button_path: FieldSelectorEnum
+    cta_heading: PrismicRichTextFieldFieldSelector
+    faq_banner_button_label: FieldSelectorEnum
+    faq_banner_button_path: FieldSelectorEnum
+    faq_banner_description: PrismicRichTextFieldFieldSelector
+    faq_banner_heading: PrismicRichTextFieldFieldSelector
+    faq_banner_image: PrismicImageFieldFieldSelector
+    faq_heading: PrismicRichTextFieldFieldSelector
+    hero_button_label: FieldSelectorEnum
+    hero_button_path: FieldSelectorEnum
+    hero_description: PrismicRichTextFieldFieldSelector
+    hero_heading: PrismicRichTextFieldFieldSelector
+    hero_left_image: PrismicImageFieldFieldSelector
+    hero_result_badge: PrismicRichTextFieldFieldSelector
+    hero_review_author: PrismicRichTextFieldFieldSelector
+    hero_review_badge: PrismicRichTextFieldFieldSelector
+    hero_review_description: PrismicRichTextFieldFieldSelector
+    hero_review_heading: PrismicRichTextFieldFieldSelector
+    hero_review_number: FieldSelectorEnum
+    hero_right_image: PrismicImageFieldFieldSelector
+    images: PrismicHomePageDataImagesItemFieldSelector
+    left_text: PrismicRichTextFieldFieldSelector
+    process_end_heading: PrismicRichTextFieldFieldSelector
+    process_heading: PrismicRichTextFieldFieldSelector
+    process_steps: PrismicHomePageDataProcessStepsItemFieldSelector
+    questions: PrismicHomePageDataQuestionsItemFieldSelector
+    right_text: PrismicRichTextFieldFieldSelector
+    seo_description: FieldSelectorEnum
+    seo_title: FieldSelectorEnum
+}
+
+input PrismicHomePageDataFilterInput {
+    cta_badge: PrismicRichTextFieldFilterInput
+    cta_button_label: StringQueryOperatorInput
+    cta_button_path: StringQueryOperatorInput
+    cta_heading: PrismicRichTextFieldFilterInput
+    faq_banner_button_label: StringQueryOperatorInput
+    faq_banner_button_path: StringQueryOperatorInput
+    faq_banner_description: PrismicRichTextFieldFilterInput
+    faq_banner_heading: PrismicRichTextFieldFilterInput
+    faq_banner_image: PrismicImageFieldFilterInput
+    faq_heading: PrismicRichTextFieldFilterInput
+    hero_button_label: StringQueryOperatorInput
+    hero_button_path: StringQueryOperatorInput
+    hero_description: PrismicRichTextFieldFilterInput
+    hero_heading: PrismicRichTextFieldFilterInput
+    hero_left_image: PrismicImageFieldFilterInput
+    hero_result_badge: PrismicRichTextFieldFilterInput
+    hero_review_author: PrismicRichTextFieldFilterInput
+    hero_review_badge: PrismicRichTextFieldFilterInput
+    hero_review_description: PrismicRichTextFieldFilterInput
+    hero_review_heading: PrismicRichTextFieldFilterInput
+    hero_review_number: FloatQueryOperatorInput
+    hero_right_image: PrismicImageFieldFilterInput
+    images: PrismicHomePageDataImagesItemFilterListInput
+    left_text: PrismicRichTextFieldFilterInput
+    process_end_heading: PrismicRichTextFieldFilterInput
+    process_heading: PrismicRichTextFieldFilterInput
+    process_steps: PrismicHomePageDataProcessStepsItemFilterListInput
+    questions: PrismicHomePageDataQuestionsItemFilterListInput
+    right_text: PrismicRichTextFieldFilterInput
+    seo_description: StringQueryOperatorInput
+    seo_title: StringQueryOperatorInput
+}
+
+input PrismicHomePageDataImagesItemFieldSelector {
+    image_after: PrismicImageFieldFieldSelector
+    image_before: PrismicImageFieldFieldSelector
+}
+
+input PrismicHomePageDataImagesItemFilterInput {
+    image_after: PrismicImageFieldFilterInput
+    image_before: PrismicImageFieldFilterInput
+}
+
+input PrismicHomePageDataImagesItemFilterListInput {
+    elemMatch: PrismicHomePageDataImagesItemFilterInput
+}
+
+input PrismicHomePageDataImagesItemSortInput {
+    image_after: PrismicImageFieldSortInput
+    image_before: PrismicImageFieldSortInput
+}
+
+input PrismicHomePageDataProcessStepsItemFieldSelector {
+    process_step_description: PrismicRichTextFieldFieldSelector
+    process_step_heading: PrismicRichTextFieldFieldSelector
+    process_step_number: FieldSelectorEnum
+}
+
+input PrismicHomePageDataProcessStepsItemFilterInput {
+    process_step_description: PrismicRichTextFieldFilterInput
+    process_step_heading: PrismicRichTextFieldFilterInput
+    process_step_number: StringQueryOperatorInput
+}
+
+input PrismicHomePageDataProcessStepsItemFilterListInput {
+    elemMatch: PrismicHomePageDataProcessStepsItemFilterInput
+}
+
+input PrismicHomePageDataProcessStepsItemSortInput {
+    process_step_description: PrismicRichTextFieldSortInput
+    process_step_heading: PrismicRichTextFieldSortInput
+    process_step_number: SortOrderEnum
+}
+
+input PrismicHomePageDataQuestionsItemFieldSelector {
+    question_heading: PrismicRichTextFieldFieldSelector
+    question_icon: FieldSelectorEnum
+    question_text: PrismicRichTextFieldFieldSelector
+}
+
+input PrismicHomePageDataQuestionsItemFilterInput {
+    question_heading: PrismicRichTextFieldFilterInput
+    question_icon: StringQueryOperatorInput
+    question_text: PrismicRichTextFieldFilterInput
+}
+
+input PrismicHomePageDataQuestionsItemFilterListInput {
+    elemMatch: PrismicHomePageDataQuestionsItemFilterInput
+}
+
+input PrismicHomePageDataQuestionsItemSortInput {
+    question_heading: PrismicRichTextFieldSortInput
+    question_icon: SortOrderEnum
+    question_text: PrismicRichTextFieldSortInput
+}
+
+input PrismicHomePageDataSortInput {
+    cta_badge: PrismicRichTextFieldSortInput
+    cta_button_label: SortOrderEnum
+    cta_button_path: SortOrderEnum
+    cta_heading: PrismicRichTextFieldSortInput
+    faq_banner_button_label: SortOrderEnum
+    faq_banner_button_path: SortOrderEnum
+    faq_banner_description: PrismicRichTextFieldSortInput
+    faq_banner_heading: PrismicRichTextFieldSortInput
+    faq_banner_image: PrismicImageFieldSortInput
+    faq_heading: PrismicRichTextFieldSortInput
+    hero_button_label: SortOrderEnum
+    hero_button_path: SortOrderEnum
+    hero_description: PrismicRichTextFieldSortInput
+    hero_heading: PrismicRichTextFieldSortInput
+    hero_left_image: PrismicImageFieldSortInput
+    hero_result_badge: PrismicRichTextFieldSortInput
+    hero_review_author: PrismicRichTextFieldSortInput
+    hero_review_badge: PrismicRichTextFieldSortInput
+    hero_review_description: PrismicRichTextFieldSortInput
+    hero_review_heading: PrismicRichTextFieldSortInput
+    hero_review_number: SortOrderEnum
+    hero_right_image: PrismicImageFieldSortInput
+    images: PrismicHomePageDataImagesItemSortInput
+    left_text: PrismicRichTextFieldSortInput
+    process_end_heading: PrismicRichTextFieldSortInput
+    process_heading: PrismicRichTextFieldSortInput
+    process_steps: PrismicHomePageDataProcessStepsItemSortInput
+    questions: PrismicHomePageDataQuestionsItemSortInput
+    right_text: PrismicRichTextFieldSortInput
+    seo_description: SortOrderEnum
+    seo_title: SortOrderEnum
+}
+
+input PrismicHomePageFieldSelector {
+    _previewable: FieldSelectorEnum
+    alternate_languages: PrismicAlternateLanguageFieldSelector
+    children: NodeFieldSelector
+    data: PrismicHomePageDataFieldSelector
+    dataRaw: FieldSelectorEnum
+    first_publication_date: FieldSelectorEnum
+    href: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    lang: FieldSelectorEnum
+    last_publication_date: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prismicId: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    tags: FieldSelectorEnum
+    type: FieldSelectorEnum
+    uid: FieldSelectorEnum
+    url: FieldSelectorEnum
+}
+
+input PrismicHomePageFilterInput {
+    _previewable: IDQueryOperatorInput
+    alternate_languages: PrismicAlternateLanguageFilterListInput
+    children: NodeFilterListInput
+    data: PrismicHomePageDataFilterInput
+    dataRaw: JSONQueryOperatorInput
+    first_publication_date: DateQueryOperatorInput
+    href: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lang: StringQueryOperatorInput
+    last_publication_date: DateQueryOperatorInput
+    parent: NodeFilterInput
+    prismicId: IDQueryOperatorInput
+    raw: JSONQueryOperatorInput
+    tags: StringQueryOperatorInput
+    type: StringQueryOperatorInput
+    uid: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicHomePageSortInput {
+    _previewable: SortOrderEnum
+    alternate_languages: PrismicAlternateLanguageSortInput
+    children: NodeSortInput
+    data: PrismicHomePageDataSortInput
+    dataRaw: SortOrderEnum
+    first_publication_date: SortOrderEnum
+    href: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    lang: SortOrderEnum
+    last_publication_date: SortOrderEnum
+    parent: NodeSortInput
+    prismicId: SortOrderEnum
+    raw: SortOrderEnum
+    tags: SortOrderEnum
+    type: SortOrderEnum
+    uid: SortOrderEnum
+    url: SortOrderEnum
+}
+
+input PrismicImageFieldDimensionsFieldSelector {
+    height: FieldSelectorEnum
+    width: FieldSelectorEnum
+}
+
+input PrismicImageFieldDimensionsFilterInput {
+    height: IntQueryOperatorInput
+    width: IntQueryOperatorInput
+}
+
+input PrismicImageFieldDimensionsSortInput {
+    height: SortOrderEnum
+    width: SortOrderEnum
+}
+
+input PrismicImageFieldFieldSelector {
+    alt: FieldSelectorEnum
+    copyright: FieldSelectorEnum
+    dimensions: PrismicImageFieldDimensionsFieldSelector
+    gatsbyImageData: FieldSelectorEnum
+    localFile: FileFieldSelector
+    url: FieldSelectorEnum
+}
+
+input PrismicImageFieldFilterInput {
+    alt: StringQueryOperatorInput
+    copyright: StringQueryOperatorInput
+    dimensions: PrismicImageFieldDimensionsFilterInput
+    gatsbyImageData: JSONQueryOperatorInput
+    localFile: FileFilterInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicImageFieldSortInput {
+    alt: SortOrderEnum
+    copyright: SortOrderEnum
+    dimensions: PrismicImageFieldDimensionsSortInput
+    gatsbyImageData: SortOrderEnum
+    localFile: FileSortInput
+    url: SortOrderEnum
+}
+
+input PrismicImgixURLParams {
+    "Alias for `pdfAnnotation`."
+    annotation: Boolean
+    "Specifies an aspect ratio to maintain when resizing and cropping the image. [See docs](https://docs.imgix.com/apis/url/size/ar)."
+    ar: String
+    "Applies automatic enhancements to images. [See docs](https://docs.imgix.com/apis/url/auto)."
+    auto: String
+    "Alias for `blend`."
+    b: String
+    "Alias for `blendAlign`."
+    ba: String
+    "Alias for `blendAlpha`."
+    balph: Int
+    "Alias for `blendCrop`."
+    bc: String
+    "Alias for `blendFit`."
+    bf: String
+    "Colors the background of padded and partially-transparent images. Default: `fff`. [See docs](https://docs.imgix.com/apis/url/bg)."
+    bg: String
+    "Removes background from image. Default: `false`. [See docs](https://docs.imgix.com/apis/rendering/background-removal/bg-remove)."
+    bgRemove: Boolean
+    "Overrides default fallback behavior for bg-remove failures. Default: `true`. [See docs](https://docs.imgix.com/apis/rendering/background-removal/bg-remove)."
+    bgRemoveFallback: Boolean
+    "Alias for `blendH`."
+    bh: Int
+    "Specifies the location of the blend image. [See docs](https://docs.imgix.com/apis/url/blending/blend)."
+    blend: String
+    "Changes the blend alignment relative to the parent image. [See docs](https://docs.imgix.com/apis/url/blending/blend-align)."
+    blendAlign: String
+    "Changes the alpha of the blend image. Default: `100`. [See docs](https://docs.imgix.com/apis/url/blending/blend-alpha)."
+    blendAlpha: Int
+    "Alias for `blendColor`."
+    blendClr: String
+    "Specifies a color to use when applying the blend. [See docs](https://docs.imgix.com/apis/url/blending/blend-color)."
+    blendColor: String
+    "Specifies the type of crop for blend images. [See docs](https://docs.imgix.com/apis/url/blending/blend-crop)."
+    blendCrop: String
+    "Specifies the fit mode for blend images. Default: `clip`. [See docs](https://docs.imgix.com/apis/url/blending/blend-fit)."
+    blendFit: String
+    "Adjusts the height of the blend image. [See docs](https://docs.imgix.com/apis/url/blending/blend-h)."
+    blendH: Int
+    "Sets the blend mode for a blend image. Default: `overlay`. [See docs](https://docs.imgix.com/apis/url/blending/blend-mode)."
+    blendMode: String
+    "Applies padding to the blend image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/blending/blend-pad)."
+    blendPad: Int
+    "Adjusts the size of the blend image. [See docs](https://docs.imgix.com/apis/url/blending/blend-size)."
+    blendSize: String
+    "Adjusts the width of the blend image. [See docs](https://docs.imgix.com/apis/url/blending/blend-w)."
+    blendW: Int
+    "Adjusts the x-offset of the blend image relative to its parent. Default: `0`. [See docs](https://docs.imgix.com/apis/url/blending/blend-x)."
+    blendX: Int
+    "Adjusts the y-offset of the blend image relative to its parent. Default: `0`. [See docs](https://docs.imgix.com/apis/url/blending/blend-y)."
+    blendY: Int
+    "Alias for `blendAlign`."
+    blendalign: String
+    "Alias for `blendAlpha`."
+    blendalpha: Int
+    "Alias for `blendColor`."
+    blendclr: String
+    "Alias for `blendColor`."
+    blendcolor: String
+    "Alias for `blendCrop`."
+    blendcrop: String
+    "Alias for `blendFit`."
+    blendfit: String
+    "Alias for `blendH`."
+    blendh: Int
+    "Alias for `blendMode`."
+    blendmode: String
+    "Alias for `blendPad`."
+    blendpad: Int
+    "Alias for `blendSize`."
+    blendsize: String
+    "Alias for `blendW`."
+    blendw: Int
+    "Alias for `blendX`."
+    blendx: Int
+    "Alias for `blendY`."
+    blendy: Int
+    "Applies a gaussian blur to an image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/stylize/blur)."
+    blur: Int
+    "Alias for `blendMode`."
+    bm: String
+    "Applies a border to an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border)."
+    border: String
+    "Sets bottom border of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border-bottom)."
+    borderBottom: Int
+    "Sets left border of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border-left)."
+    borderLeft: Int
+    "Sets the outer radius of the image's border in pixels. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border-radius)."
+    borderRadius: String
+    "Sets the inner radius of the image's border in pixels. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border-radius-inner)."
+    borderRadiusInner: String
+    "Sets right border of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border-right)."
+    borderRight: Int
+    "Sets top border of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/border-top)."
+    borderTop: Int
+    "Alias for `blendPad`."
+    bp: Int
+    "Adjusts the brightness of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/bri)."
+    bri: Int
+    "Alias for `blendSize`."
+    bs: String
+    "Alias for `blendW`."
+    bw: Int
+    "Alias for `blendX`."
+    bx: Int
+    "Alias for `blendY`."
+    by: Int
+    "Sets one or more Client-Hints headers. [See docs](https://docs.imgix.com/apis/url/format/ch)."
+    ch: String
+    "Specifies the output chroma subsampling rate. Default: `420`. [See docs](https://docs.imgix.com/apis/url/format/chromasub)."
+    chromasub: Int
+    "Limits the number of unique colors in an image. [See docs](https://docs.imgix.com/apis/url/format/colorquant)."
+    colorquant: Int
+    "Specifies how many colors to include in a palette-extraction response. Default: `6`. [See docs](https://docs.imgix.com/apis/url/color-palette/colors)."
+    colors: Int
+    "Adjusts the contrast of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/con)."
+    con: Int
+    "Specifies the radius value for a rounded corner mask. [See docs](https://docs.imgix.com/apis/url/mask/corner-radius)."
+    cornerRadius: String
+    "Specifies how to crop an image. [See docs](https://docs.imgix.com/apis/url/size/crop)."
+    crop: String
+    "Specifies the color space of the output image. [See docs](https://docs.imgix.com/apis/url/format/cs)."
+    cs: String
+    "Forces a URL to use send-file in its response. [See docs](https://docs.imgix.com/apis/url/format/dl)."
+    dl: String
+    "Sets the DPI value in the EXIF header. [See docs](https://docs.imgix.com/apis/url/format/dpi)."
+    dpi: Int
+    "Adjusts the device-pixel ratio of the output image. Default: `1`. [See docs](https://docs.imgix.com/apis/url/dpr)."
+    dpr: Float
+    "Applies a duotone effect to the source image. [See docs](https://docs.imgix.com/apis/url/stylize/duotone)."
+    duotone: String
+    "Changes the alpha of the duotone effect atop the source image. Default: `100`. [See docs](https://docs.imgix.com/apis/url/stylize/duotone-alpha)."
+    duotoneAlpha: Int
+    "Adjusts the exposure of the output image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/exp)."
+    exp: Int
+    "A Unix timestamp specifying a UTC time. Requests made to this URL after that time will output a 404 status code. [See docs](https://docs.imgix.com/apis/url/expires)."
+    expires: String
+    "Alias for `fit`."
+    f: String
+    "Selects a face to crop to. [See docs](https://docs.imgix.com/apis/url/face-detection/faceindex)."
+    faceindex: Int
+    "Adjusts padding around a selected face. Default: `1`. [See docs](https://docs.imgix.com/apis/url/face-detection/facepad)."
+    facepad: Float
+    "Specifies that face data should be included in output when combined with `fm=json`. [See docs](https://docs.imgix.com/apis/url/face-detection/faces)."
+    faces: Int
+    "Determines how to fill in additional space created by the fit setting. [See docs](https://docs.imgix.com/apis/url/fill/fill)."
+    fill: String
+    "Sets the fill color for images with additional space created by the fit setting. Default: `fff`. [See docs](https://docs.imgix.com/apis/url/fill/fill-color)."
+    fillColor: String
+    "Alias for `fillColor`."
+    fillcolor: String
+    "Specifies how to map the source image to the output image dimensions. Default: `clip`. [See docs](https://docs.imgix.com/apis/url/size/fit)."
+    fit: String
+    "Flips an image on a specified axis. [See docs](https://docs.imgix.com/apis/url/rotation/flip)."
+    flip: String
+    "Changes the format of the output image. [See docs](https://docs.imgix.com/apis/url/format/fm)."
+    fm: String
+    "Displays crosshairs identifying the location of the set focal point. Default: `false`. [See docs](https://docs.imgix.com/apis/url/focalpoint-crop/fp-debug)."
+    fpDebug: Boolean
+    "Sets the relative horizontal value for the focal point of an image. [See docs](https://docs.imgix.com/apis/url/focalpoint-crop/fp-x)."
+    fpX: Int
+    "Sets the relative vertical value for the focal point of an image. [See docs](https://docs.imgix.com/apis/url/focalpoint-crop/fp-y)."
+    fpY: Int
+    "Sets the relative zoom value for the focal point of an image. [See docs](https://docs.imgix.com/apis/url/focalpoint-crop/fp-z)."
+    fpZ: Float
+    "Specifies the framerate of the generated image."
+    fps: Int
+    "Specifies the frame of an animated image to use."
+    frame: String
+    "Adjusts the gamma of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/gam)."
+    gam: Int
+    gifQ: Int
+    "Alias for `gifQ`."
+    gifq: Int
+    "Sets grid colors for the transparency checkerboard grid."
+    gridColors: String
+    "Sets grid size for the transparency checkerboard grid."
+    gridSize: Int
+    "Adjusts the height of the output image. [See docs](https://docs.imgix.com/apis/url/size/h)."
+    h: Int
+    "Alias for `h`."
+    height: Int
+    "Adjusts the highlights of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/high)."
+    high: Int
+    "Applies a half-tone effect to the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/stylize/htn)."
+    htn: Int
+    "Adjusts the hue of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/hue)."
+    hue: Int
+    "Displays every Nth frame starting with the first frame."
+    interval: Int
+    "Alias for `invert`."
+    inv: Boolean
+    "Inverts the colors on the source image. Default: `false`. [See docs](https://docs.imgix.com/apis/url/adjustment/invert)."
+    invert: Boolean
+    "Determine if IPTC data should be passed for JPEG images."
+    iptc: String
+    "Specifies the number of times an animated image should repeat. A value of 0 means infinite looping. Default: `0`."
+    loop: Int
+    "Specifies that the output image should be a lossless variant. Default: `false`. [See docs](https://docs.imgix.com/apis/url/format/lossless)."
+    lossless: Boolean
+    "Alias for `mark`."
+    m: String
+    "Alias for `markAlign`."
+    ma: String
+    "Alias for `markAlpha`."
+    malph: Int
+    "Specifies the location of the watermark image. [See docs](https://docs.imgix.com/apis/url/watermark/mark)."
+    mark: String
+    "Changes the watermark alignment relative to the parent image. [See docs](https://docs.imgix.com/apis/url/watermark/mark-align)."
+    markAlign: String
+    "Changes the alpha of the watermark image. Default: `100`. [See docs](https://docs.imgix.com/apis/url/watermark/mark-alpha)."
+    markAlpha: Int
+    "Changes base URL of the watermark image. [See docs](https://docs.imgix.com/apis/url/watermark/mark-base)."
+    markBase: String
+    "Specifies the fit mode for watermark images. Default: `clip`. [See docs](https://docs.imgix.com/apis/url/watermark/mark-fit)."
+    markFit: String
+    "Adjusts the height of the watermark image. [See docs](https://docs.imgix.com/apis/url/watermark/mark-h)."
+    markH: Int
+    "Applies padding to the watermark image. Default: `5`. [See docs](https://docs.imgix.com/apis/url/watermark/mark-pad)."
+    markPad: Int
+    "Rotates a watermark or tiled watermarks by a specified number of degrees. Default: `0`. [See docs](https://docs.imgix.com/apis/url/watermark/mark-rot)."
+    markRot: Float
+    "Adjusts the scale of the watermark image. [See docs](https://docs.imgix.com/apis/url/watermark/mark-scale)."
+    markScale: Int
+    "Adds tiled watermark. [See docs](https://docs.imgix.com/apis/url/watermark/mark-tile)."
+    markTile: String
+    "Adjusts the width of the watermark image. [See docs](https://docs.imgix.com/apis/url/watermark/mark-w)."
+    markW: Int
+    "Adjusts the x-offset of the watermark image relative to its parent. [See docs](https://docs.imgix.com/apis/url/watermark/mark-x)."
+    markX: Int
+    "Adjusts the y-offset of the watermark image relative to its parent. [See docs](https://docs.imgix.com/apis/url/watermark/mark-y)."
+    markY: Int
+    "Alias for `markAlign`."
+    markalign: String
+    "Alias for `markAlpha`."
+    markalpha: Int
+    "Alias for `markBase`."
+    markbase: String
+    "Alias for `markFit`."
+    markfit: String
+    "Alias for `markH`."
+    markh: Int
+    "Alias for `markPad`."
+    markpad: Int
+    "Alias for `markScale`."
+    markscale: Int
+    "Alias for `markTile`."
+    marktile: String
+    "Alias for `markW`."
+    markw: Int
+    "Alias for `markX`."
+    markx: Int
+    "Alias for `markY`."
+    marky: Int
+    "Defines the type of mask and specifies the URL if that type is selected. [See docs](https://docs.imgix.com/apis/url/mask)."
+    mask: String
+    "Colors the background of the transparent mask area of images. Default: `fff`. [See docs](https://docs.imgix.com/apis/url/mask/mask-bg)."
+    maskBg: String
+    "Alias for `maskBg`."
+    maskbg: String
+    "Specifies the maximum height of the output image in pixels. [See docs](https://docs.imgix.com/apis/url/size/max-height)."
+    maxH: Int
+    "Alias for `maxH`."
+    maxHeight: Int
+    "Specifies the maximum width of the output image in pixels. [See docs](https://docs.imgix.com/apis/url/size/max-width)."
+    maxW: Int
+    "Alias for `maxW`."
+    maxWidth: Int
+    "Alias for `markBase`."
+    mb: String
+    "Alias for `markFit`."
+    mf: String
+    "Alias for `markH`."
+    mh: Int
+    "Specifies the minimum height of the output image in pixels. [See docs](https://docs.imgix.com/apis/url/size/min-height)."
+    minH: Int
+    "Alias for `minH`."
+    minHeight: Int
+    "Specifies the minimum width of the output image in pixels. [See docs](https://docs.imgix.com/apis/url/size/min-width)."
+    minW: Int
+    "Alias for `minW`."
+    minWidth: Int
+    "Alias for `monochrome`."
+    mono: String
+    "Applies a monochrome effect to the source image. [See docs](https://docs.imgix.com/apis/url/stylize/monochrome)."
+    monochrome: String
+    "Alias for `markPad`."
+    mp: Int
+    "Alias for `markScale`."
+    ms: Int
+    "Alias for `markTile`."
+    mtile: String
+    "Alias for `markW`."
+    mw: Int
+    "Alias for `markX`."
+    mx: Int
+    "Alias for `markY`."
+    my: Int
+    "Reduces the noise in an image. Default: `20`. [See docs](https://docs.imgix.com/apis/url/noise-reduction/nr)."
+    nr: Int
+    "Provides a threshold by which to sharpen an image. Default: `20`. [See docs](https://docs.imgix.com/apis/url/noise-reduction/nrs)."
+    nrs: Int
+    "Alias for `orient`."
+    or: Int
+    "Changes the image orientation. [See docs](https://docs.imgix.com/apis/url/rotation/orient)."
+    orient: Int
+    "Pads an image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/border-and-padding/pad)."
+    pad: Int
+    "Sets bottom padding of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/pad-bottom)."
+    padBottom: Int
+    "Sets left padding of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/pad-left)."
+    padLeft: Int
+    "Sets right padding of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/pad-right)."
+    padRight: Int
+    "Sets top padding of an image. [See docs](https://docs.imgix.com/apis/url/border-and-padding/pad-top)."
+    padTop: Int
+    "Selects a page from a PDF for display. Default: `1`. [See docs](https://docs.imgix.com/apis/url/pdf/page)."
+    page: Int
+    "Specifies an output format for palette-extraction. [See docs](https://docs.imgix.com/apis/url/color-palette/palette)."
+    palette: String
+    "Enables or disables PDF annotation. Default: `true`. [See docs](https://docs.imgix.com/apis/url/pdf/pdf-annotation)."
+    pdfAnnotation: Boolean
+    "Specifies a CSS prefix for all classes in palette-extraction. Default: `image`. [See docs](https://docs.imgix.com/apis/url/color-palette/prefix)."
+    prefix: String
+    "Applies a pixelation effect to an image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/stylize/px)."
+    px: Int
+    "Adjusts the quality of an output image. Default: `75`. [See docs](https://docs.imgix.com/apis/url/format/q)."
+    q: Int
+    "Crops an image to a specified rectangle. [See docs](https://docs.imgix.com/apis/url/size/rect)."
+    rect: String
+    "Reverses the frame order on the source animation. Default: `false`."
+    reverse: Boolean
+    "Rotates an image by a specified number of degrees. Default: `0`. [See docs](https://docs.imgix.com/apis/url/rotation/rot)."
+    rot: Float
+    "Adjusts the saturation of an image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/sat)."
+    sat: Int
+    "Applies a sepia effect to an image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/stylize/sepia)."
+    sepia: Int
+    "Adjusts the highlights of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/shad)."
+    shad: Float
+    "Adjusts the sharpness of the source image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/sharp)."
+    sharp: Float
+    "Skips every Nth frame starting with the first frame."
+    skip: Int
+    "Alias for `txt`."
+    t: String
+    "Alias for `txtAlign`."
+    ta: String
+    "Alias for `txtColor`."
+    tc: String
+    "Alias for `txtClip`."
+    tcl: String
+    "Alias for `txtFont`."
+    tf: String
+    "Alias for `txtLine`."
+    tl: Int
+    "Alias for `txtPad`."
+    tp: Int
+    "Adds checkerboard behind images which support transparency. [See docs](https://docs.imgix.com/apis/url/fill/transparency)."
+    transparency: String
+    "Trims the source image. [See docs](https://docs.imgix.com/apis/url/trim/trim)."
+    trim: String
+    "Specifies a trim color on a trim operation. [See docs](https://docs.imgix.com/apis/url/trim/trim-color)."
+    trimColor: String
+    "Specifies the mean difference on a trim operation. Default: `11`. [See docs](https://docs.imgix.com/apis/url/trim/trim-md)."
+    trimMd: Float
+    "Pads the area of the source image before trimming. Default: `0`. [See docs](https://docs.imgix.com/apis/url/trim/trim-pad)."
+    trimPad: Int
+    "Specifies the standard deviation on a trim operation. Default: `10`. [See docs](https://docs.imgix.com/apis/url/trim/trim-sd)."
+    trimSd: Float
+    "Specifies the tolerance on a trim operation. Default: `0`. [See docs](https://docs.imgix.com/apis/url/trim/trim-tol)."
+    trimTol: Float
+    "Alias for `trimColor`."
+    trimcolor: String
+    "Alias for `trimMd`."
+    trimmd: Float
+    "Alias for `trimPad`."
+    trimpad: Int
+    "Alias for `trimSd`."
+    trimsd: Float
+    "Alias for `trimTol`."
+    trimtol: Float
+    "Alias for `txtShad`."
+    tsh: Float
+    "Alias for `txtSize`."
+    tsz: Int
+    "Alias for `txtTrack`."
+    tt: Int
+    "Sets the text string to render. [See docs](https://docs.imgix.com/apis/url/text/txt)."
+    txt: String
+    "Sets the vertical and horizontal alignment of rendered text relative to the base image. [See docs](https://docs.imgix.com/apis/url/text/txt-align)."
+    txtAlign: String
+    "Sets the clipping properties of rendered text. Default: `end`. [See docs](https://docs.imgix.com/apis/url/text/txt-clip)."
+    txtClip: String
+    "Alias for `txtColor`."
+    txtClr: String
+    "Specifies the color of rendered text. [See docs](https://docs.imgix.com/apis/url/text/txt-color)."
+    txtColor: String
+    "Specifies the fit approach for rendered text. [See docs](https://docs.imgix.com/apis/url/text/txt-fit)."
+    txtFit: String
+    "Selects a font for rendered text. [See docs](https://docs.imgix.com/apis/url/text/txt-font)."
+    txtFont: String
+    "Sets the leading (line spacing) for rendered text. Only works on the multi-line text endpoint. Default: `0`. [See docs](https://docs.imgix.com/apis/url/typesetting/txt-lead)."
+    txtLead: Int
+    "Controls the level of ligature substitution. [See docs](https://docs.imgix.com/apis/url/text/txt-lig)."
+    txtLig: Int
+    "Outlines the rendered text with a specified color. Default: `0`. [See docs](https://docs.imgix.com/apis/url/text/txt-line)."
+    txtLine: Int
+    "Alias for `txtLineColor`."
+    txtLineClr: String
+    "Specifies a text outline color. Default: `fff`. [See docs](https://docs.imgix.com/apis/url/text/txt-line-color)."
+    txtLineColor: String
+    "Specifies the padding (in device-independent pixels) between a textbox and the edges of the base image. [See docs](https://docs.imgix.com/apis/url/text/txt-pad)."
+    txtPad: Int
+    "Applies a shadow to rendered text. Default: `0`. [See docs](https://docs.imgix.com/apis/url/text/txt-shad)."
+    txtShad: Float
+    "Sets the font size of rendered text. Default: `12`. [See docs](https://docs.imgix.com/apis/url/text/txt-size)."
+    txtSize: Int
+    "Sets the tracking (letter spacing) for rendered text. Only works on the multi-line text endpoint. Default: `0`. [See docs](https://docs.imgix.com/apis/url/typesetting/txt-track)."
+    txtTrack: Int
+    "Sets the width of rendered text. [See docs](https://docs.imgix.com/apis/url/text/txt-width)."
+    txtWidth: Int
+    "Sets the horizontal (x) position of the text in pixels relative to the left edge of the base image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/text/txt-x)."
+    txtX: Int
+    "Sets the vertical (y) position of the text in pixels relative to the top edge of the base image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/text/txt-y)."
+    txtY: Int
+    "Alias for `txtAlign`."
+    txtalign: String
+    "Alias for `txtClip`."
+    txtclip: String
+    "Alias for `txtColor`."
+    txtclr: String
+    "Alias for `txtColor`."
+    txtcolor: String
+    "Alias for `txtFit`."
+    txtfit: String
+    "Alias for `txtFont`."
+    txtfont: String
+    "Alias for `txtLead`."
+    txtlead: Int
+    "Alias for `txtLig`."
+    txtlig: Int
+    "Alias for `txtLine`."
+    txtline: Int
+    "Alias for `txtLineColor`."
+    txtlineclr: String
+    "Alias for `txtLineColor`."
+    txtlinecolor: String
+    "Alias for `txtPad`."
+    txtpad: Int
+    "Alias for `txtShad`."
+    txtshad: Float
+    "Alias for `txtSize`."
+    txtsize: Int
+    "Alias for `txtTrack`."
+    txttrack: Int
+    "Alias for `txtWidth`."
+    txtwidth: Int
+    "Alias for `txtX`."
+    txtx: Int
+    "Alias for `txtY`."
+    txty: Int
+    "Sharpens the source image using an unsharp mask. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/usm)."
+    usm: Int
+    "Specifies the radius for an unsharp mask operation. Default: `2.5`. [See docs](https://docs.imgix.com/apis/url/adjustment/usmrad)."
+    usmrad: Float
+    "Adjusts the vibrance of an image. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/vib)."
+    vib: Int
+    "Adjusts the width of the output image. [See docs](https://docs.imgix.com/apis/url/size/w)."
+    w: Int
+    "Alias for `w`."
+    width: Int
+}
+
+input PrismicNavigationDataAnchorsItemFieldSelector {
+    label: FieldSelectorEnum
+    path: FieldSelectorEnum
+}
+
+input PrismicNavigationDataAnchorsItemFilterInput {
+    label: StringQueryOperatorInput
+    path: StringQueryOperatorInput
+}
+
+input PrismicNavigationDataAnchorsItemFilterListInput {
+    elemMatch: PrismicNavigationDataAnchorsItemFilterInput
+}
+
+input PrismicNavigationDataAnchorsItemSortInput {
+    label: SortOrderEnum
+    path: SortOrderEnum
+}
+
+input PrismicNavigationDataFieldSelector {
+    anchors: PrismicNavigationDataAnchorsItemFieldSelector
+    button_label: FieldSelectorEnum
+    button_path: FieldSelectorEnum
+}
+
+input PrismicNavigationDataFilterInput {
+    anchors: PrismicNavigationDataAnchorsItemFilterListInput
+    button_label: StringQueryOperatorInput
+    button_path: StringQueryOperatorInput
+}
+
+input PrismicNavigationDataSortInput {
+    anchors: PrismicNavigationDataAnchorsItemSortInput
+    button_label: SortOrderEnum
+    button_path: SortOrderEnum
+}
+
+input PrismicNavigationFieldSelector {
+    _previewable: FieldSelectorEnum
+    alternate_languages: PrismicAlternateLanguageFieldSelector
+    children: NodeFieldSelector
+    data: PrismicNavigationDataFieldSelector
+    dataRaw: FieldSelectorEnum
+    first_publication_date: FieldSelectorEnum
+    href: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    lang: FieldSelectorEnum
+    last_publication_date: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prismicId: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    tags: FieldSelectorEnum
+    type: FieldSelectorEnum
+    url: FieldSelectorEnum
+}
+
+input PrismicNavigationFilterInput {
+    _previewable: IDQueryOperatorInput
+    alternate_languages: PrismicAlternateLanguageFilterListInput
+    children: NodeFilterListInput
+    data: PrismicNavigationDataFilterInput
+    dataRaw: JSONQueryOperatorInput
+    first_publication_date: DateQueryOperatorInput
+    href: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lang: StringQueryOperatorInput
+    last_publication_date: DateQueryOperatorInput
+    parent: NodeFilterInput
+    prismicId: IDQueryOperatorInput
+    raw: JSONQueryOperatorInput
+    tags: StringQueryOperatorInput
+    type: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicNavigationSortInput {
+    _previewable: SortOrderEnum
+    alternate_languages: PrismicAlternateLanguageSortInput
+    children: NodeSortInput
+    data: PrismicNavigationDataSortInput
+    dataRaw: SortOrderEnum
+    first_publication_date: SortOrderEnum
+    href: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    lang: SortOrderEnum
+    last_publication_date: SortOrderEnum
+    parent: NodeSortInput
+    prismicId: SortOrderEnum
+    raw: SortOrderEnum
+    tags: SortOrderEnum
+    type: SortOrderEnum
+    url: SortOrderEnum
+}
+
+input PrismicRichTextFieldFieldSelector {
+    html: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    richText: FieldSelectorEnum
+    text: FieldSelectorEnum
+}
+
+input PrismicRichTextFieldFilterInput {
+    html: StringQueryOperatorInput
+    raw: PrismicRichTextQueryOperatorInput
+    richText: PrismicRichTextQueryOperatorInput
+    text: StringQueryOperatorInput
+}
+
+input PrismicRichTextFieldSortInput {
+    html: SortOrderEnum
+    raw: SortOrderEnum
+    richText: SortOrderEnum
+    text: SortOrderEnum
+}
+
+input PrismicRichTextQueryOperatorInput {
+    eq: PrismicRichText
+    in: [PrismicRichText]
+    ne: PrismicRichText
+    nin: [PrismicRichText]
+}
+
+input SiteBuildMetadataFieldSelector {
+    buildTime: FieldSelectorEnum
+    children: NodeFieldSelector
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    parent: NodeFieldSelector
+}
+
+input SiteBuildMetadataFilterInput {
+    buildTime: DateQueryOperatorInput
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    parent: NodeFilterInput
+}
+
+input SiteBuildMetadataSortInput {
+    buildTime: SortOrderEnum
+    children: NodeSortInput
+    id: SortOrderEnum
+    internal: InternalSortInput
+    parent: NodeSortInput
+}
+
+input SiteFieldSelector {
+    buildTime: FieldSelectorEnum
+    children: NodeFieldSelector
+    graphqlTypegen: SiteGraphqlTypegenFieldSelector
+    host: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    jsxRuntime: FieldSelectorEnum
+    parent: NodeFieldSelector
+    pathPrefix: FieldSelectorEnum
+    polyfill: FieldSelectorEnum
+    port: FieldSelectorEnum
+    siteMetadata: SiteSiteMetadataFieldSelector
+    trailingSlash: FieldSelectorEnum
+}
+
+input SiteFilterInput {
+    buildTime: DateQueryOperatorInput
+    children: NodeFilterListInput
+    graphqlTypegen: SiteGraphqlTypegenFilterInput
+    host: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    jsxRuntime: StringQueryOperatorInput
+    parent: NodeFilterInput
+    pathPrefix: StringQueryOperatorInput
+    polyfill: BooleanQueryOperatorInput
+    port: IntQueryOperatorInput
+    siteMetadata: SiteSiteMetadataFilterInput
+    trailingSlash: StringQueryOperatorInput
+}
+
+input SiteFunctionFieldSelector {
+    absoluteCompiledFilePath: FieldSelectorEnum
+    children: NodeFieldSelector
+    functionRoute: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    matchPath: FieldSelectorEnum
+    originalAbsoluteFilePath: FieldSelectorEnum
+    originalRelativeFilePath: FieldSelectorEnum
+    parent: NodeFieldSelector
+    pluginName: FieldSelectorEnum
+    relativeCompiledFilePath: FieldSelectorEnum
+}
+
+input SiteFunctionFilterInput {
+    absoluteCompiledFilePath: StringQueryOperatorInput
+    children: NodeFilterListInput
+    functionRoute: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    matchPath: StringQueryOperatorInput
+    originalAbsoluteFilePath: StringQueryOperatorInput
+    originalRelativeFilePath: StringQueryOperatorInput
+    parent: NodeFilterInput
+    pluginName: StringQueryOperatorInput
+    relativeCompiledFilePath: StringQueryOperatorInput
+}
+
+input SiteFunctionSortInput {
+    absoluteCompiledFilePath: SortOrderEnum
+    children: NodeSortInput
+    functionRoute: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    matchPath: SortOrderEnum
+    originalAbsoluteFilePath: SortOrderEnum
+    originalRelativeFilePath: SortOrderEnum
+    parent: NodeSortInput
+    pluginName: SortOrderEnum
+    relativeCompiledFilePath: SortOrderEnum
+}
+
+input SiteGraphqlTypegenFieldSelector {
+    documentSearchPaths: FieldSelectorEnum
+    generateOnBuild: FieldSelectorEnum
+    typesOutputPath: FieldSelectorEnum
+}
+
+input SiteGraphqlTypegenFilterInput {
+    documentSearchPaths: StringQueryOperatorInput
+    generateOnBuild: BooleanQueryOperatorInput
+    typesOutputPath: StringQueryOperatorInput
+}
+
+input SiteGraphqlTypegenSortInput {
+    documentSearchPaths: SortOrderEnum
+    generateOnBuild: SortOrderEnum
+    typesOutputPath: SortOrderEnum
+}
+
+input SitePageFieldSelector {
+    children: NodeFieldSelector
+    component: FieldSelectorEnum
+    componentChunkName: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    internalComponentName: FieldSelectorEnum
+    matchPath: FieldSelectorEnum
+    pageContext: FieldSelectorEnum
+    parent: NodeFieldSelector
+    path: FieldSelectorEnum
+    pluginCreator: SitePluginFieldSelector
+}
+
+input SitePageFilterInput {
+    children: NodeFilterListInput
+    component: StringQueryOperatorInput
+    componentChunkName: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    internalComponentName: StringQueryOperatorInput
+    matchPath: StringQueryOperatorInput
+    pageContext: JSONQueryOperatorInput
+    parent: NodeFilterInput
+    path: StringQueryOperatorInput
+    pluginCreator: SitePluginFilterInput
+}
+
+input SitePageSortInput {
+    children: NodeSortInput
+    component: SortOrderEnum
+    componentChunkName: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    internalComponentName: SortOrderEnum
+    matchPath: SortOrderEnum
+    pageContext: SortOrderEnum
+    parent: NodeSortInput
+    path: SortOrderEnum
+    pluginCreator: SitePluginSortInput
+}
+
+input SitePluginFieldSelector {
+    browserAPIs: FieldSelectorEnum
+    children: NodeFieldSelector
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    name: FieldSelectorEnum
+    nodeAPIs: FieldSelectorEnum
+    packageJson: FieldSelectorEnum
+    parent: NodeFieldSelector
+    pluginFilepath: FieldSelectorEnum
+    pluginOptions: FieldSelectorEnum
+    resolve: FieldSelectorEnum
+    ssrAPIs: FieldSelectorEnum
+    version: FieldSelectorEnum
+}
+
+input SitePluginFilterInput {
+    browserAPIs: StringQueryOperatorInput
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    name: StringQueryOperatorInput
+    nodeAPIs: StringQueryOperatorInput
+    packageJson: JSONQueryOperatorInput
+    parent: NodeFilterInput
+    pluginFilepath: StringQueryOperatorInput
+    pluginOptions: JSONQueryOperatorInput
+    resolve: StringQueryOperatorInput
+    ssrAPIs: StringQueryOperatorInput
+    version: StringQueryOperatorInput
+}
+
+input SitePluginSortInput {
+    browserAPIs: SortOrderEnum
+    children: NodeSortInput
+    id: SortOrderEnum
+    internal: InternalSortInput
+    name: SortOrderEnum
+    nodeAPIs: SortOrderEnum
+    packageJson: SortOrderEnum
+    parent: NodeSortInput
+    pluginFilepath: SortOrderEnum
+    pluginOptions: SortOrderEnum
+    resolve: SortOrderEnum
+    ssrAPIs: SortOrderEnum
+    version: SortOrderEnum
+}
+
+input SiteSiteMetadataFieldSelector {
+    description: FieldSelectorEnum
+    siteUrl: FieldSelectorEnum
+    title: FieldSelectorEnum
+}
+
+input SiteSiteMetadataFilterInput {
+    description: StringQueryOperatorInput
+    siteUrl: StringQueryOperatorInput
+    title: StringQueryOperatorInput
+}
+
+input SiteSiteMetadataSortInput {
+    description: SortOrderEnum
+    siteUrl: SortOrderEnum
+    title: SortOrderEnum
+}
+
+input SiteSortInput {
+    buildTime: SortOrderEnum
+    children: NodeSortInput
+    graphqlTypegen: SiteGraphqlTypegenSortInput
+    host: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    jsxRuntime: SortOrderEnum
+    parent: NodeSortInput
+    pathPrefix: SortOrderEnum
+    polyfill: SortOrderEnum
+    port: SortOrderEnum
+    siteMetadata: SiteSiteMetadataSortInput
+    trailingSlash: SortOrderEnum
+}
+
+input StringQueryOperatorInput {
+    eq: String
+    glob: String
+    in: [String]
+    ne: String
+    nin: [String]
+    regex: String
+}
+
+input TransformOptions {
+    cropFocus: ImageCropFocus = ATTENTION
+    duotone: DuotoneGradient
+    fit: ImageFit = COVER
+    grayscale: Boolean = false
+    rotate: Int = 0
+    trim: Float = 0.0
+}
+
+input WebPOptions {
+    quality: Int
+}

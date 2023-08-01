@@ -1,14 +1,21 @@
 import React from 'react';
+import { SystemStyleObject, useTheme } from '@chakra-ui/react';
 import { factory } from '../../theme/factory';
+import { colors } from '../../theme/foundations';
 
 type Props = {
-  variant?: `rating` | `teal` | `outline`;
+  additionalStyle?: SystemStyleObject;
+  variant?: `rating` | `solid` | `outline`;
+  fill?: keyof typeof colors.colors.brand.primary;
 };
 
 export function Star(props: Props) {
-  const { variant = `teal` } = props;
+  const { additionalStyle, variant = `solid`, fill } = props;
+
+  const { colors } = useTheme();
+
   return (
-    <factory.div>
+    <factory.div __css={additionalStyle}>
       {variant === `rating` && (
         <svg width="16" height="15" viewBox="0 0 16 15" fill="none">
           <path
@@ -30,7 +37,7 @@ export function Star(props: Props) {
           </defs>
         </svg>
       )}
-      {variant === `teal` && (
+      {variant === `solid` && (
         <svg
           width="20"
           height="21"
@@ -40,7 +47,7 @@ export function Star(props: Props) {
         >
           <path
             d="M19.8602 10.2069C20.0466 10.2494 20.0466 10.5045 19.8602 10.547C15.092 11.6033 11.0269 17.333 10.1668 20.6263C10.121 20.7963 9.87899 20.7963 9.83321 20.6263C8.9731 17.333 4.90802 11.6033 0.139809 10.547C-0.0466029 10.5045 -0.0466029 10.2494 0.139809 10.2069C4.90802 9.15052 8.9731 3.42082 9.83321 0.127545C9.87899 -0.0425149 10.121 -0.0425149 10.1668 0.127545C11.0269 3.42082 15.092 9.15052 19.8602 10.2069Z"
-            fill="#07A1C5"
+            fill={colors.brand.primary[fill || `base`]}
           />
         </svg>
       )}
@@ -54,7 +61,7 @@ export function Star(props: Props) {
         >
           <path
             d="M19.8602 10.2069C20.0466 10.2494 20.0466 10.5045 19.8602 10.547C15.092 11.6033 11.0269 17.333 10.1668 20.6263C10.121 20.7963 9.87899 20.7963 9.83321 20.6263C8.9731 17.333 4.90802 11.6033 0.139809 10.547C-0.0466029 10.5045 -0.0466029 10.2494 0.139809 10.2069C4.90802 9.15052 8.9731 3.42082 9.83321 0.127545C9.87899 -0.0425149 10.121 -0.0425149 10.1668 0.127545C11.0269 3.42082 15.092 9.15052 19.8602 10.2069Z"
-            stroke="#07A1C5"
+            stroke={colors.brand.primary[fill || `base`]}
           />
         </svg>
       )}
