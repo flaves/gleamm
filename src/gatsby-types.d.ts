@@ -3203,6 +3203,8 @@ type PrismicLegalPageConnection_sumArgs = {
 type PrismicLegalPageData = {
   /** A Rich Text field. */
   readonly body: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly heading: PrismicRichTextField;
   /** A Key Text field. */
   readonly seo_description: Maybe<Scalars['String']>;
   /** A Key Text field. */
@@ -3211,18 +3213,21 @@ type PrismicLegalPageData = {
 
 type PrismicLegalPageDataFieldSelector = {
   readonly body: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly seo_description: InputMaybe<FieldSelectorEnum>;
   readonly seo_title: InputMaybe<FieldSelectorEnum>;
 };
 
 type PrismicLegalPageDataFilterInput = {
   readonly body: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly heading: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly seo_description: InputMaybe<StringQueryOperatorInput>;
   readonly seo_title: InputMaybe<StringQueryOperatorInput>;
 };
 
 type PrismicLegalPageDataSortInput = {
   readonly body: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly heading: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly seo_description: InputMaybe<SortOrderEnum>;
   readonly seo_title: InputMaybe<SortOrderEnum>;
 };
@@ -4951,6 +4956,8 @@ type LayoutQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type LayoutQueryQuery = { readonly navigation: { readonly data: { readonly button_label: string | null, readonly button_path: string | null, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }> } } | null, readonly footer: { readonly data: { readonly contact_address: { readonly richText: any }, readonly contact_email: { readonly text: string | null }, readonly anchors_heading: { readonly text: string | null }, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly legal_heading: { readonly text: string | null }, readonly legal_links: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly socials: ReadonlyArray<{ readonly social: string | null, readonly path: string | null }> } } | null };
+
+type LegalPageBodySectionFragmentFragment = { readonly heading: { readonly text: string | null }, readonly body: { readonly richText: any } };
 
 
 }

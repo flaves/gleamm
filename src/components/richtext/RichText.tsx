@@ -72,7 +72,7 @@ export const htmlSerializer: HTMLSerializer<ReactNode> = (
       );
     case Elements.listItem:
       return (
-        <factory.li mb={4} {...rest}>
+        <factory.li mb={4} color="text.secondary" {...rest}>
           {childrenWithTag}
         </factory.li>
       );
@@ -84,7 +84,7 @@ export const htmlSerializer: HTMLSerializer<ReactNode> = (
       );
     case Elements.oListItem:
       return (
-        <factory.li mb={4} {...rest}>
+        <factory.li mb={4} color="text.secondary" {...rest}>
           {childrenWithTag}
         </factory.li>
       );
