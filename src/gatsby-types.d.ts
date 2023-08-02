@@ -4645,6 +4645,10 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type ContactPageFormSectionFragmentFragment = { readonly heading: { readonly richText: any }, readonly contact_success_heading: { readonly text: string | null }, readonly contact_success_text: { readonly text: string | null } };
+
+type ContactPageInformationsSectionFragmentFragment = { readonly email_label: { readonly text: string | null }, readonly email: { readonly text: string | null }, readonly phone_number_label: { readonly text: string | null }, readonly phone_number: { readonly text: string | null }, readonly address_label: { readonly text: string | null }, readonly address: { readonly richText: any } };
+
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
 type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };

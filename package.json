@@ -36,9 +36,11 @@
     "gatsby-source-filesystem": "^5.11.0",
     "gatsby-source-prismic": "^6.0.0",
     "gatsby-transformer-sharp": "^5.11.0",
+    "libphonenumber-js": "^1.10.38",
     "prismic-reactjs": "^1.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.2",
     "smooth-scroll": "^16.1.3"
   },
   "devDependencies": {

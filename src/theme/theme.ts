@@ -1,5 +1,13 @@
 import { colors } from './foundations';
-import { Badge, Button, Container, Heading, Text } from './components';
+import {
+  Badge,
+  Button,
+  Container,
+  Heading,
+  Input,
+  Text,
+  Textarea,
+} from './components';
 
 export const theme = {
   styles: {
@@ -15,6 +23,8 @@ export const theme = {
     Button,
     Container,
     Heading,
+    Input,
     Text,
+    Textarea,
   },
 };

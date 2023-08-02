@@ -1,5 +1,9 @@
 import React, { forwardRef, ReactNode } from 'react';
-import { Button as ChakraButton, useStyleConfig } from '@chakra-ui/react';
+import {
+  Button as ChakraButton,
+  ButtonProps,
+  useStyleConfig,
+} from '@chakra-ui/react';
 import { Icon } from '../icon/Icon';
 import { Icons } from '../../config/icons';
 
@@ -7,6 +11,7 @@ export type Props = {
   children?: ReactNode;
   icon?: Icons;
   onClick?: () => void;
+  type?: ButtonProps[`type`];
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
