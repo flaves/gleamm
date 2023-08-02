@@ -4,7 +4,7 @@ export enum Company {
   emailHelp = ``,
   emailPrivacy = ``,
   name = `Gleamm`,
-  number = `0772.424.262`,
-  phone = `+32 (0)2 544 04 81`,
-  vat = `BE0772424262`,
+  number = ``,
+  phone = ``,
+  vat = ``,
 }
