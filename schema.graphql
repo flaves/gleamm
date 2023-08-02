@@ -84,7 +84,7 @@ interface PrismicSlice {
     slice_type: String!
 }
 
-union PrismicAllDocumentTypes = PrismicContactPage | PrismicFooter | PrismicHomePage | PrismicNavigation
+union PrismicAllDocumentTypes = PrismicContactPage | PrismicFooter | PrismicHomePage | PrismicLegalPage | PrismicNavigation
 
 type Directory implements Node {
     absolutePath: String!
@@ -1123,6 +1123,103 @@ type PrismicImageFieldDimensions {
     width: Int!
 }
 
+"A legal_page document from Prismic."
+type PrismicLegalPage implements Node {
+    "Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews."
+    _previewable: ID!
+    "Alternate versions of the document in different languages."
+    alternate_languages: [PrismicAlternateLanguage!]!
+    children: [Node!]!
+    "Content for the document."
+    data: PrismicLegalPageData!
+    "**Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred."
+    dataRaw: JSON!
+    "The timestamp at which the document was first published."
+    first_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    "The URL to fetch this document's JSON value from the Prismic REST API."
+    href: String!
+    id: ID!
+    internal: Internal!
+    "The language of the Prismic document."
+    lang: String!
+    "The timestamp at which the document was last published."
+    last_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    parent: Node
+    "The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository."
+    prismicId: ID!
+    "**Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API."
+    raw: JSON!
+    "Tags associated with the Prismic document."
+    tags: [String!]!
+    "The type of the Prismic document."
+    type: String!
+    "The unique identifier for the Prismic document. It is guaranteed to be unique within all documents of the same type from the same Prismic repository."
+    uid: String!
+    "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+type PrismicLegalPageConnection {
+    distinct(field: PrismicLegalPageFieldSelector!): [String!]!
+    edges: [PrismicLegalPageEdge!]!
+    group(field: PrismicLegalPageFieldSelector!, limit: Int, skip: Int): [PrismicLegalPageGroupConnection!]!
+    max(field: PrismicLegalPageFieldSelector!): Float
+    min(field: PrismicLegalPageFieldSelector!): Float
+    nodes: [PrismicLegalPage!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicLegalPageFieldSelector!): Float
+    totalCount: Int!
+}
+
+type PrismicLegalPageData {
+    "A Rich Text field."
+    body: PrismicRichTextField!
+    "A Rich Text field."
+    heading: PrismicRichTextField!
+    "A Key Text field."
+    seo_description: String
+    "A Key Text field."
+    seo_title: String
+}
+
+type PrismicLegalPageEdge {
+    next: PrismicLegalPage
+    node: PrismicLegalPage!
+    previous: PrismicLegalPage
+}
+
+type PrismicLegalPageGroupConnection {
+    distinct(field: PrismicLegalPageFieldSelector!): [String!]!
+    edges: [PrismicLegalPageEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: PrismicLegalPageFieldSelector!, limit: Int, skip: Int): [PrismicLegalPageGroupConnection!]!
+    max(field: PrismicLegalPageFieldSelector!): Float
+    min(field: PrismicLegalPageFieldSelector!): Float
+    nodes: [PrismicLegalPage!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicLegalPageFieldSelector!): Float
+    totalCount: Int!
+}
+
 "A link to the web, a document in the Prismic repository, or a file in the Prismic Media Library"
 type PrismicLinkField {
     "The Prismic document if the field links to a document."
@@ -1276,6 +1373,7 @@ type Query {
     allPrismicEmbedField(filter: PrismicEmbedFieldFilterInput, limit: Int, skip: Int, sort: [PrismicEmbedFieldSortInput]): PrismicEmbedFieldConnection!
     allPrismicFooter(filter: PrismicFooterFilterInput, limit: Int, skip: Int, sort: [PrismicFooterSortInput]): PrismicFooterConnection!
     allPrismicHomePage(filter: PrismicHomePageFilterInput, limit: Int, skip: Int, sort: [PrismicHomePageSortInput]): PrismicHomePageConnection!
+    allPrismicLegalPage(filter: PrismicLegalPageFilterInput, limit: Int, skip: Int, sort: [PrismicLegalPageSortInput]): PrismicLegalPageConnection!
     allPrismicNavigation(filter: PrismicNavigationFilterInput, limit: Int, skip: Int, sort: [PrismicNavigationSortInput]): PrismicNavigationConnection!
     allSite(filter: SiteFilterInput, limit: Int, skip: Int, sort: [SiteSortInput]): SiteConnection!
     allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: [SiteBuildMetadataSortInput]): SiteBuildMetadataConnection!
@@ -1289,6 +1387,7 @@ type Query {
     prismicEmbedField(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): PrismicEmbedField
     prismicFooter(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicFooterDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFooter
     prismicHomePage(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicHomePageDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicHomePage
+    prismicLegalPage(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicLegalPageDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicLegalPage
     prismicNavigation(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicNavigationDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicNavigation
     site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, graphqlTypegen: SiteGraphqlTypegenFilterInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
@@ -3285,6 +3384,90 @@ input PrismicImgixURLParams {
     w: Int
     "Alias for `w`."
     width: Int
+}
+
+input PrismicLegalPageDataFieldSelector {
+    body: PrismicRichTextFieldFieldSelector
+    heading: PrismicRichTextFieldFieldSelector
+    seo_description: FieldSelectorEnum
+    seo_title: FieldSelectorEnum
+}
+
+input PrismicLegalPageDataFilterInput {
+    body: PrismicRichTextFieldFilterInput
+    heading: PrismicRichTextFieldFilterInput
+    seo_description: StringQueryOperatorInput
+    seo_title: StringQueryOperatorInput
+}
+
+input PrismicLegalPageDataSortInput {
+    body: PrismicRichTextFieldSortInput
+    heading: PrismicRichTextFieldSortInput
+    seo_description: SortOrderEnum
+    seo_title: SortOrderEnum
+}
+
+input PrismicLegalPageFieldSelector {
+    _previewable: FieldSelectorEnum
+    alternate_languages: PrismicAlternateLanguageFieldSelector
+    children: NodeFieldSelector
+    data: PrismicLegalPageDataFieldSelector
+    dataRaw: FieldSelectorEnum
+    first_publication_date: FieldSelectorEnum
+    href: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    lang: FieldSelectorEnum
+    last_publication_date: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prismicId: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    tags: FieldSelectorEnum
+    type: FieldSelectorEnum
+    uid: FieldSelectorEnum
+    url: FieldSelectorEnum
+}
+
+input PrismicLegalPageFilterInput {
+    _previewable: IDQueryOperatorInput
+    alternate_languages: PrismicAlternateLanguageFilterListInput
+    children: NodeFilterListInput
+    data: PrismicLegalPageDataFilterInput
+    dataRaw: JSONQueryOperatorInput
+    first_publication_date: DateQueryOperatorInput
+    href: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lang: StringQueryOperatorInput
+    last_publication_date: DateQueryOperatorInput
+    parent: NodeFilterInput
+    prismicId: IDQueryOperatorInput
+    raw: JSONQueryOperatorInput
+    tags: StringQueryOperatorInput
+    type: StringQueryOperatorInput
+    uid: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicLegalPageSortInput {
+    _previewable: SortOrderEnum
+    alternate_languages: PrismicAlternateLanguageSortInput
+    children: NodeSortInput
+    data: PrismicLegalPageDataSortInput
+    dataRaw: SortOrderEnum
+    first_publication_date: SortOrderEnum
+    href: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    lang: SortOrderEnum
+    last_publication_date: SortOrderEnum
+    parent: NodeSortInput
+    prismicId: SortOrderEnum
+    raw: SortOrderEnum
+    tags: SortOrderEnum
+    type: SortOrderEnum
+    uid: SortOrderEnum
+    url: SortOrderEnum
 }
 
 input PrismicNavigationDataAnchorsItemFieldSelector {
