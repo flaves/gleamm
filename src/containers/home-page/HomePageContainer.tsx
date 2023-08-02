@@ -72,7 +72,7 @@ export function HomePageContainer(props: Props) {
   };
 
   return (
-    <factory.section py={20}>
+    <factory.section pt={20}>
       <HomePageHeroSection data={homePageHeroSectionData} />
       <HomePageProcessSection data={homePageProcessSectionData} />
       <HomePageGallerySection data={homePageGallerySectionData} />

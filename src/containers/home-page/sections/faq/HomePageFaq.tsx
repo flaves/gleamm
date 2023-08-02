@@ -21,9 +21,9 @@ const MotionDiv = motion(factory.div);
 export function HomePageFaqSection(props: Props) {
   const { data } = props;
   const controls = useAnimation();
-  const isLargerThanXs = useBreakpointValue({
+  const isLargerThanSm = useBreakpointValue({
     base: false,
-    xs: true,
+    sm: true,
   });
 
   const containerVariants = useMemo(
@@ -36,14 +36,13 @@ export function HomePageFaqSection(props: Props) {
         },
       },
       hidden: {
-        height: isLargerThanXs ? `100%` : 900,
         marginBottom: 20,
         transition: {
           duration: 0.2,
         },
       },
     }),
-    [isLargerThanXs],
+    [isLargerThanSm],
   );
 
   const backgroundVariants = useMemo(
@@ -60,8 +59,8 @@ export function HomePageFaqSection(props: Props) {
         },
       },
       hidden: {
-        opacity: isLargerThanXs ? 0 : 1,
-        visibility: isLargerThanXs ? `hidden` : `visible`,
+        opacity: isLargerThanSm ? 0 : 1,
+        visibility: isLargerThanSm ? `hidden` : `visible`,
         transition: {
           duration: 0.1,
           visibility: {
@@ -71,7 +70,7 @@ export function HomePageFaqSection(props: Props) {
         },
       },
     }),
-    [isLargerThanXs],
+    [isLargerThanSm],
   );
 
   function onReadMore() {
@@ -93,6 +92,7 @@ export function HomePageFaqSection(props: Props) {
           initial="hidden"
           animate={controls}
           position="relative"
+          height={isLargerThanSm ? `100%` : 900}
         >
           <factory.div mb={20} textAlign="center">
             <Heading variant="section">{data.heading}</Heading>

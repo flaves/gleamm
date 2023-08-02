@@ -1299,7 +1299,7 @@ type PotraceTurnPolicy =
   | 'right'
   | 'white';
 
-type PrismicAllDocumentTypes = PrismicFooter | PrismicHomePage | PrismicNavigation;
+type PrismicAllDocumentTypes = PrismicContactPage | PrismicFooter | PrismicHomePage | PrismicLegalPage | PrismicNavigation;
 
 /** Metadata for alternate versions of a document in different languages. */
 type PrismicAlternateLanguage = {
@@ -1341,6 +1341,271 @@ type PrismicAlternateLanguageSortInput = {
   readonly raw: InputMaybe<SortOrderEnum>;
   readonly type: InputMaybe<SortOrderEnum>;
   readonly uid: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
+};
+
+/** A contact_page document from Prismic. */
+type PrismicContactPage = Node & {
+  /** Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews. */
+  readonly _previewable: Scalars['ID'];
+  /** Alternate versions of the document in different languages. */
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguage>;
+  readonly children: ReadonlyArray<Node>;
+  /** Content for the document. */
+  readonly data: PrismicContactPageData;
+  /** **Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred. */
+  readonly dataRaw: Scalars['JSON'];
+  /** The timestamp at which the document was first published. */
+  readonly first_publication_date: Scalars['Date'];
+  /** The URL to fetch this document's JSON value from the Prismic REST API. */
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  /** The language of the Prismic document. */
+  readonly lang: Scalars['String'];
+  /** The timestamp at which the document was last published. */
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  /** The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository. */
+  readonly prismicId: Scalars['ID'];
+  /** **Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API. */
+  readonly raw: Scalars['JSON'];
+  /** Tags associated with the Prismic document. */
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  /** The type of the Prismic document. */
+  readonly type: Scalars['String'];
+  /** The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+/** A contact_page document from Prismic. */
+type PrismicContactPage_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** A contact_page document from Prismic. */
+type PrismicContactPage_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicContactPageConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicContactPageEdge>;
+  readonly group: ReadonlyArray<PrismicContactPageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicContactPage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicContactPageConnection_distinctArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageConnection_groupArgs = {
+  field: PrismicContactPageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicContactPageConnection_maxArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageConnection_minArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageConnection_sumArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+type PrismicContactPageData = {
+  /** A Rich Text field. */
+  readonly address: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly address_label: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly contact_success_heading: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly contact_success_text: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly email: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly email_label: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly heading: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly phone_number: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly phone_number_label: PrismicRichTextField;
+  /** A Key Text field. */
+  readonly seo_description: Maybe<Scalars['String']>;
+  /** A Key Text field. */
+  readonly seo_title: Maybe<Scalars['String']>;
+};
+
+type PrismicContactPageDataFieldSelector = {
+  readonly address: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly address_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly contact_success_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly contact_success_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly email: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly email_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly phone_number: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly phone_number_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly seo_description: InputMaybe<FieldSelectorEnum>;
+  readonly seo_title: InputMaybe<FieldSelectorEnum>;
+};
+
+type PrismicContactPageDataFilterInput = {
+  readonly address: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly address_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly contact_success_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly contact_success_text: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly email: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly email_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly phone_number: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly phone_number_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly seo_description: InputMaybe<StringQueryOperatorInput>;
+  readonly seo_title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicContactPageDataSortInput = {
+  readonly address: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly address_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly contact_success_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly contact_success_text: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly email: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly email_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly phone_number: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly phone_number_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly seo_description: InputMaybe<SortOrderEnum>;
+  readonly seo_title: InputMaybe<SortOrderEnum>;
+};
+
+type PrismicContactPageEdge = {
+  readonly next: Maybe<PrismicContactPage>;
+  readonly node: PrismicContactPage;
+  readonly previous: Maybe<PrismicContactPage>;
+};
+
+type PrismicContactPageFieldSelector = {
+  readonly _previewable: InputMaybe<FieldSelectorEnum>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageFieldSelector>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly data: InputMaybe<PrismicContactPageDataFieldSelector>;
+  readonly dataRaw: InputMaybe<FieldSelectorEnum>;
+  readonly first_publication_date: InputMaybe<FieldSelectorEnum>;
+  readonly href: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly lang: InputMaybe<FieldSelectorEnum>;
+  readonly last_publication_date: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly prismicId: InputMaybe<FieldSelectorEnum>;
+  readonly raw: InputMaybe<FieldSelectorEnum>;
+  readonly tags: InputMaybe<FieldSelectorEnum>;
+  readonly type: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
+};
+
+type PrismicContactPageFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicContactPageDataFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly raw: InputMaybe<JSONQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicContactPageGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicContactPageEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicContactPageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicContactPage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicContactPageGroupConnection_distinctArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageGroupConnection_groupArgs = {
+  field: PrismicContactPageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicContactPageGroupConnection_maxArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageGroupConnection_minArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageGroupConnection_sumArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+type PrismicContactPageSortInput = {
+  readonly _previewable: InputMaybe<SortOrderEnum>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageSortInput>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly data: InputMaybe<PrismicContactPageDataSortInput>;
+  readonly dataRaw: InputMaybe<SortOrderEnum>;
+  readonly first_publication_date: InputMaybe<SortOrderEnum>;
+  readonly href: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly lang: InputMaybe<SortOrderEnum>;
+  readonly last_publication_date: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly prismicId: InputMaybe<SortOrderEnum>;
+  readonly raw: InputMaybe<SortOrderEnum>;
+  readonly tags: InputMaybe<SortOrderEnum>;
+  readonly type: InputMaybe<SortOrderEnum>;
   readonly url: InputMaybe<SortOrderEnum>;
 };
 
@@ -2842,6 +3107,236 @@ type PrismicImgixURLParams = {
   readonly width: InputMaybe<Scalars['Int']>;
 };
 
+/** A legal_page document from Prismic. */
+type PrismicLegalPage = Node & {
+  /** Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews. */
+  readonly _previewable: Scalars['ID'];
+  /** Alternate versions of the document in different languages. */
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguage>;
+  readonly children: ReadonlyArray<Node>;
+  /** Content for the document. */
+  readonly data: PrismicLegalPageData;
+  /** **Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred. */
+  readonly dataRaw: Scalars['JSON'];
+  /** The timestamp at which the document was first published. */
+  readonly first_publication_date: Scalars['Date'];
+  /** The URL to fetch this document's JSON value from the Prismic REST API. */
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  /** The language of the Prismic document. */
+  readonly lang: Scalars['String'];
+  /** The timestamp at which the document was last published. */
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  /** The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository. */
+  readonly prismicId: Scalars['ID'];
+  /** **Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API. */
+  readonly raw: Scalars['JSON'];
+  /** Tags associated with the Prismic document. */
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  /** The type of the Prismic document. */
+  readonly type: Scalars['String'];
+  /** The unique identifier for the Prismic document. It is guaranteed to be unique within all documents of the same type from the same Prismic repository. */
+  readonly uid: Scalars['String'];
+  /** The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+/** A legal_page document from Prismic. */
+type PrismicLegalPage_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** A legal_page document from Prismic. */
+type PrismicLegalPage_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicLegalPageConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicLegalPageEdge>;
+  readonly group: ReadonlyArray<PrismicLegalPageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicLegalPage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicLegalPageConnection_distinctArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+
+type PrismicLegalPageConnection_groupArgs = {
+  field: PrismicLegalPageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicLegalPageConnection_maxArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+
+type PrismicLegalPageConnection_minArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+
+type PrismicLegalPageConnection_sumArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+type PrismicLegalPageData = {
+  /** A Rich Text field. */
+  readonly body: PrismicRichTextField;
+  /** A Key Text field. */
+  readonly seo_description: Maybe<Scalars['String']>;
+  /** A Key Text field. */
+  readonly seo_title: Maybe<Scalars['String']>;
+};
+
+type PrismicLegalPageDataFieldSelector = {
+  readonly body: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly seo_description: InputMaybe<FieldSelectorEnum>;
+  readonly seo_title: InputMaybe<FieldSelectorEnum>;
+};
+
+type PrismicLegalPageDataFilterInput = {
+  readonly body: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly seo_description: InputMaybe<StringQueryOperatorInput>;
+  readonly seo_title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicLegalPageDataSortInput = {
+  readonly body: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly seo_description: InputMaybe<SortOrderEnum>;
+  readonly seo_title: InputMaybe<SortOrderEnum>;
+};
+
+type PrismicLegalPageEdge = {
+  readonly next: Maybe<PrismicLegalPage>;
+  readonly node: PrismicLegalPage;
+  readonly previous: Maybe<PrismicLegalPage>;
+};
+
+type PrismicLegalPageFieldSelector = {
+  readonly _previewable: InputMaybe<FieldSelectorEnum>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageFieldSelector>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly data: InputMaybe<PrismicLegalPageDataFieldSelector>;
+  readonly dataRaw: InputMaybe<FieldSelectorEnum>;
+  readonly first_publication_date: InputMaybe<FieldSelectorEnum>;
+  readonly href: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly lang: InputMaybe<FieldSelectorEnum>;
+  readonly last_publication_date: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly prismicId: InputMaybe<FieldSelectorEnum>;
+  readonly raw: InputMaybe<FieldSelectorEnum>;
+  readonly tags: InputMaybe<FieldSelectorEnum>;
+  readonly type: InputMaybe<FieldSelectorEnum>;
+  readonly uid: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
+};
+
+type PrismicLegalPageFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicLegalPageDataFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly raw: InputMaybe<JSONQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicLegalPageGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicLegalPageEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicLegalPageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicLegalPage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicLegalPageGroupConnection_distinctArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+
+type PrismicLegalPageGroupConnection_groupArgs = {
+  field: PrismicLegalPageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicLegalPageGroupConnection_maxArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+
+type PrismicLegalPageGroupConnection_minArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+
+type PrismicLegalPageGroupConnection_sumArgs = {
+  field: PrismicLegalPageFieldSelector;
+};
+
+type PrismicLegalPageSortInput = {
+  readonly _previewable: InputMaybe<SortOrderEnum>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageSortInput>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly data: InputMaybe<PrismicLegalPageDataSortInput>;
+  readonly dataRaw: InputMaybe<SortOrderEnum>;
+  readonly first_publication_date: InputMaybe<SortOrderEnum>;
+  readonly href: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly lang: InputMaybe<SortOrderEnum>;
+  readonly last_publication_date: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly prismicId: InputMaybe<SortOrderEnum>;
+  readonly raw: InputMaybe<SortOrderEnum>;
+  readonly tags: InputMaybe<SortOrderEnum>;
+  readonly type: InputMaybe<SortOrderEnum>;
+  readonly uid: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
+};
+
 /** A link to the web, a document in the Prismic repository, or a file in the Prismic Media Library */
 type PrismicLinkField = {
   /** The Prismic document if the field links to a document. */
@@ -3200,9 +3695,11 @@ type Query = {
   readonly allDirectory: DirectoryConnection;
   readonly allFile: FileConnection;
   readonly allImageSharp: ImageSharpConnection;
+  readonly allPrismicContactPage: PrismicContactPageConnection;
   readonly allPrismicEmbedField: PrismicEmbedFieldConnection;
   readonly allPrismicFooter: PrismicFooterConnection;
   readonly allPrismicHomePage: PrismicHomePageConnection;
+  readonly allPrismicLegalPage: PrismicLegalPageConnection;
   readonly allPrismicNavigation: PrismicNavigationConnection;
   readonly allSite: SiteConnection;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
@@ -3212,9 +3709,11 @@ type Query = {
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly imageSharp: Maybe<ImageSharp>;
+  readonly prismicContactPage: Maybe<PrismicContactPage>;
   readonly prismicEmbedField: Maybe<PrismicEmbedField>;
   readonly prismicFooter: Maybe<PrismicFooter>;
   readonly prismicHomePage: Maybe<PrismicHomePage>;
+  readonly prismicLegalPage: Maybe<PrismicLegalPage>;
   readonly prismicNavigation: Maybe<PrismicNavigation>;
   readonly site: Maybe<Site>;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
@@ -3248,6 +3747,14 @@ type Query_allImageSharpArgs = {
 };
 
 
+type Query_allPrismicContactPageArgs = {
+  filter: InputMaybe<PrismicContactPageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<PrismicContactPageSortInput>>>;
+};
+
+
 type Query_allPrismicEmbedFieldArgs = {
   filter: InputMaybe<PrismicEmbedFieldFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
@@ -3269,6 +3776,14 @@ type Query_allPrismicHomePageArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<PrismicHomePageSortInput>>>;
+};
+
+
+type Query_allPrismicLegalPageArgs = {
+  filter: InputMaybe<PrismicLegalPageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<PrismicLegalPageSortInput>>>;
 };
 
 
@@ -3413,6 +3928,27 @@ type Query_imageSharpArgs = {
 };
 
 
+type Query_prismicContactPageArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicContactPageDataFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  raw: InputMaybe<JSONQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
 type Query_prismicEmbedFieldArgs = {
   children: InputMaybe<NodeFilterListInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -3447,6 +3983,28 @@ type Query_prismicHomePageArgs = {
   alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
   children: InputMaybe<NodeFilterListInput>;
   data: InputMaybe<PrismicHomePageDataFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  raw: InputMaybe<JSONQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_prismicLegalPageArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicLegalPageDataFilterInput>;
   dataRaw: InputMaybe<JSONQueryOperatorInput>;
   first_publication_date: InputMaybe<DateQueryOperatorInput>;
   href: InputMaybe<StringQueryOperatorInput>;
@@ -4348,6 +4906,10 @@ type TransformOptions = {
 type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
+
+type ContactPageFormSectionFragmentFragment = { readonly heading: { readonly richText: any }, readonly contact_success_heading: { readonly text: string | null }, readonly contact_success_text: { readonly text: string | null } };
+
+type ContactPageInformationsSectionFragmentFragment = { readonly email_label: { readonly text: string | null }, readonly email: { readonly text: string | null }, readonly phone_number_label: { readonly text: string | null }, readonly phone_number: { readonly text: string | null }, readonly address_label: { readonly text: string | null }, readonly address: { readonly richText: any } };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 

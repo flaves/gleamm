@@ -68,7 +68,7 @@ export function Navigation(props: Props) {
               alignItems="center"
             >
               <factory.div>
-                <Link to="#top" isAnchor>
+                <Link to="/#top" isAnchor>
                   <Logo />
                 </Link>
               </factory.div>

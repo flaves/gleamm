@@ -72,7 +72,7 @@ export function MobileNavigation(props: Props) {
       animate={controls}
     >
       {navigation.anchors.map((anchor, key) => {
-        if (anchor.path === `#galerie`) {
+        if (anchor.path?.includes(`#galerie`)) {
           return <></>;
         }
         return (

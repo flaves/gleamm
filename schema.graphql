@@ -84,7 +84,7 @@ interface PrismicSlice {
     slice_type: String!
 }
 
-union PrismicAllDocumentTypes = PrismicFooter | PrismicHomePage | PrismicNavigation
+union PrismicAllDocumentTypes = PrismicContactPage | PrismicFooter | PrismicHomePage | PrismicNavigation
 
 type Directory implements Node {
     absolutePath: String!
@@ -583,6 +583,115 @@ type PrismicAlternateLanguage {
     uid: String
     "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
     url: String
+}
+
+"A contact_page document from Prismic."
+type PrismicContactPage implements Node {
+    "Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews."
+    _previewable: ID!
+    "Alternate versions of the document in different languages."
+    alternate_languages: [PrismicAlternateLanguage!]!
+    children: [Node!]!
+    "Content for the document."
+    data: PrismicContactPageData!
+    "**Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred."
+    dataRaw: JSON!
+    "The timestamp at which the document was first published."
+    first_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    "The URL to fetch this document's JSON value from the Prismic REST API."
+    href: String!
+    id: ID!
+    internal: Internal!
+    "The language of the Prismic document."
+    lang: String!
+    "The timestamp at which the document was last published."
+    last_publication_date(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date!
+    parent: Node
+    "The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository."
+    prismicId: ID!
+    "**Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API."
+    raw: JSON!
+    "Tags associated with the Prismic document."
+    tags: [String!]!
+    "The type of the Prismic document."
+    type: String!
+    "The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`."
+    url: String
+}
+
+type PrismicContactPageConnection {
+    distinct(field: PrismicContactPageFieldSelector!): [String!]!
+    edges: [PrismicContactPageEdge!]!
+    group(field: PrismicContactPageFieldSelector!, limit: Int, skip: Int): [PrismicContactPageGroupConnection!]!
+    max(field: PrismicContactPageFieldSelector!): Float
+    min(field: PrismicContactPageFieldSelector!): Float
+    nodes: [PrismicContactPage!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicContactPageFieldSelector!): Float
+    totalCount: Int!
+}
+
+type PrismicContactPageData {
+    "A Rich Text field."
+    address: PrismicRichTextField!
+    "A Rich Text field."
+    address_label: PrismicRichTextField!
+    "A Rich Text field."
+    contact_success_heading: PrismicRichTextField!
+    "A Rich Text field."
+    contact_success_text: PrismicRichTextField!
+    "A Rich Text field."
+    email: PrismicRichTextField!
+    "A Rich Text field."
+    email_label: PrismicRichTextField!
+    "A Rich Text field."
+    heading: PrismicRichTextField!
+    "A Rich Text field."
+    phone_number: PrismicRichTextField!
+    "A Rich Text field."
+    phone_number_label: PrismicRichTextField!
+    "A Key Text field."
+    seo_description: String
+    "A Key Text field."
+    seo_title: String
+}
+
+type PrismicContactPageEdge {
+    next: PrismicContactPage
+    node: PrismicContactPage!
+    previous: PrismicContactPage
+}
+
+type PrismicContactPageGroupConnection {
+    distinct(field: PrismicContactPageFieldSelector!): [String!]!
+    edges: [PrismicContactPageEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: PrismicContactPageFieldSelector!, limit: Int, skip: Int): [PrismicContactPageGroupConnection!]!
+    max(field: PrismicContactPageFieldSelector!): Float
+    min(field: PrismicContactPageFieldSelector!): Float
+    nodes: [PrismicContactPage!]!
+    pageInfo: PageInfo!
+    sum(field: PrismicContactPageFieldSelector!): Float
+    totalCount: Int!
 }
 
 "oEmbed content from an oEmbed-enabled URL."
@@ -1163,6 +1272,7 @@ type Query {
     allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: [DirectorySortInput]): DirectoryConnection!
     allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: [FileSortInput]): FileConnection!
     allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: [ImageSharpSortInput]): ImageSharpConnection!
+    allPrismicContactPage(filter: PrismicContactPageFilterInput, limit: Int, skip: Int, sort: [PrismicContactPageSortInput]): PrismicContactPageConnection!
     allPrismicEmbedField(filter: PrismicEmbedFieldFilterInput, limit: Int, skip: Int, sort: [PrismicEmbedFieldSortInput]): PrismicEmbedFieldConnection!
     allPrismicFooter(filter: PrismicFooterFilterInput, limit: Int, skip: Int, sort: [PrismicFooterSortInput]): PrismicFooterConnection!
     allPrismicHomePage(filter: PrismicHomePageFilterInput, limit: Int, skip: Int, sort: [PrismicHomePageSortInput]): PrismicHomePageConnection!
@@ -1175,6 +1285,7 @@ type Query {
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
     file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
     imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
+    prismicContactPage(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicContactPageDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicContactPage
     prismicEmbedField(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): PrismicEmbedField
     prismicFooter(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicFooterDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicFooter
     prismicHomePage(_previewable: IDQueryOperatorInput, alternate_languages: PrismicAlternateLanguageFilterListInput, children: NodeFilterListInput, data: PrismicHomePageDataFilterInput, dataRaw: JSONQueryOperatorInput, first_publication_date: DateQueryOperatorInput, href: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, lang: StringQueryOperatorInput, last_publication_date: DateQueryOperatorInput, parent: NodeFilterInput, prismicId: IDQueryOperatorInput, raw: JSONQueryOperatorInput, tags: StringQueryOperatorInput, type: StringQueryOperatorInput, uid: StringQueryOperatorInput, url: StringQueryOperatorInput): PrismicHomePage
@@ -2157,6 +2268,108 @@ input PrismicAlternateLanguageSortInput {
     raw: SortOrderEnum
     type: SortOrderEnum
     uid: SortOrderEnum
+    url: SortOrderEnum
+}
+
+input PrismicContactPageDataFieldSelector {
+    address: PrismicRichTextFieldFieldSelector
+    address_label: PrismicRichTextFieldFieldSelector
+    contact_success_heading: PrismicRichTextFieldFieldSelector
+    contact_success_text: PrismicRichTextFieldFieldSelector
+    email: PrismicRichTextFieldFieldSelector
+    email_label: PrismicRichTextFieldFieldSelector
+    heading: PrismicRichTextFieldFieldSelector
+    phone_number: PrismicRichTextFieldFieldSelector
+    phone_number_label: PrismicRichTextFieldFieldSelector
+    seo_description: FieldSelectorEnum
+    seo_title: FieldSelectorEnum
+}
+
+input PrismicContactPageDataFilterInput {
+    address: PrismicRichTextFieldFilterInput
+    address_label: PrismicRichTextFieldFilterInput
+    contact_success_heading: PrismicRichTextFieldFilterInput
+    contact_success_text: PrismicRichTextFieldFilterInput
+    email: PrismicRichTextFieldFilterInput
+    email_label: PrismicRichTextFieldFilterInput
+    heading: PrismicRichTextFieldFilterInput
+    phone_number: PrismicRichTextFieldFilterInput
+    phone_number_label: PrismicRichTextFieldFilterInput
+    seo_description: StringQueryOperatorInput
+    seo_title: StringQueryOperatorInput
+}
+
+input PrismicContactPageDataSortInput {
+    address: PrismicRichTextFieldSortInput
+    address_label: PrismicRichTextFieldSortInput
+    contact_success_heading: PrismicRichTextFieldSortInput
+    contact_success_text: PrismicRichTextFieldSortInput
+    email: PrismicRichTextFieldSortInput
+    email_label: PrismicRichTextFieldSortInput
+    heading: PrismicRichTextFieldSortInput
+    phone_number: PrismicRichTextFieldSortInput
+    phone_number_label: PrismicRichTextFieldSortInput
+    seo_description: SortOrderEnum
+    seo_title: SortOrderEnum
+}
+
+input PrismicContactPageFieldSelector {
+    _previewable: FieldSelectorEnum
+    alternate_languages: PrismicAlternateLanguageFieldSelector
+    children: NodeFieldSelector
+    data: PrismicContactPageDataFieldSelector
+    dataRaw: FieldSelectorEnum
+    first_publication_date: FieldSelectorEnum
+    href: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    lang: FieldSelectorEnum
+    last_publication_date: FieldSelectorEnum
+    parent: NodeFieldSelector
+    prismicId: FieldSelectorEnum
+    raw: FieldSelectorEnum
+    tags: FieldSelectorEnum
+    type: FieldSelectorEnum
+    url: FieldSelectorEnum
+}
+
+input PrismicContactPageFilterInput {
+    _previewable: IDQueryOperatorInput
+    alternate_languages: PrismicAlternateLanguageFilterListInput
+    children: NodeFilterListInput
+    data: PrismicContactPageDataFilterInput
+    dataRaw: JSONQueryOperatorInput
+    first_publication_date: DateQueryOperatorInput
+    href: StringQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    lang: StringQueryOperatorInput
+    last_publication_date: DateQueryOperatorInput
+    parent: NodeFilterInput
+    prismicId: IDQueryOperatorInput
+    raw: JSONQueryOperatorInput
+    tags: StringQueryOperatorInput
+    type: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input PrismicContactPageSortInput {
+    _previewable: SortOrderEnum
+    alternate_languages: PrismicAlternateLanguageSortInput
+    children: NodeSortInput
+    data: PrismicContactPageDataSortInput
+    dataRaw: SortOrderEnum
+    first_publication_date: SortOrderEnum
+    href: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    lang: SortOrderEnum
+    last_publication_date: SortOrderEnum
+    parent: NodeSortInput
+    prismicId: SortOrderEnum
+    raw: SortOrderEnum
+    tags: SortOrderEnum
+    type: SortOrderEnum
     url: SortOrderEnum
 }
 
