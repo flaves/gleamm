@@ -4,5 +4,4 @@ public
 .idea
 
 .env
-.env.*
-!.env.example
+!.env

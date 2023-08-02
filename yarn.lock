@@ -3372,6 +3372,11 @@
   resolved "https://registry.yarnpkg.com/@types/tmp/-/tmp-0.0.33.tgz#1073c4bc824754ae3d10cfab88ab0237ba964e4d"
   integrity sha512-gVC1InwyVrO326wbBZw+AO3u2vRXz/iRWq9jYhpG4W8LXyIgDv3ZmcLQ5Q4Gs+gFMyqx+viFoFT+l3p61QFCmQ==
 
+"@types/validator@^13.9.0":
+  version "13.9.0"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.9.0.tgz#e7a96da3ea6a936222c6e76bb54abdd3dc4c9e4a"
+  integrity sha512-NclP0IbzHj/4tJZKFqKh8E7kZdgss+MCUYV9G+TLltFfDA4lFgE4PKPpDIyS2FlcdANIfSx273emkupvChigbw==
+
 "@types/yoga-layout@1.9.2":
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/@types/yoga-layout/-/yoga-layout-1.9.2.tgz#efaf9e991a7390dc081a0b679185979a83a9639a"
@@ -7963,11 +7968,6 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-libphonenumber-js@^1.10.38:
-  version "1.10.38"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.38.tgz#edb9c1f13796ab17a8484180ef937184784628e9"
-  integrity sha512-4NjVXVUmpZ9Zsqq6FXa2+MKI+KAI3tOqA0pxXgXGluhpj4ge5didmbWJpMBqGB3AVGv1SnEtKdGTbxjSEG1kCQ==
-
 lilconfig@^2.0.3:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.1.0.tgz#78e23ac89ebb7e1bfbf25b18043de756548e7f52"
@@ -11121,6 +11121,11 @@ valid-url@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
   integrity sha512-QQDsV8OnSf5Uc30CKSwG9lnhMPe6exHtTXLRYX8uMwKENy640pU+2BgBL0LRbDh/eYRahNCS7aewCx0wf3NYVA==
+
+validator@^13.9.0:
+  version "13.9.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.9.0.tgz#33e7b85b604f3bbce9bb1a05d5c3e22e1c2ff855"
+  integrity sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==
 
 value-or-promise@^1.0.12:
   version "1.0.12"

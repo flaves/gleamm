@@ -3,6 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { graphql } from 'gatsby';
 
 import { motion, useAnimation } from 'framer-motion';
+import { useToast } from '@chakra-ui/react';
 import { _ContactPageForm } from '../../entities/_ContactPage';
 import { DefaultProps } from '../../../../types/DefaultProps';
 import { factory } from '../../../../theme/factory';
@@ -42,6 +43,7 @@ export function ContactPageFormSection(props: Props) {
   const { data } = props;
   const methods = useForm<FormValues>();
   const controls = useAnimation();
+  const toast = useToast();
   const { handleSubmit, reset, clearErrors } = methods;
 
   const contactSuccessMessageData: ContactSuccessMessageData = {
@@ -67,7 +69,16 @@ export function ContactPageFormSection(props: Props) {
       setTimeout(async () => {
         await controls.start(`hidden`);
       }, 8000);
-    } catch (e) {}
+    } catch (e) {
+      toast({
+        title: `Erreur`,
+        description: `Une erreur est survenue pendant l'envoi du formulaire`,
+        status: `error`,
+        position: `top-right`,
+        duration: 8000,
+        isClosable: true,
+      });
+    }
   });
 
   const formVariants = {

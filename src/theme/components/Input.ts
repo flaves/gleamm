@@ -5,7 +5,6 @@ const baseStyle: SystemStyleObject = {};
 const variants: SystemStyleObject = {
   default: {
     field: {
-      // width: [350, null, 320],
       width: `100%`,
       height: `52px`,
       borderRadius: 8,

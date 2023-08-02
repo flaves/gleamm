@@ -1,6 +1,6 @@
 import React, { RefObject } from 'react';
 import { useController } from 'react-hook-form';
-import { isValidPhoneNumber } from 'libphonenumber-js';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 import { Input } from '../input/Input';
 import { Icon } from '../../icon/Icon';
 
@@ -19,7 +19,7 @@ export function FieldPhoneNumber(props: Props) {
     name,
     defaultValue: ``,
     rules: {
-      validate: (value) => isValidPhoneNumber(value, { defaultCountry: `BE` }),
+      validate: (value) => isMobilePhone(value, `fr-BE`),
     },
   });
 

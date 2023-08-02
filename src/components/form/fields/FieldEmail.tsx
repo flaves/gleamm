@@ -1,5 +1,6 @@
 import React, { RefObject } from 'react';
 import { useController } from 'react-hook-form';
+import isEmail from 'validator/lib/isEmail';
 import { Input } from '../input/Input';
 import { Icon } from '../../icon/Icon';
 
@@ -18,9 +19,7 @@ export function FieldEmail(props: Props) {
     name,
     defaultValue: ``,
     rules: {
-      required: true,
-      pattern:
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      validate: (value) => isEmail(value),
     },
   });
 
