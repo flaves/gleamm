@@ -1299,7 +1299,7 @@ type PotraceTurnPolicy =
   | 'right'
   | 'white';
 
-type PrismicAllDocumentTypes = PrismicFooter | PrismicHomePage | PrismicNavigation;
+type PrismicAllDocumentTypes = PrismicContactPage | PrismicFooter | PrismicHomePage | PrismicNavigation;
 
 /** Metadata for alternate versions of a document in different languages. */
 type PrismicAlternateLanguage = {
@@ -1341,6 +1341,271 @@ type PrismicAlternateLanguageSortInput = {
   readonly raw: InputMaybe<SortOrderEnum>;
   readonly type: InputMaybe<SortOrderEnum>;
   readonly uid: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
+};
+
+/** A contact_page document from Prismic. */
+type PrismicContactPage = Node & {
+  /** Query this field to enable preview support on this node. Requires `gatsby-plugin-prismic-preview` integrated in your app to enable previews. */
+  readonly _previewable: Scalars['ID'];
+  /** Alternate versions of the document in different languages. */
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguage>;
+  readonly children: ReadonlyArray<Node>;
+  /** Content for the document. */
+  readonly data: PrismicContactPageData;
+  /** **Do not use this field unless you know what you are doing**. The unprocessed `data` property of the Prismic document. Querying individual fields via GraphQL is much preferred. */
+  readonly dataRaw: Scalars['JSON'];
+  /** The timestamp at which the document was first published. */
+  readonly first_publication_date: Scalars['Date'];
+  /** The URL to fetch this document's JSON value from the Prismic REST API. */
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  /** The language of the Prismic document. */
+  readonly lang: Scalars['String'];
+  /** The timestamp at which the document was last published. */
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  /** The identifier for the Prismic document. It is guaranteed to be unique within all documents of all types from the same Prismic repository. */
+  readonly prismicId: Scalars['ID'];
+  /** **Do not use this field unless you know what you are doing**. The unprocessed Prismic document value returned from the Prismic REST API. */
+  readonly raw: Scalars['JSON'];
+  /** Tags associated with the Prismic document. */
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  /** The type of the Prismic document. */
+  readonly type: Scalars['String'];
+  /** The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+/** A contact_page document from Prismic. */
+type PrismicContactPage_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** A contact_page document from Prismic. */
+type PrismicContactPage_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicContactPageConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicContactPageEdge>;
+  readonly group: ReadonlyArray<PrismicContactPageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicContactPage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicContactPageConnection_distinctArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageConnection_groupArgs = {
+  field: PrismicContactPageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicContactPageConnection_maxArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageConnection_minArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageConnection_sumArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+type PrismicContactPageData = {
+  /** A Rich Text field. */
+  readonly address: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly address_label: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly contact_success_heading: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly contact_success_text: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly email: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly email_label: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly heading: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly phone_number: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly phone_number_label: PrismicRichTextField;
+  /** A Key Text field. */
+  readonly seo_description: Maybe<Scalars['String']>;
+  /** A Key Text field. */
+  readonly seo_title: Maybe<Scalars['String']>;
+};
+
+type PrismicContactPageDataFieldSelector = {
+  readonly address: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly address_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly contact_success_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly contact_success_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly email: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly email_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly phone_number: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly phone_number_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly seo_description: InputMaybe<FieldSelectorEnum>;
+  readonly seo_title: InputMaybe<FieldSelectorEnum>;
+};
+
+type PrismicContactPageDataFilterInput = {
+  readonly address: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly address_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly contact_success_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly contact_success_text: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly email: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly email_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly phone_number: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly phone_number_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly seo_description: InputMaybe<StringQueryOperatorInput>;
+  readonly seo_title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicContactPageDataSortInput = {
+  readonly address: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly address_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly contact_success_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly contact_success_text: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly email: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly email_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly phone_number: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly phone_number_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly seo_description: InputMaybe<SortOrderEnum>;
+  readonly seo_title: InputMaybe<SortOrderEnum>;
+};
+
+type PrismicContactPageEdge = {
+  readonly next: Maybe<PrismicContactPage>;
+  readonly node: PrismicContactPage;
+  readonly previous: Maybe<PrismicContactPage>;
+};
+
+type PrismicContactPageFieldSelector = {
+  readonly _previewable: InputMaybe<FieldSelectorEnum>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageFieldSelector>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly data: InputMaybe<PrismicContactPageDataFieldSelector>;
+  readonly dataRaw: InputMaybe<FieldSelectorEnum>;
+  readonly first_publication_date: InputMaybe<FieldSelectorEnum>;
+  readonly href: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly lang: InputMaybe<FieldSelectorEnum>;
+  readonly last_publication_date: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly prismicId: InputMaybe<FieldSelectorEnum>;
+  readonly raw: InputMaybe<FieldSelectorEnum>;
+  readonly tags: InputMaybe<FieldSelectorEnum>;
+  readonly type: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
+};
+
+type PrismicContactPageFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicContactPageDataFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly raw: InputMaybe<JSONQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicContactPageGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicContactPageEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicContactPageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicContactPage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicContactPageGroupConnection_distinctArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageGroupConnection_groupArgs = {
+  field: PrismicContactPageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicContactPageGroupConnection_maxArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageGroupConnection_minArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+
+type PrismicContactPageGroupConnection_sumArgs = {
+  field: PrismicContactPageFieldSelector;
+};
+
+type PrismicContactPageSortInput = {
+  readonly _previewable: InputMaybe<SortOrderEnum>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageSortInput>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly data: InputMaybe<PrismicContactPageDataSortInput>;
+  readonly dataRaw: InputMaybe<SortOrderEnum>;
+  readonly first_publication_date: InputMaybe<SortOrderEnum>;
+  readonly href: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly lang: InputMaybe<SortOrderEnum>;
+  readonly last_publication_date: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly prismicId: InputMaybe<SortOrderEnum>;
+  readonly raw: InputMaybe<SortOrderEnum>;
+  readonly tags: InputMaybe<SortOrderEnum>;
+  readonly type: InputMaybe<SortOrderEnum>;
   readonly url: InputMaybe<SortOrderEnum>;
 };
 
@@ -3200,6 +3465,7 @@ type Query = {
   readonly allDirectory: DirectoryConnection;
   readonly allFile: FileConnection;
   readonly allImageSharp: ImageSharpConnection;
+  readonly allPrismicContactPage: PrismicContactPageConnection;
   readonly allPrismicEmbedField: PrismicEmbedFieldConnection;
   readonly allPrismicFooter: PrismicFooterConnection;
   readonly allPrismicHomePage: PrismicHomePageConnection;
@@ -3212,6 +3478,7 @@ type Query = {
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly imageSharp: Maybe<ImageSharp>;
+  readonly prismicContactPage: Maybe<PrismicContactPage>;
   readonly prismicEmbedField: Maybe<PrismicEmbedField>;
   readonly prismicFooter: Maybe<PrismicFooter>;
   readonly prismicHomePage: Maybe<PrismicHomePage>;
@@ -3245,6 +3512,14 @@ type Query_allImageSharpArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<ImageSharpSortInput>>>;
+};
+
+
+type Query_allPrismicContactPageArgs = {
+  filter: InputMaybe<PrismicContactPageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<PrismicContactPageSortInput>>>;
 };
 
 
@@ -3410,6 +3685,27 @@ type Query_imageSharpArgs = {
   original: InputMaybe<ImageSharpOriginalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   resize: InputMaybe<ImageSharpResizeFilterInput>;
+};
+
+
+type Query_prismicContactPageArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicContactPageDataFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  raw: InputMaybe<JSONQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
 };
 
 
