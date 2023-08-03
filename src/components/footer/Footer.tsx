@@ -89,8 +89,12 @@ export function Footer(props: Props) {
             <Socials socials={footer.socials} />
           </factory.div>
         </factory.div>
-        <factory.div textAlign="center" my={10}>
-          <Text>© {new Date().getFullYear()} Gleamm</Text>
+        <factory.div
+          textAlign="center"
+          my={10}
+          sx={{ 'p:hover': { color: `text.secondary` } }}
+        >
+          <Text variant="navLink">© {new Date().getFullYear()} Gleamm</Text>
         </factory.div>
       </Container>
     </factory.div>
