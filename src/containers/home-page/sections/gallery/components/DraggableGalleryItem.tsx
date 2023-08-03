@@ -157,7 +157,7 @@ export const DraggableGalleryItem = (props: Props) => {
         >
           <Image width="100%" height="100%" image={imageBefore} />
         </factory.div>
-        <factory.div filter="blur(5px)" overflow="hidden" height="100%">
+        <factory.div overflow="hidden" height="100%">
           <Image width="100%" height="100%" image={imageAfter} />
         </factory.div>
       </factory.div>
