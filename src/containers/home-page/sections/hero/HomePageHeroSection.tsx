@@ -71,7 +71,7 @@ export function HomePageHeroSection(props: Props) {
               ml={[0, null, null, 10]}
               mb={[4, null, null, 0]}
             >
-              <factory.div mb={4}>
+              <factory.div mb={4} ml={2}>
                 <Badge icon="sparkles">{data.badge}</Badge>
               </factory.div>
               <factory.div mb={10}>
