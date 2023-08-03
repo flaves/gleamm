@@ -41,10 +41,15 @@ export function Footer(props: Props) {
             <factory.div
               sx={{
                 p: { color: `#07A1C5` },
+                'p:hover': { color: `#07A1C5` },
+                a: {
+                  textDecoration: `underline !important`,
+                  textDecorationColor: `#07A1C5 !important`,
+                },
               }}
             >
               <Link to={footer.email.path || ``}>
-                <Text>{footer.email.label}</Text>
+                <Text variant="navLink">{footer.email.label}</Text>
               </Link>
             </factory.div>
           </factory.div>
