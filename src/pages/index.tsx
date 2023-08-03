@@ -1,25 +1,23 @@
 import React from 'react';
-import { PageProps } from 'gatsby';
-import { Heading } from '../components/heading/Heading';
+import { graphql, PageProps } from 'gatsby';
 import { useSeo } from '../hooks/use-seo';
 import { Seo } from '../components/seo/Seo';
-import PrismicHomePage = Queries.PrismicHomePage;
+import { Layout } from '../components/layout/Layout';
+import { HomePageContainer } from '../containers/home-page/HomePageContainer';
 
-interface HomeData {
-  homePage: PrismicHomePage;
-}
+type HomeData = {
+  homePage: Queries.PrismicHomePage;
+};
 
-interface Props extends PageProps<HomeData> {}
+type Props = PageProps<HomeData> & {};
 
 const IndexPage = (props: Props) => {
-  const {} = props;
+  const { data } = props;
 
   return (
-    <div>
-      <Heading variant="h1" color="red.700">
-        HOMEPAGE
-      </Heading>
-    </div>
+    <Layout>
+      <HomePageContainer data={data} />
+    </Layout>
   );
 };
 
@@ -29,3 +27,19 @@ export const Head = (props: Props) => {
   const seo = useSeo(props.data.homePage);
   return <Seo {...seo} />;
 };
+
+export const query = graphql`
+  query {
+    homePage: prismicHomePage {
+      data {
+        seo_title
+        seo_description
+        ...HomePageHeroSectionFragment
+        ...HomePageProcessSectionFragment
+        ...HomePageGallerySectionFragment
+        ...HomePageFaqSectionFragment
+        ...HomePageCtaSectionFragment
+      }
+    }
+  }
+`;

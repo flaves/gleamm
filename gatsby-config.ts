@@ -1,8 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
+import { config as dotenv } from 'dotenv';
 
-require(`dotenv`).config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
+dotenv({ path: `.env` });
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -20,7 +19,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        icon: `src/images/icon.png`,
+        icon: `src/images/favicon.png`,
       },
     },
     {
