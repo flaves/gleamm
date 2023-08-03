@@ -15,7 +15,6 @@ export function ContactPageInformationsSection(props: Props) {
 
   return (
     <factory.div
-      textAlign={[`center`, null, null, `left`]}
       width={[`100%`, null, null, `34%`]}
       pt={5}
       pl={[0, null, null, 5]}
