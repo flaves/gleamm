@@ -30,6 +30,7 @@ type FormValues = {
   email: string;
   phoneNumber: string;
   message: string;
+  'form-name': string;
 };
 
 export function ContactPageFormSection(props: Props) {
@@ -37,7 +38,7 @@ export function ContactPageFormSection(props: Props) {
   const methods = useForm<FormValues>();
   const controls = useAnimation();
   const toast = useToast();
-  const { handleSubmit, reset, clearErrors } = methods;
+  const { handleSubmit, reset, clearErrors, register } = methods;
 
   const contactSuccessMessageData: ContactSuccessMessageData = {
     heading: data.successHeading,
@@ -122,7 +123,11 @@ export function ContactPageFormSection(props: Props) {
               onSubmit={onSubmit}
               method="post"
             >
-              <input type="hidden" name="form-name" value="contact-gleamm" />
+              <input
+                type="hidden"
+                value="contact-gleamm"
+                {...register(`form-name`)}
+              />
               <factory.div
                 display="flex"
                 flexDirection="column"
