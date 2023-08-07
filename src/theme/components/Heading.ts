@@ -1,7 +1,7 @@
 import { SystemStyleObject } from '@chakra-ui/react';
 
 const baseStyle: SystemStyleObject = {
-  color: `text.primary`,
+  color: `text.heading`,
 };
 
 const variants: SystemStyleObject = {
