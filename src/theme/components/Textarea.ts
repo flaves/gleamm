@@ -11,7 +11,6 @@ const baseStyle: SystemStyleObject = {
   fontSize: 14,
   fontWeight: 500,
   lineHeight: `18px`,
-  borderWidth: 1,
   borderColor: `gray.100`,
   _focus: {
     borderWidth: 1,

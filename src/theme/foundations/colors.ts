@@ -10,6 +10,7 @@ export const colors = {
       },
     },
     text: {
+      heading: `#162344`,
       primary: `#000000`,
       secondary: `#86868B`,
     },

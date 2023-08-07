@@ -2,12 +2,12 @@ import { Maybe } from '../../../types/Maybe';
 import { _Image } from '../entities/_Image';
 
 type GatsbyPrismicImage = {
-  alt?: Maybe<Scalars[`String`]>;
-  copyright?: Maybe<Scalars[`String`]>;
+  alt?: Maybe<string>;
+  copyright?: Maybe<string>;
   // dimensions?: Maybe<PrismicImageDimensionsType>;
-  gatsbyImageData?: Maybe<Scalars[`JSON`]>;
+  gatsbyImageData?: Maybe<any>;
   localFile?: Maybe<File>;
-  url?: Maybe<Scalars[`String`]>;
+  url?: Maybe<string>;
 };
 
 export const toImage = (image?: GatsbyPrismicImage | null): _Image => ({
