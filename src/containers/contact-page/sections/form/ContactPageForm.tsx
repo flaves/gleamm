@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { graphql } from 'gatsby';
-
 import { motion, useAnimation } from 'framer-motion';
 import { useToast } from '@chakra-ui/react';
 import { _ContactPageForm } from '../../entities/_ContactPage';
@@ -25,12 +24,6 @@ type Props = DefaultProps<ContactPageFormSectionData>;
 
 const MotionDiv = motion(factory.div);
 
-const encode = (data: any) => {
-  return Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join(`&`);
-};
-
 type FormValues = {
   firstname: string;
   lastname: string;
@@ -53,16 +46,16 @@ export function ContactPageFormSection(props: Props) {
 
   const onSubmit = handleSubmit(async (data): Promise<void> => {
     try {
-      await fetch(`/`, {
+      const res = await fetch(`/`, {
         method: `POST`,
         headers: {
           'Content-Type': `application/x-www-form-urlencoded`,
         },
-        body: encode({
-          ...data,
-          'form-name': `contact-gleamm`,
-        }),
+        body: new URLSearchParams(data).toString(),
       });
+      if (!res.ok) {
+        throw new Error();
+      }
       reset();
       clearErrors();
       await controls.start(`visible`);
@@ -131,6 +124,7 @@ export function ContactPageFormSection(props: Props) {
               onSubmit={onSubmit}
               method="POST"
             >
+              <input type="hidden" name="form-name" value="contact-gleamm" />
               <factory.div
                 display="flex"
                 flexDirection="column"
