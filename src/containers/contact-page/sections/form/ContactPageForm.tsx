@@ -47,7 +47,7 @@ export function ContactPageFormSection(props: Props) {
 
   const onSubmit = handleSubmit(async (data): Promise<void> => {
     try {
-      const res = await fetch(`/contact`, {
+      const res = await fetch(`/`, {
         method: `POST`,
         headers: { 'Content-Type': `application/x-www-form-urlencoded` },
         body: new URLSearchParams(data).toString(),
