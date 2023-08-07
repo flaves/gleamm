@@ -8,7 +8,7 @@ import { Text } from '../../../../../components/text/Text';
 type Props = _Question & {};
 
 export function Question(props: Props) {
-  const { heading, description, icon } = props;
+  const { heading, description, icon: _icon } = props;
 
   return (
     <factory.div
