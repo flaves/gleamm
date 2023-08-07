@@ -12,6 +12,7 @@ import { Image } from '../../../../components/image/Image';
 import { Container } from '../../../../components/container/Container';
 import { ReviewCard } from '../../../../components/review-card/ReviewCard';
 import { Star } from '../../../../components/star/Star';
+import { link } from '../../../../config/link';
 
 export type HomePageHeroSectionData = _HomePageHero;
 
@@ -78,7 +79,7 @@ export function HomePageHeroSection(props: Props) {
                 <Heading variant="hero">{data.heading}</Heading>
               </factory.div>
               <factory.div mb={[2, null, null, 4]}>
-                <Link to={data.button.path || ``}>
+                <Link to={link.appointment} type="anchor" isExternal>
                   <Button>{data.button.label}</Button>
                 </Link>
               </factory.div>

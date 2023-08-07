@@ -2,28 +2,40 @@ import React, { ElementType, ReactNode } from 'react';
 import { Link as GatsbyLink } from 'gatsby';
 import { Link as ChakraLink } from '@chakra-ui/react';
 
-export type Props = {
-  children?: ReactNode;
-  to: string;
+type LinkProps = {
+  type?: undefined;
+};
+
+type AnchorProps = {
+  type?: `anchor`;
   target?: string;
   rel?: string;
-  isAnchor?: boolean;
+  isExternal?: boolean;
+};
+
+export type Props = (AnchorProps | LinkProps) & {
+  children: ReactNode;
+  to: string;
 };
 
 export function Link(props: Props) {
-  const { children, to, target, isAnchor = false } = props;
+  const { children, type, to } = props;
 
-  if (isAnchor) {
-    return <a href={to as string}>{children}</a>;
+  if (type === `anchor`) {
+    const { target, rel, isExternal } = props;
+    const anchorProps = isExternal
+      ? { target: `_blank`, rel: `noopener noreferrer` }
+      : { target, rel };
+    return (
+      <a href={to} {...anchorProps}>
+        {children}
+      </a>
+    );
   }
 
   return (
     <ChakraLink
-      as={
-        ((props) => (
-          <GatsbyLink to={to} target={target} {...props} />
-        )) as ElementType
-      }
+      as={((props) => <GatsbyLink to={to} {...props} />) as ElementType}
       sx={{ textDecoration: `none !important` }}
     >
       {children}
