@@ -44,15 +44,12 @@ export function ContactPageFormSection(props: Props) {
     text: data.successText,
   };
 
-  const onSubmit = handleSubmit(async (data, event): Promise<void> => {
+  const onSubmit = handleSubmit(async (data): Promise<void> => {
     try {
-      const formData = new FormData(event?.target);
       const res = await fetch(`/`, {
         method: `POST`,
-        headers: {
-          'Content-Type': `application/x-www-form-urlencoded`,
-        },
-        body: new URLSearchParams(formData).toString(),
+        headers: { 'Content-Type': `application/x-www-form-urlencoded` },
+        body: new URLSearchParams(data).toString(),
       });
       if (!res.ok) {
         throw new Error();
