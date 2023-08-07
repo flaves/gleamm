@@ -46,7 +46,7 @@ export function ContactPageFormSection(props: Props) {
 
   const onSubmit = handleSubmit(async (data): Promise<void> => {
     try {
-      const res = await fetch(`/`, {
+      const res = await fetch(`/contact`, {
         method: `POST`,
         headers: { 'Content-Type': `application/x-www-form-urlencoded` },
         body: new URLSearchParams(data).toString(),
@@ -120,7 +120,7 @@ export function ContactPageFormSection(props: Props) {
               data-netlify-honeypot="bot-field"
               name="contact-gleamm"
               onSubmit={onSubmit}
-              method="POST"
+              method="post"
             >
               <input type="hidden" name="form-name" value="contact-gleamm" />
               <factory.div
