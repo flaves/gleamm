@@ -7,6 +7,7 @@ import { Container } from '../../../../components/container/Container';
 import { Badge } from '../../../../components/badge/Badge';
 import { Link } from '../../../../components/link/Link';
 import { Button } from '../../../../components/button/Button';
+import { link } from '../../../../config/link';
 
 export type HomePageCtaSectionData = _HomePageCta;
 
@@ -24,7 +25,7 @@ export function HomePageCtaSection(props: Props) {
           </factory.div>
           <factory.div mb={10}>{data.heading}</factory.div>
           <factory.div>
-            <Link to={data.button.path || ``}>
+            <Link to={link.appointment} type="anchor" isExternal>
               <Button>{data.button.label}</Button>
             </Link>
           </factory.div>

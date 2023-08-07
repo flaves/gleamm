@@ -83,7 +83,7 @@ export function MobileNavigation(props: Props) {
             borderBottomWidth={1}
             borderBottomColor="gray.50"
           >
-            <Link to={anchor.path || ``} isAnchor>
+            <Link to={anchor.path || ``} type="anchor">
               <Text
                 variant="navLink"
                 onClick={() => toggleMenu(key)}

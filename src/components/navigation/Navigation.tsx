@@ -10,6 +10,7 @@ import { Container } from '../container/Container';
 import { MobileNavigation } from '../mobile-navigation/MobileNavigation';
 import { Hamburger } from '../hamburger/Hamburger';
 import { mapNavigationQueryToNavigationProps } from './mapper/mapNavigationQueryToNavigationProps';
+import { link } from '../../config/link';
 
 type NavigationData = Queries.PrismicNavigation;
 
@@ -68,7 +69,7 @@ export function Navigation(props: Props) {
               alignItems="center"
             >
               <factory.div>
-                <Link to="/#top" isAnchor>
+                <Link to="/#top" type="anchor">
                   <Logo />
                 </Link>
               </factory.div>
@@ -78,13 +79,13 @@ export function Navigation(props: Props) {
                 gap={[5, null, null, null, 10]}
               >
                 {navigation.anchors.map((anchor, key) => (
-                  <Link key={key} to={anchor.path || ``} isAnchor>
+                  <Link key={key} to={anchor.path || ``} type="anchor">
                     <Text variant="navLink">{anchor.label}</Text>
                   </Link>
                 ))}
               </factory.div>
               <factory.div display={[`none`, null, null, `flex`]}>
-                <Link to={navigation.button.path || ``}>
+                <Link to={link.appointment} type="anchor" isExternal>
                   <Button>{navigation.button.label}</Button>
                 </Link>
               </factory.div>

@@ -11,21 +11,20 @@ type Props = {
 
 export function Socials(props: Props) {
   const { socials } = props;
-
   return (
     <factory.div display="flex">
-      {socials.map((social, key) => (
-        <factory.div key={key} mr={7} _last={{ mr: 0 }}>
-          <Link
-            key={key}
-            to={social.path || ``}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon icon={social.social as Icons} size="lg" color="black" />
-          </Link>
-        </factory.div>
-      ))}
+      {socials.map((social, key) => {
+        if (!social.path) {
+          return <></>;
+        }
+        return (
+          <factory.div key={key} mr={7} _last={{ mr: 0 }}>
+            <Link key={key} to={social.path} type="anchor" isExternal>
+              <Icon icon={social.social as Icons} size="lg" color="black" />
+            </Link>
+          </factory.div>
+        );
+      })}
     </factory.div>
   );
 }
