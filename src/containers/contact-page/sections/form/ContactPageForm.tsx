@@ -47,13 +47,10 @@ export function ContactPageFormSection(props: Props) {
 
   const onSubmit = handleSubmit(async (data): Promise<void> => {
     try {
-      const formData = new FormData();
-      formData.append(`email`, `sebastien@flav.es`);
-      formData.append(`form-name`, `contact-gleamm`);
       const res = await fetch(`/contact`, {
         method: `POST`,
         headers: { 'Content-Type': `application/x-www-form-urlencoded` },
-        body: new URLSearchParams(formData).toString(),
+        body: new URLSearchParams(data).toString(),
       });
       if (!res.ok) {
         throw new Error();
@@ -121,16 +118,11 @@ export function ContactPageFormSection(props: Props) {
           <FormProvider {...methods}>
             <Form
               data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              name="contact-gleamm"
+              name="contact"
               onSubmit={onSubmit}
               method="post"
             >
-              <input
-                type="hidden"
-                value="contact-gleamm"
-                {...register(`form-name`)}
-              />
+              <input type="hidden" value="contact" {...register(`form-name`)} />
               <factory.div
                 display="flex"
                 flexDirection="column"
