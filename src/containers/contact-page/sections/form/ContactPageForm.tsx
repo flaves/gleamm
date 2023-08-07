@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { graphql } from 'gatsby';
-
 import { motion, useAnimation } from 'framer-motion';
 import { useToast } from '@chakra-ui/react';
 import { _ContactPageForm } from '../../entities/_ContactPage';
@@ -25,18 +24,13 @@ type Props = DefaultProps<ContactPageFormSectionData>;
 
 const MotionDiv = motion(factory.div);
 
-const encode = (data: any) => {
-  return Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join(`&`);
-};
-
 type FormValues = {
   firstname: string;
   lastname: string;
   email: string;
   phoneNumber: string;
   message: string;
+  'form-name': string;
 };
 
 export function ContactPageFormSection(props: Props) {
@@ -44,7 +38,7 @@ export function ContactPageFormSection(props: Props) {
   const methods = useForm<FormValues>();
   const controls = useAnimation();
   const toast = useToast();
-  const { handleSubmit, reset, clearErrors } = methods;
+  const { handleSubmit, reset, clearErrors, register } = methods;
 
   const contactSuccessMessageData: ContactSuccessMessageData = {
     heading: data.successHeading,
@@ -53,16 +47,14 @@ export function ContactPageFormSection(props: Props) {
 
   const onSubmit = handleSubmit(async (data): Promise<void> => {
     try {
-      await fetch(`/`, {
+      const res = await fetch(`/contact`, {
         method: `POST`,
-        headers: {
-          'Content-Type': `application/x-www-form-urlencoded`,
-        },
-        body: encode({
-          ...data,
-          'form-name': `contact-gleamm`,
-        }),
+        headers: { 'Content-Type': `application/x-www-form-urlencoded` },
+        body: new URLSearchParams(data).toString(),
       });
+      if (!res.ok) {
+        throw new Error();
+      }
       reset();
       clearErrors();
       await controls.start(`visible`);
@@ -129,8 +121,13 @@ export function ContactPageFormSection(props: Props) {
               data-netlify-honeypot="bot-field"
               name="contact-gleamm"
               onSubmit={onSubmit}
-              method="POST"
+              method="post"
             >
+              <input
+                type="hidden"
+                value="contact-gleamm"
+                {...register(`form-name`)}
+              />
               <factory.div
                 display="flex"
                 flexDirection="column"
