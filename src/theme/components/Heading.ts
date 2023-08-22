@@ -40,6 +40,10 @@ const variants: SystemStyleObject = {
     lineHeight: `normal`,
     fontWeight: 600,
   },
+  pricing: {
+    fontSize: `2.5rem`,
+    fontWeight: 500,
+  },
 };
 
 const defaultProps: SystemStyleObject = {

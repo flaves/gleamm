@@ -7,6 +7,8 @@ export type _HomePage = {
   hero: _HomePageHero;
   process: _HomePageProcess;
   gallery: _HomePageGallery;
+  team: _HomePageTeam;
+  pricing: _HomePagePricing;
   faq: _HomePageFaq;
   cta: _HomePageCta;
 };
@@ -46,6 +48,17 @@ export type _HomePageGallery = {
   }[];
 };
 
+export type _HomePageTeam = {
+  heading: ReactNode;
+  team: _TeamMember[];
+};
+
+export type _HomePagePricing = {
+  badge: ReactNode;
+  heading: ReactNode;
+  pricingPlans: _PricingPlan[];
+};
+
 export type _HomePageFaq = {
   heading: ReactNode;
   questions: _Question[];
@@ -69,4 +82,19 @@ export type _Banner = {
   heading: ReactNode;
   description: ReactNode;
   button: _Link;
+};
+
+export type _TeamMember = {
+  name: ReactNode;
+  job: ReactNode;
+  image: _Image;
+};
+
+export type _PricingPlan = {
+  plan: ReactNode;
+  description: ReactNode;
+  price: ReactNode;
+  button: _Link;
+  detailsHeading: ReactNode;
+  detailsText: ReactNode;
 };

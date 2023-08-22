@@ -5,6 +5,11 @@ const baseStyle: SystemStyleObject = {
 };
 
 const variants: SystemStyleObject = {
+  teamMember: {
+    fontSize: `1.25rem`,
+    lineHeight: `normal`,
+    fontWeight: 600,
+  },
   paragraph: {
     fontSize: [`0.875rem`, null, `1rem`],
     lineHeight: [`20px`, null, `24px`],

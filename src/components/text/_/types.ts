@@ -1,4 +1,5 @@
 export type TextVariants =
+  | `teamMember`
   | `paragraph`
   | `helperHero`
   | `navLink`

@@ -37,6 +37,8 @@ export const query = graphql`
         ...HomePageHeroSectionFragment
         ...HomePageProcessSectionFragment
         ...HomePageGallerySectionFragment
+        ...HomePageTeamSectionFragment
+        ...HomePagePricingSectionFragment
         ...HomePageFaqSectionFragment
         ...HomePageCtaSectionFragment
       }
