@@ -5,6 +5,7 @@ import {
   faPlus,
   faSparkles,
   faTooth,
+  faWallet,
 } from '@fortawesome/pro-regular-svg-icons';
 import { faCircleXmark, faShieldCheck } from '@fortawesome/pro-solid-svg-icons';
 import {
@@ -33,4 +34,5 @@ export const Icon: { [K in Icons]?: IconDefinition } = {
   sparkles: faSparkles,
   shield: faShieldCheck,
   xmark: faCircleXmark,
+  wallet: faWallet,
 };
