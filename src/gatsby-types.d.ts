@@ -2210,6 +2210,12 @@ type PrismicHomePageData = {
   /** A Rich Text field. */
   readonly left_text: PrismicRichTextField;
   /** A Rich Text field. */
+  readonly pricing_badge: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_heading: PrismicRichTextField;
+  /** A Group field. */
+  readonly pricing_plans: ReadonlyArray<PrismicHomePageDataPricingPlansItem>;
+  /** A Rich Text field. */
   readonly process_end_heading: PrismicRichTextField;
   /** A Rich Text field. */
   readonly process_heading: PrismicRichTextField;
@@ -2223,6 +2229,10 @@ type PrismicHomePageData = {
   readonly seo_description: Maybe<Scalars['String']>;
   /** A Key Text field. */
   readonly seo_title: Maybe<Scalars['String']>;
+  /** A Rich Text field. */
+  readonly team_heading: PrismicRichTextField;
+  /** A Group field. */
+  readonly team_members: ReadonlyArray<PrismicHomePageDataTeamMembersItem>;
 };
 
 type PrismicHomePageDataFieldSelector = {
@@ -2250,6 +2260,9 @@ type PrismicHomePageDataFieldSelector = {
   readonly hero_right_image: InputMaybe<PrismicImageFieldFieldSelector>;
   readonly images: InputMaybe<PrismicHomePageDataImagesItemFieldSelector>;
   readonly left_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_badge: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plans: InputMaybe<PrismicHomePageDataPricingPlansItemFieldSelector>;
   readonly process_end_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly process_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly process_steps: InputMaybe<PrismicHomePageDataProcessStepsItemFieldSelector>;
@@ -2257,6 +2270,8 @@ type PrismicHomePageDataFieldSelector = {
   readonly right_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
   readonly seo_description: InputMaybe<FieldSelectorEnum>;
   readonly seo_title: InputMaybe<FieldSelectorEnum>;
+  readonly team_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly team_members: InputMaybe<PrismicHomePageDataTeamMembersItemFieldSelector>;
 };
 
 type PrismicHomePageDataFilterInput = {
@@ -2284,6 +2299,9 @@ type PrismicHomePageDataFilterInput = {
   readonly hero_right_image: InputMaybe<PrismicImageFieldFilterInput>;
   readonly images: InputMaybe<PrismicHomePageDataImagesItemFilterListInput>;
   readonly left_text: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_badge: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plans: InputMaybe<PrismicHomePageDataPricingPlansItemFilterListInput>;
   readonly process_end_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly process_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly process_steps: InputMaybe<PrismicHomePageDataProcessStepsItemFilterListInput>;
@@ -2291,6 +2309,8 @@ type PrismicHomePageDataFilterInput = {
   readonly right_text: InputMaybe<PrismicRichTextFieldFilterInput>;
   readonly seo_description: InputMaybe<StringQueryOperatorInput>;
   readonly seo_title: InputMaybe<StringQueryOperatorInput>;
+  readonly team_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly team_members: InputMaybe<PrismicHomePageDataTeamMembersItemFilterListInput>;
 };
 
 /** An item for a Group field. */
@@ -2318,6 +2338,58 @@ type PrismicHomePageDataImagesItemFilterListInput = {
 type PrismicHomePageDataImagesItemSortInput = {
   readonly image_after: InputMaybe<PrismicImageFieldSortInput>;
   readonly image_before: InputMaybe<PrismicImageFieldSortInput>;
+};
+
+/** An item for a Group field. */
+type PrismicHomePageDataPricingPlansItem = {
+  /** A Rich Text field. */
+  readonly pricing_plan: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_plan_button_label: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_plan_button_path: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_plan_description: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_plan_details_heading: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_plan_details_text: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly pricing_plan_price: PrismicRichTextField;
+};
+
+type PrismicHomePageDataPricingPlansItemFieldSelector = {
+  readonly pricing_plan: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plan_button_label: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plan_button_path: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plan_description: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plan_details_heading: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plan_details_text: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly pricing_plan_price: InputMaybe<PrismicRichTextFieldFieldSelector>;
+};
+
+type PrismicHomePageDataPricingPlansItemFilterInput = {
+  readonly pricing_plan: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plan_button_label: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plan_button_path: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plan_description: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plan_details_heading: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plan_details_text: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly pricing_plan_price: InputMaybe<PrismicRichTextFieldFilterInput>;
+};
+
+type PrismicHomePageDataPricingPlansItemFilterListInput = {
+  readonly elemMatch: InputMaybe<PrismicHomePageDataPricingPlansItemFilterInput>;
+};
+
+type PrismicHomePageDataPricingPlansItemSortInput = {
+  readonly pricing_plan: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plan_button_label: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plan_button_path: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plan_description: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plan_details_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plan_details_text: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plan_price: InputMaybe<PrismicRichTextFieldSortInput>;
 };
 
 /** An item for a Group field. */
@@ -2409,6 +2481,9 @@ type PrismicHomePageDataSortInput = {
   readonly hero_right_image: InputMaybe<PrismicImageFieldSortInput>;
   readonly images: InputMaybe<PrismicHomePageDataImagesItemSortInput>;
   readonly left_text: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_badge: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly pricing_plans: InputMaybe<PrismicHomePageDataPricingPlansItemSortInput>;
   readonly process_end_heading: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly process_heading: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly process_steps: InputMaybe<PrismicHomePageDataProcessStepsItemSortInput>;
@@ -2416,6 +2491,40 @@ type PrismicHomePageDataSortInput = {
   readonly right_text: InputMaybe<PrismicRichTextFieldSortInput>;
   readonly seo_description: InputMaybe<SortOrderEnum>;
   readonly seo_title: InputMaybe<SortOrderEnum>;
+  readonly team_heading: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly team_members: InputMaybe<PrismicHomePageDataTeamMembersItemSortInput>;
+};
+
+/** An item for a Group field. */
+type PrismicHomePageDataTeamMembersItem = {
+  /** An Image field. */
+  readonly team_member_image: Maybe<PrismicImageField>;
+  /** A Rich Text field. */
+  readonly team_member_job: PrismicRichTextField;
+  /** A Rich Text field. */
+  readonly team_member_name: PrismicRichTextField;
+};
+
+type PrismicHomePageDataTeamMembersItemFieldSelector = {
+  readonly team_member_image: InputMaybe<PrismicImageFieldFieldSelector>;
+  readonly team_member_job: InputMaybe<PrismicRichTextFieldFieldSelector>;
+  readonly team_member_name: InputMaybe<PrismicRichTextFieldFieldSelector>;
+};
+
+type PrismicHomePageDataTeamMembersItemFilterInput = {
+  readonly team_member_image: InputMaybe<PrismicImageFieldFilterInput>;
+  readonly team_member_job: InputMaybe<PrismicRichTextFieldFilterInput>;
+  readonly team_member_name: InputMaybe<PrismicRichTextFieldFilterInput>;
+};
+
+type PrismicHomePageDataTeamMembersItemFilterListInput = {
+  readonly elemMatch: InputMaybe<PrismicHomePageDataTeamMembersItemFilterInput>;
+};
+
+type PrismicHomePageDataTeamMembersItemSortInput = {
+  readonly team_member_image: InputMaybe<PrismicImageFieldSortInput>;
+  readonly team_member_job: InputMaybe<PrismicRichTextFieldSortInput>;
+  readonly team_member_name: InputMaybe<PrismicRichTextFieldSortInput>;
 };
 
 type PrismicHomePageEdge = {
@@ -4950,7 +5059,11 @@ type HomePageGallerySectionFragmentFragment = { readonly left_text: { readonly t
 
 type HomePageHeroSectionFragmentFragment = { readonly hero_button_label: string | null, readonly hero_button_path: string | null, readonly hero_review_number: number | null, readonly hero_result_badge: { readonly text: string | null }, readonly hero_heading: { readonly richText: any }, readonly hero_description: { readonly richText: any }, readonly hero_left_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null, readonly hero_right_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null, readonly hero_review_badge: { readonly text: string | null }, readonly hero_review_heading: { readonly text: string | null }, readonly hero_review_description: { readonly text: string | null }, readonly hero_review_author: { readonly text: string | null } };
 
+type HomePagePricingSectionFragmentFragment = { readonly pricing_badge: { readonly text: string | null }, readonly pricing_heading: { readonly richText: any }, readonly pricing_plans: ReadonlyArray<{ readonly pricing_plan: { readonly text: string | null }, readonly pricing_plan_description: { readonly text: string | null }, readonly pricing_plan_price: { readonly text: string | null }, readonly pricing_plan_button_label: { readonly text: string | null }, readonly pricing_plan_button_path: { readonly text: string | null }, readonly pricing_plan_details_heading: { readonly text: string | null }, readonly pricing_plan_details_text: { readonly richText: any } }> };
+
 type HomePageProcessSectionFragmentFragment = { readonly process_heading: { readonly richText: any }, readonly process_steps: ReadonlyArray<{ readonly process_step_number: string | null, readonly process_step_heading: { readonly text: string | null }, readonly process_step_description: { readonly text: string | null } }>, readonly process_end_heading: { readonly text: string | null } };
+
+type HomePageTeamSectionFragmentFragment = { readonly team_heading: { readonly richText: any }, readonly team_members: ReadonlyArray<{ readonly team_member_name: { readonly text: string | null }, readonly team_member_job: { readonly text: string | null }, readonly team_member_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null }> };
 
 type LayoutQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

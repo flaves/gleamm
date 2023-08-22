@@ -5,4 +5,5 @@ export type HeadingVariants =
   | `step`
   | `faq`
   | `panel`
-  | `footer`;
+  | `footer`
+  | `pricing`;

@@ -983,6 +983,12 @@ type PrismicHomePageData {
     "A Rich Text field."
     left_text: PrismicRichTextField!
     "A Rich Text field."
+    pricing_badge: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_heading: PrismicRichTextField!
+    "A Group field."
+    pricing_plans: [PrismicHomePageDataPricingPlansItem!]!
+    "A Rich Text field."
     process_end_heading: PrismicRichTextField!
     "A Rich Text field."
     process_heading: PrismicRichTextField!
@@ -996,6 +1002,10 @@ type PrismicHomePageData {
     seo_description: String
     "A Key Text field."
     seo_title: String
+    "A Rich Text field."
+    team_heading: PrismicRichTextField!
+    "A Group field."
+    team_members: [PrismicHomePageDataTeamMembersItem!]!
 }
 
 "An item for a Group field."
@@ -1004,6 +1014,24 @@ type PrismicHomePageDataImagesItem {
     image_after: PrismicImageField
     "An Image field."
     image_before: PrismicImageField
+}
+
+"An item for a Group field."
+type PrismicHomePageDataPricingPlansItem {
+    "A Rich Text field."
+    pricing_plan: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_plan_button_label: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_plan_button_path: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_plan_description: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_plan_details_heading: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_plan_details_text: PrismicRichTextField!
+    "A Rich Text field."
+    pricing_plan_price: PrismicRichTextField!
 }
 
 "An item for a Group field."
@@ -1024,6 +1052,16 @@ type PrismicHomePageDataQuestionsItem {
     question_icon: String
     "A Rich Text field."
     question_text: PrismicRichTextField!
+}
+
+"An item for a Group field."
+type PrismicHomePageDataTeamMembersItem {
+    "An Image field."
+    team_member_image: PrismicImageField
+    "A Rich Text field."
+    team_member_job: PrismicRichTextField!
+    "A Rich Text field."
+    team_member_name: PrismicRichTextField!
 }
 
 type PrismicHomePageEdge {
@@ -2665,6 +2703,9 @@ input PrismicHomePageDataFieldSelector {
     hero_right_image: PrismicImageFieldFieldSelector
     images: PrismicHomePageDataImagesItemFieldSelector
     left_text: PrismicRichTextFieldFieldSelector
+    pricing_badge: PrismicRichTextFieldFieldSelector
+    pricing_heading: PrismicRichTextFieldFieldSelector
+    pricing_plans: PrismicHomePageDataPricingPlansItemFieldSelector
     process_end_heading: PrismicRichTextFieldFieldSelector
     process_heading: PrismicRichTextFieldFieldSelector
     process_steps: PrismicHomePageDataProcessStepsItemFieldSelector
@@ -2672,6 +2713,8 @@ input PrismicHomePageDataFieldSelector {
     right_text: PrismicRichTextFieldFieldSelector
     seo_description: FieldSelectorEnum
     seo_title: FieldSelectorEnum
+    team_heading: PrismicRichTextFieldFieldSelector
+    team_members: PrismicHomePageDataTeamMembersItemFieldSelector
 }
 
 input PrismicHomePageDataFilterInput {
@@ -2699,6 +2742,9 @@ input PrismicHomePageDataFilterInput {
     hero_right_image: PrismicImageFieldFilterInput
     images: PrismicHomePageDataImagesItemFilterListInput
     left_text: PrismicRichTextFieldFilterInput
+    pricing_badge: PrismicRichTextFieldFilterInput
+    pricing_heading: PrismicRichTextFieldFilterInput
+    pricing_plans: PrismicHomePageDataPricingPlansItemFilterListInput
     process_end_heading: PrismicRichTextFieldFilterInput
     process_heading: PrismicRichTextFieldFilterInput
     process_steps: PrismicHomePageDataProcessStepsItemFilterListInput
@@ -2706,6 +2752,8 @@ input PrismicHomePageDataFilterInput {
     right_text: PrismicRichTextFieldFilterInput
     seo_description: StringQueryOperatorInput
     seo_title: StringQueryOperatorInput
+    team_heading: PrismicRichTextFieldFilterInput
+    team_members: PrismicHomePageDataTeamMembersItemFilterListInput
 }
 
 input PrismicHomePageDataImagesItemFieldSelector {
@@ -2725,6 +2773,40 @@ input PrismicHomePageDataImagesItemFilterListInput {
 input PrismicHomePageDataImagesItemSortInput {
     image_after: PrismicImageFieldSortInput
     image_before: PrismicImageFieldSortInput
+}
+
+input PrismicHomePageDataPricingPlansItemFieldSelector {
+    pricing_plan: PrismicRichTextFieldFieldSelector
+    pricing_plan_button_label: PrismicRichTextFieldFieldSelector
+    pricing_plan_button_path: PrismicRichTextFieldFieldSelector
+    pricing_plan_description: PrismicRichTextFieldFieldSelector
+    pricing_plan_details_heading: PrismicRichTextFieldFieldSelector
+    pricing_plan_details_text: PrismicRichTextFieldFieldSelector
+    pricing_plan_price: PrismicRichTextFieldFieldSelector
+}
+
+input PrismicHomePageDataPricingPlansItemFilterInput {
+    pricing_plan: PrismicRichTextFieldFilterInput
+    pricing_plan_button_label: PrismicRichTextFieldFilterInput
+    pricing_plan_button_path: PrismicRichTextFieldFilterInput
+    pricing_plan_description: PrismicRichTextFieldFilterInput
+    pricing_plan_details_heading: PrismicRichTextFieldFilterInput
+    pricing_plan_details_text: PrismicRichTextFieldFilterInput
+    pricing_plan_price: PrismicRichTextFieldFilterInput
+}
+
+input PrismicHomePageDataPricingPlansItemFilterListInput {
+    elemMatch: PrismicHomePageDataPricingPlansItemFilterInput
+}
+
+input PrismicHomePageDataPricingPlansItemSortInput {
+    pricing_plan: PrismicRichTextFieldSortInput
+    pricing_plan_button_label: PrismicRichTextFieldSortInput
+    pricing_plan_button_path: PrismicRichTextFieldSortInput
+    pricing_plan_description: PrismicRichTextFieldSortInput
+    pricing_plan_details_heading: PrismicRichTextFieldSortInput
+    pricing_plan_details_text: PrismicRichTextFieldSortInput
+    pricing_plan_price: PrismicRichTextFieldSortInput
 }
 
 input PrismicHomePageDataProcessStepsItemFieldSelector {
@@ -2796,6 +2878,9 @@ input PrismicHomePageDataSortInput {
     hero_right_image: PrismicImageFieldSortInput
     images: PrismicHomePageDataImagesItemSortInput
     left_text: PrismicRichTextFieldSortInput
+    pricing_badge: PrismicRichTextFieldSortInput
+    pricing_heading: PrismicRichTextFieldSortInput
+    pricing_plans: PrismicHomePageDataPricingPlansItemSortInput
     process_end_heading: PrismicRichTextFieldSortInput
     process_heading: PrismicRichTextFieldSortInput
     process_steps: PrismicHomePageDataProcessStepsItemSortInput
@@ -2803,6 +2888,30 @@ input PrismicHomePageDataSortInput {
     right_text: PrismicRichTextFieldSortInput
     seo_description: SortOrderEnum
     seo_title: SortOrderEnum
+    team_heading: PrismicRichTextFieldSortInput
+    team_members: PrismicHomePageDataTeamMembersItemSortInput
+}
+
+input PrismicHomePageDataTeamMembersItemFieldSelector {
+    team_member_image: PrismicImageFieldFieldSelector
+    team_member_job: PrismicRichTextFieldFieldSelector
+    team_member_name: PrismicRichTextFieldFieldSelector
+}
+
+input PrismicHomePageDataTeamMembersItemFilterInput {
+    team_member_image: PrismicImageFieldFilterInput
+    team_member_job: PrismicRichTextFieldFilterInput
+    team_member_name: PrismicRichTextFieldFilterInput
+}
+
+input PrismicHomePageDataTeamMembersItemFilterListInput {
+    elemMatch: PrismicHomePageDataTeamMembersItemFilterInput
+}
+
+input PrismicHomePageDataTeamMembersItemSortInput {
+    team_member_image: PrismicImageFieldSortInput
+    team_member_job: PrismicRichTextFieldSortInput
+    team_member_name: PrismicRichTextFieldSortInput
 }
 
 input PrismicHomePageFieldSelector {

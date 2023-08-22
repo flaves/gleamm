@@ -32,6 +32,28 @@ export const mapHomePageQueryToHomePageProps = (
         question?.question_icon === null,
     );
 
+  const isTeamMemberEmpty =
+    homePage?.data?.team_members?.length === 0 ||
+    homePage?.data?.team_members?.some(
+      (member) =>
+        member?.team_member_job?.text === null ||
+        member?.team_member_name?.text === null ||
+        member?.team_member_image?.gatsbyImageData === null,
+    );
+
+  const isPricingPlanEmpty =
+    homePage?.data?.pricing_plans?.length === 0 ||
+    homePage?.data?.pricing_plans?.some(
+      (plan) =>
+        plan?.pricing_plan?.text === null ||
+        plan?.pricing_plan_description?.text === null ||
+        plan?.pricing_plan_price?.text === null ||
+        plan?.pricing_plan_button_label?.text === null ||
+        plan?.pricing_plan_button_path?.text === null ||
+        plan?.pricing_plan_details_heading?.text === null ||
+        plan?.pricing_plan_details_text?.richText?.length === 0,
+    );
+
   if (
     !homePage?.data?.hero_result_badge?.text ||
     homePage?.data?.hero_heading?.richText.length === 0 ||
@@ -52,6 +74,11 @@ export const mapHomePageQueryToHomePageProps = (
     !homePage?.data?.right_text?.text ||
     homePage?.data?.images?.length === 0 ||
     isGalleryEmpty ||
+    homePage?.data?.team_heading?.richText?.length === 0 ||
+    isTeamMemberEmpty ||
+    !homePage?.data?.pricing_badge?.text ||
+    homePage?.data?.pricing_heading?.richText?.length === 0 ||
+    isPricingPlanEmpty ||
     !homePage?.data?.faq_heading?.text ||
     isQuestionsEmpty ||
     !homePage?.data?.faq_banner_heading?.text ||
@@ -102,6 +129,32 @@ export const mapHomePageQueryToHomePageProps = (
       images: homePage?.data?.images?.map((image) => ({
         imageBefore: toImage(image.image_before?.gatsbyImageData),
         imageAfter: toImage(image.image_after?.gatsbyImageData),
+      })),
+    },
+    team: {
+      heading: toReactNode(homePage?.data?.team_heading?.richText, true),
+      team: homePage?.data?.team_members?.map((member) => ({
+        image: toImage(member?.team_member_image?.gatsbyImageData),
+        name: member?.team_member_name?.text,
+        job: member?.team_member_job?.text,
+      })),
+    },
+    pricing: {
+      badge: homePage?.data?.pricing_badge?.text,
+      heading: toReactNode(homePage?.data?.pricing_heading?.richText, true),
+      pricingPlans: homePage?.data?.pricing_plans?.map((plan) => ({
+        plan: plan?.pricing_plan?.text,
+        description: plan?.pricing_plan_description?.text,
+        price: plan?.pricing_plan_price?.text,
+        button: {
+          label: plan?.pricing_plan_button_label?.text,
+          path: plan?.pricing_plan_button_path?.text,
+        },
+        detailsHeading: plan?.pricing_plan_details_heading?.text,
+        detailsText: toReactNode(
+          plan?.pricing_plan_details_text?.richText,
+          true,
+        ),
       })),
     },
     faq: {
