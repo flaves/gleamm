@@ -5,7 +5,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "pnpm run code:check && gatsby build",
+    "build": "yarn run code:check && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "code:check": "tsc --noEmit --skipLibCheck"
