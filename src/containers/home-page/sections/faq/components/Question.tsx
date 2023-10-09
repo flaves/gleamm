@@ -34,7 +34,14 @@ export function Question(props: Props) {
       </factory.div>
       <factory.div>
         <factory.div mb={3} textAlign={[`center`, `left`]}>
-          <Heading variant="faq">{heading}</Heading>
+          <Heading
+            variant="faq"
+            additionalStyle={{
+              lineHeight: `28px`,
+            }}
+          >
+            {heading}
+          </Heading>
         </factory.div>
         <factory.div textAlign={[`center`, `left`]}>
           <Text>{description}</Text>

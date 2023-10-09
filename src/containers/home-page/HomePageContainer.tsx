@@ -10,10 +10,7 @@ import {
   HomePageProcessSection,
   HomePageProcessSectionData,
 } from './sections/process/HomePageProcessSection';
-import {
-  HomePageGallerySection,
-  HomePageGallerySectionData,
-} from './sections/gallery/HomePageGallery';
+// import { HomePageGallerySectionData } from './sections/gallery/HomePageGallery';
 import {
   HomePageFaqSection,
   HomePageFaqSectionData,
@@ -22,10 +19,7 @@ import {
   HomePageCtaSection,
   HomePageCtaSectionData,
 } from './sections/cta/HomePageCta';
-import {
-  HomePageTeamSection,
-  HomePageTeamSectionData,
-} from './sections/team/HomePageTeamSection';
+// import { HomePageTeamSectionData } from './sections/team/HomePageTeamSection';
 import {
   HomePagePricingSection,
   HomePagePricingSectionData,
@@ -61,16 +55,16 @@ export function HomePageContainer(props: Props) {
     headingEnd: homePageData.process.headingEnd,
   };
 
-  const homePageGallerySectionData: HomePageGallerySectionData = {
-    leftText: homePageData.gallery.leftText,
-    rightText: homePageData.gallery.rightText,
-    images: homePageData.gallery.images,
-  };
+  // const homePageGallerySectionData: HomePageGallerySectionData = {
+  //   leftText: homePageData.gallery.leftText,
+  //   rightText: homePageData.gallery.rightText,
+  //   images: homePageData.gallery.images,
+  // };
 
-  const homePageTeamSectionData: HomePageTeamSectionData = {
-    heading: homePageData.team.heading,
-    team: homePageData.team.team,
-  };
+  // const homePageTeamSectionData: HomePageTeamSectionData = {
+  //   heading: homePageData.team.heading,
+  //   team: homePageData.team.team,
+  // };
 
   const homePagePricingSectionData: HomePagePricingSectionData = {
     badge: homePageData.pricing.badge,
@@ -94,8 +88,8 @@ export function HomePageContainer(props: Props) {
     <factory.section pt={20}>
       <HomePageHeroSection data={homePageHeroSectionData} />
       <HomePageProcessSection data={homePageProcessSectionData} />
-      <HomePageGallerySection data={homePageGallerySectionData} />
-      <HomePageTeamSection data={homePageTeamSectionData} />
+      {/*<HomePageGallerySection data={homePageGallerySectionData} />*/}
+      {/*<HomePageTeamSection data={homePageTeamSectionData} />*/}
       <HomePagePricingSection data={homePagePricingSectionData} />
       <HomePageFaqSection data={homePageFaqSectionData} />
       <HomePageCtaSection data={homePageCtaSectionData} />
