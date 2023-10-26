@@ -13,6 +13,7 @@ import { FieldFirstname } from '../../../../components/form/fields/FieldFirstnam
 import { FieldLastname } from '../../../../components/form/fields/FieldLastname';
 import { FieldEmail } from '../../../../components/form/fields/FieldEmail';
 import { FieldTextarea } from '../../../../components/form/fields/FieldTextarea';
+import { useTranslation } from '../../../../hooks/use-translations';
 import {
   ContactSuccessMessage,
   ContactSuccessMessageData,
@@ -30,6 +31,7 @@ type FormValues = {
   email: string;
   phoneNumber: string;
   message: string;
+  // eslint-disable-next-line
   'form-name': string;
 };
 
@@ -38,6 +40,9 @@ export function ContactPageFormSection(props: Props) {
   const methods = useForm<FormValues>();
   const controls = useAnimation();
   const toast = useToast();
+  const { t } = useTranslation();
+
+  console.log(t(`placeholders.name`), `PLACEHOLDERS`);
   const { handleSubmit, reset, clearErrors, register } = methods;
 
   const contactSuccessMessageData: ContactSuccessMessageData = {
@@ -108,6 +113,7 @@ export function ContactPageFormSection(props: Props) {
   return (
     <factory.div width={[`100%`, null, null, `66%`]} mb={[10, null, null, 0]}>
       <factory.div mb={10}>{data.heading}</factory.div>
+      {t(`placeholders.name`)}
       <factory.div position="relative">
         <MotionDiv
           initial="hidden"

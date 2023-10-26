@@ -5,6 +5,7 @@ import { Icons } from '../../../config/icons';
 
 export const mapHomePageQueryToHomePageProps = (
   homePage: Queries.PrismicHomePage,
+  lang?: string,
 ): _HomePage => {
   const isStepProcessEmtpy =
     homePage?.data?.process_steps.length === 0 ||
@@ -104,7 +105,7 @@ export const mapHomePageQueryToHomePageProps = (
       ),
       button: {
         label: homePage?.data?.hero_button_label,
-        path: homePage?.data?.hero_button_path,
+        path: `/${lang}/${homePage?.data?.hero_button_path}`,
       },
       leftImage: toImage(homePage?.data?.hero_left_image?.gatsbyImageData),
       rightImage: toImage(homePage?.data?.hero_right_image?.gatsbyImageData),
@@ -148,7 +149,7 @@ export const mapHomePageQueryToHomePageProps = (
         price: plan?.pricing_plan_price?.text,
         button: {
           label: plan?.pricing_plan_button_label?.text,
-          path: plan?.pricing_plan_button_path?.text,
+          path: `/${lang}/${plan?.pricing_plan_button_path?.text}`,
         },
         detailsHeading: plan?.pricing_plan_details_heading?.text,
         detailsText: toReactNode(
@@ -170,7 +171,7 @@ export const mapHomePageQueryToHomePageProps = (
         description: homePage?.data?.faq_banner_description?.text,
         button: {
           label: homePage?.data?.faq_banner_button_label,
-          path: homePage?.data?.faq_banner_button_path,
+          path: `/${lang}/${homePage?.data?.faq_banner_button_path}`,
         },
       },
     },
@@ -179,7 +180,7 @@ export const mapHomePageQueryToHomePageProps = (
       heading: toReactNode(homePage?.data?.cta_heading?.richText, true),
       button: {
         label: homePage?.data?.cta_button_label,
-        path: homePage?.data?.cta_button_path,
+        path: `/${lang}/${homePage?.data?.cta_button_path}`,
       },
     },
   };

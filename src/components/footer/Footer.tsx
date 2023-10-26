@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import { factory } from '../../theme/factory';
 import { DefaultProps } from '../../types/DefaultProps';
 import { Text } from '../text/Text';
@@ -100,3 +101,34 @@ export function Footer(props: Props) {
     </factory.div>
   );
 }
+
+export const footerFragment = graphql`
+  fragment FooterFragment on PrismicFooter {
+    data {
+      contact_address {
+        richText
+      }
+      contact_email {
+        text
+      }
+      anchors_heading {
+        text
+      }
+      anchors {
+        label
+        path
+      }
+      legal_heading {
+        text
+      }
+      legal_links {
+        label
+        path
+      }
+      socials {
+        social
+        path
+      }
+    }
+  }
+`;
