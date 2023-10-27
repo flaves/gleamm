@@ -3,6 +3,7 @@ import cookies from 'js-cookie';
 import { Navigation } from '../navigation/Navigation';
 import { factory } from '../../theme/factory';
 import { Footer } from '../footer/Footer';
+import { useTranslation } from '../../hooks/use-translations';
 
 type LayoutFragment = {
   navigation: Queries.PrismicNavigation;
@@ -17,9 +18,13 @@ export type Props = {
 
 export function Layout(props: Props) {
   const { children, lang, layout } = props;
-
+  const { lang: language, changeLanguage } = useTranslation();
+  console.log(language, `LANGUAGE`);
   useEffect(() => {
     cookies.set(`favorite_language`, lang);
+    (async function () {
+      await changeLanguage(lang);
+    })();
   }, [lang]);
 
   return (

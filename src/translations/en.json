@@ -1,0 +1,16 @@
+{
+  "placeholders": {
+    "firstname": "Your first name",
+    "lastname": "Your name",
+    "phone": "Your phone number",
+    "email": "Email",
+    "message": "Your message",
+    "button": "Send"
+  },
+  "errors": {
+    "contact_error": {
+      "title": "Error",
+      "description": "An error occurred while sending the form"
+    }
+  }
+}

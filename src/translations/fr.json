@@ -1,5 +1,16 @@
 {
   "placeholders": {
-    "name": "Nom"
+    "firstname": "Votre prénom",
+    "lastname": "Votre nom",
+    "phone": "Numéro de téléphone",
+    "email": "Email",
+    "message": "Votre message",
+    "button": "Envoyer"
+  },
+  "errors": {
+    "contact_error": {
+      "title": "Erreur",
+      "description": "Une erreur est survenue pendant l'envoi du formulaire"
+    }
   }
 }

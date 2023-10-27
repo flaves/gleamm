@@ -42,7 +42,6 @@ export function ContactPageFormSection(props: Props) {
   const toast = useToast();
   const { t } = useTranslation();
 
-  console.log(t(`placeholders.name`), `PLACEHOLDERS`);
   const { handleSubmit, reset, clearErrors, register } = methods;
 
   const contactSuccessMessageData: ContactSuccessMessageData = {
@@ -68,8 +67,8 @@ export function ContactPageFormSection(props: Props) {
       }, 8000);
     } catch (e) {
       toast({
-        title: `Erreur`,
-        description: `Une erreur est survenue pendant l'envoi du formulaire`,
+        title: t(`errors.contact_error.title`),
+        description: t(`errors.contact_error.description`),
         status: `error`,
         position: `top-right`,
         duration: 8000,
@@ -113,7 +112,6 @@ export function ContactPageFormSection(props: Props) {
   return (
     <factory.div width={[`100%`, null, null, `66%`]} mb={[10, null, null, 0]}>
       <factory.div mb={10}>{data.heading}</factory.div>
-      {t(`placeholders.name`)}
       <factory.div position="relative">
         <MotionDiv
           initial="hidden"
@@ -160,7 +158,7 @@ export function ContactPageFormSection(props: Props) {
               </factory.div>
               <factory.div textAlign={[`center`, null, null, `left`]}>
                 <Button type="submit" icon="paper-plane">
-                  Envoyer
+                  {t(`placeholders.button`)}
                 </Button>
               </factory.div>
             </Form>
