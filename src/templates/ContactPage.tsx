@@ -9,6 +9,8 @@ import { splitLanguage } from '../utils/split-language';
 
 type ContactData = {
   contactPage: Queries.PrismicContactPage;
+  navigation: Queries.PrismicNavigation;
+  footer: Queries.PrismicFooter;
 };
 
 type Props = PageProps<ContactData> & PageContext & {};
@@ -47,6 +49,11 @@ export const query = graphql`
       ...FooterFragment
     }
     contactPage: prismicContactPage(id: { eq: $id }) {
+      lang
+      type
+      alternate_languages {
+        ...AlternateLanguageFragment
+      }
       data {
         seo_title
         seo_description

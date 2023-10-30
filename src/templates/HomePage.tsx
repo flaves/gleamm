@@ -9,6 +9,8 @@ import { splitLanguage } from '../utils/split-language';
 
 type HomeData = {
   homePage: Queries.PrismicHomePage;
+  navigation: Queries.PrismicNavigation;
+  footer: Queries.PrismicFooter;
 };
 
 type Props = PageProps<HomeData> & PageContext & {};
@@ -47,6 +49,11 @@ export const query = graphql`
       ...FooterFragment
     }
     homePage: prismicHomePage(id: { eq: $id }) {
+      lang
+      type
+      alternate_languages {
+        ...AlternateLanguageFragment
+      }
       data {
         seo_title
         seo_description

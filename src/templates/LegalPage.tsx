@@ -10,6 +10,8 @@ import { splitLanguage } from '../utils/split-language';
 
 type LegalData = {
   legalPage: Queries.PrismicLegalPage;
+  navigation: Queries.PrismicNavigation;
+  footer: Queries.PrismicFooter;
 };
 
 type Props = PageProps<LegalData> & PageContext & {};
@@ -48,6 +50,11 @@ export const query = graphql`
       ...FooterFragment
     }
     legalPage: prismicLegalPage(id: { eq: $id }) {
+      lang
+      type
+      alternate_languages {
+        ...AlternateLanguageFragment
+      }
       data {
         seo_title
         seo_description

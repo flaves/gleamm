@@ -5,7 +5,34 @@ function splitLanguage(lang) {
 }
 
 exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/fr`,
+    force: true,
+    isPermanent: true,
+  });
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/fr`,
+    force: true,
+    isPermanent: true,
+    conditions: {
+      country: `BE`,
+    },
+  });
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/fr`,
+    force: true,
+    isPermanent: true,
+    conditions: {
+      country: `FR`,
+    },
+  });
 
   await graphql(`
     {
