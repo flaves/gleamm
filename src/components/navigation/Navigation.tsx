@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useBreakpointValue } from '@chakra-ui/react';
+import { graphql } from 'gatsby';
 import { factory } from '../../theme/factory';
 import { Link } from '../link/Link';
 import { Text } from '../text/Text';
@@ -9,8 +10,8 @@ import { DefaultProps } from '../../types/DefaultProps';
 import { Container } from '../container/Container';
 import { MobileNavigation } from '../mobile-navigation/MobileNavigation';
 import { Hamburger } from '../hamburger/Hamburger';
-import { mapNavigationQueryToNavigationProps } from './mapper/mapNavigationQueryToNavigationProps';
 import { link } from '../../config/link';
+import { mapNavigationQueryToNavigationProps } from './mapper/mapNavigationQueryToNavigationProps';
 
 type NavigationData = Queries.PrismicNavigation;
 
@@ -108,3 +109,16 @@ export function Navigation(props: Props) {
     </>
   );
 }
+
+export const navigationFragment = graphql`
+  fragment NavigationFragment on PrismicNavigation {
+    data {
+      anchors {
+        label
+        path
+      }
+      button_label
+      button_path
+    }
+  }
+`;

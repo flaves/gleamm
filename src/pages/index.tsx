@@ -1,47 +1,20 @@
-import React from 'react';
-import { graphql, PageProps } from 'gatsby';
-import { useSeo } from '../hooks/use-seo';
+import React, { JSX } from 'react';
 import { Seo } from '../components/seo/Seo';
-import { Layout } from '../components/layout/Layout';
-import { HomePageContainer } from '../containers/home-page/HomePageContainer';
 
-type HomeData = {
-  homePage: Queries.PrismicHomePage;
-};
-
-type Props = PageProps<HomeData> & {};
-
-const IndexPage = (props: Props) => {
-  const { data } = props;
-
-  return (
-    <Layout>
-      <HomePageContainer data={data} />
-    </Layout>
-  );
-};
+function IndexPage(): JSX.Element {
+  return <></>;
+}
 
 export default IndexPage;
 
-export const Head = (props: Props) => {
-  const seo = useSeo(props.data.homePage);
-  return <Seo {...seo} />;
-};
-
-export const query = graphql`
-  query {
-    homePage: prismicHomePage {
-      data {
-        seo_title
-        seo_description
-        ...HomePageHeroSectionFragment
-        ...HomePageProcessSectionFragment
-        ...HomePageGallerySectionFragment
-        ...HomePageTeamSectionFragment
-        ...HomePagePricingSectionFragment
-        ...HomePageFaqSectionFragment
-        ...HomePageCtaSectionFragment
-      }
-    }
-  }
-`;
+export function Head() {
+  const currentHref = typeof window !== `undefined` ? location.href : undefined;
+  return (
+    <Seo
+      currentPage={{ lang: ``, path: `/` }}
+      pageVariants={[{ lang: ``, path: `/` }]}
+    >
+      <link rel="alternate" href={currentHref} hrefLang="x-default" />
+    </Seo>
+  );
+}

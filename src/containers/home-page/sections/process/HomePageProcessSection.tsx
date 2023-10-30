@@ -16,7 +16,7 @@ export function HomePageProcessSection(props: Props) {
   const { data } = props;
 
   return (
-    <factory.div id="processus" pt={[20, 40]} mb={[20, null, null, 0]}>
+    <factory.div id="process" pt={[20, 40]} mb={[20, null, null, 0]}>
       <Container>
         <factory.div textAlign="center" mb={10}>
           <Heading variant="section">{data.heading}</Heading>

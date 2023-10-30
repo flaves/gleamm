@@ -29,11 +29,13 @@ type HomePageContainerData = {
   homePage: Queries.PrismicHomePage;
 };
 
-type Props = DefaultProps<HomePageContainerData>;
+type Props = DefaultProps<HomePageContainerData> & {
+  lang: string;
+};
 
 export function HomePageContainer(props: Props) {
-  const { data } = props;
-  const homePageData = mapHomePageQueryToHomePageProps(data.homePage);
+  const { data, lang } = props;
+  const homePageData = mapHomePageQueryToHomePageProps(data.homePage, lang);
 
   const homePageHeroSectionData: HomePageHeroSectionData = {
     badge: homePageData.hero.badge,

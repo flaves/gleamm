@@ -1,0 +1,16 @@
+{
+  "placeholders": {
+    "firstname": "Uw voornaam",
+    "lastname": "Uw naam",
+    "phone": "Telefoonnummer",
+    "email": "E-mail",
+    "message": "Uw bericht",
+    "button": "Stuur"
+  },
+  "errors": {
+    "contact_error": {
+      "title": "Fout",
+      "description": "Er is een fout opgetreden tijdens het verzenden van het formulier"
+    }
+  }
+}
