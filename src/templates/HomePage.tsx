@@ -5,6 +5,7 @@ import { Seo } from '../components/seo/Seo';
 import { Layout } from '../components/layout/Layout';
 import { HomePageContainer } from '../containers/home-page/HomePageContainer';
 import { PageContext } from '../types/PageContext';
+import { splitLanguage } from '../utils/split-language';
 
 type HomeData = {
   homePage: Queries.PrismicHomePage;
@@ -16,14 +17,16 @@ const HomePage = (props: Props) => {
   const { data, pageContext } = props;
   const { lang } = pageContext;
 
+  const language = splitLanguage(lang);
+
   const layout = {
     navigation: data.navigation,
     footer: data.footer,
   };
 
   return (
-    <Layout lang={lang} layout={layout}>
-      <HomePageContainer data={data} lang={lang} />
+    <Layout lang={language} layout={layout}>
+      <HomePageContainer data={data} lang={language} />
     </Layout>
   );
 };

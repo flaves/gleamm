@@ -5,6 +5,7 @@ import { Seo } from '../components/seo/Seo';
 import { Layout } from '../components/layout/Layout';
 import { ContactPageContainer } from '../containers/contact-page/ContactPageContainer';
 import { PageContext } from '../types/PageContext';
+import { splitLanguage } from '../utils/split-language';
 
 type ContactData = {
   contactPage: Queries.PrismicContactPage;
@@ -16,13 +17,15 @@ const ContactPage = (props: Props) => {
   const { data, pageContext } = props;
   const { lang } = pageContext;
 
+  const language = splitLanguage(lang);
+
   const layout = {
     navigation: data.navigation,
     footer: data.footer,
   };
 
   return (
-    <Layout lang={lang} layout={layout}>
+    <Layout lang={language} layout={layout}>
       <ContactPageContainer data={data} />
     </Layout>
   );

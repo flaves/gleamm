@@ -19,13 +19,13 @@ export type Props = {
 export function Layout(props: Props) {
   const { children, lang, layout } = props;
   const { lang: language, changeLanguage } = useTranslation();
-  console.log(language, `LANGUAGE`);
+
   useEffect(() => {
-    cookies.set(`favorite_language`, lang);
+    cookies.set(`favorite_language`, language);
     (async function () {
       await changeLanguage(lang);
     })();
-  }, [lang]);
+  }, [language]);
 
   return (
     <factory.section id="top">

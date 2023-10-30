@@ -6,6 +6,7 @@ import { Seo } from '../components/seo/Seo';
 import { Layout } from '../components/layout/Layout';
 import { LegalPageContainer } from '../containers/legal-page/LegalPageContainer';
 import { PageContext } from '../types/PageContext';
+import { splitLanguage } from '../utils/split-language';
 
 type LegalData = {
   legalPage: Queries.PrismicLegalPage;
@@ -17,13 +18,15 @@ const LegalPage = (props: Props) => {
   const { data, pageContext } = props;
   const { lang } = pageContext;
 
+  const language = splitLanguage(lang);
+
   const layout = {
     navigation: data.navigation,
     footer: data.footer,
   };
 
   return (
-    <Layout lang={lang} layout={layout}>
+    <Layout lang={language} layout={layout}>
       <LegalPageContainer data={data} />
     </Layout>
   );

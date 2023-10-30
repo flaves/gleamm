@@ -1,5 +1,9 @@
 const path = require(`path`);
 
+function splitLanguage(lang) {
+  return lang.split(`-`)[0];
+}
+
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
@@ -17,8 +21,9 @@ exports.createPages = async ({ actions, graphql }) => {
   `).then((res) => {
     return res.data.allPrismicHomePage.edges.forEach((edge) => {
       const { id, lang } = edge.node;
+      const language = splitLanguage(lang);
       createPage({
-        path: `/${lang}`,
+        path: `/${language}`,
         component: path.resolve(`./src/templates/HomePage.tsx`),
         context: {
           id,
@@ -43,8 +48,9 @@ exports.createPages = async ({ actions, graphql }) => {
   `).then((res) => {
     return res.data.allPrismicContactPage.edges.forEach((edge) => {
       const { id, lang, uid } = edge.node;
+      const language = splitLanguage(lang);
       createPage({
-        path: `/${lang}/${uid}`,
+        path: `/${language}/${uid}`,
         component: path.resolve(`./src/templates/ContactPage.tsx`),
         context: {
           id,
@@ -69,8 +75,9 @@ exports.createPages = async ({ actions, graphql }) => {
   `).then((res) => {
     return res.data.allPrismicLegalPage.edges.forEach((edge) => {
       const { id, lang, uid } = edge.node;
+      const language = splitLanguage(lang);
       createPage({
-        path: `/${lang}/${uid}`,
+        path: `/${language}/${uid}`,
         component: path.resolve(`./src/templates/LegalPage.tsx`),
         context: {
           id,

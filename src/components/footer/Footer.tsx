@@ -8,6 +8,7 @@ import { Link } from '../link/Link';
 import { Heading } from '../heading/Heading';
 import { Socials } from '../socials/Socials';
 import { Container } from '../container/Container';
+import { LanguageSwitcher } from '../language-switcher/LanguageSwitcher';
 import { mapFooterQueryToFooterProps } from './mapper/mapFooterQueryToFooterProps';
 
 type FooterData = Queries.PrismicFooter & {};
@@ -88,6 +89,9 @@ export function Footer(props: Props) {
           </factory.div>
           <factory.div>
             <Socials socials={footer.socials} />
+            <factory.div mt={2}>
+              <LanguageSwitcher />
+            </factory.div>
           </factory.div>
         </factory.div>
         <factory.div
