@@ -16,7 +16,7 @@ interface UseSeoDataInput {
 }
 
 interface UseSeoInput<D> extends UseSeoPageInput {
-  alternate_languages: UseSeoPageInput[];
+  alternate_languages: readonly UseSeoPageInput[];
   data?: D;
 }
 

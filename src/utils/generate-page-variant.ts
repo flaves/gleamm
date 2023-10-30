@@ -32,7 +32,7 @@ export const generatePageVariant = (
 };
 
 export const generatePageVariants = (
-  input: GeneratePageVariantInput[],
+  input: readonly GeneratePageVariantInput[],
 ): PageVariant[] => {
   if (!input) {
     return [];
