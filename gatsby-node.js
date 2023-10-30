@@ -12,25 +12,28 @@ exports.createPages = async ({ actions, graphql }) => {
     toPath: `/fr`,
     force: true,
     isPermanent: true,
-  });
-
-  createRedirect({
-    fromPath: `/`,
-    toPath: `/fr`,
-    force: true,
-    isPermanent: true,
     conditions: {
-      country: `BE`,
+      language: `fr`,
     },
   });
 
   createRedirect({
     fromPath: `/`,
-    toPath: `/fr`,
+    toPath: `/nl`,
     force: true,
     isPermanent: true,
     conditions: {
-      country: `FR`,
+      language: `nl`,
+    },
+  });
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/en`,
+    force: true,
+    isPermanent: true,
+    conditions: {
+      language: `en`,
     },
   });
 

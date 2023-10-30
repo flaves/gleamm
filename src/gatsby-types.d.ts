@@ -3209,6 +3209,10 @@ type PrismicImgixURLParams = {
   readonly txtx: InputMaybe<Scalars['Int']>;
   /** Alias for `txtY`. */
   readonly txty: InputMaybe<Scalars['Int']>;
+  /** Uses generative AI fill to upscale low resolution images. Default: `false`. [See docs](https://docs.imgix.com/apis/rendering/super-resolution/upscale). */
+  readonly upscale: InputMaybe<Scalars['Boolean']>;
+  /** Overrides default fallback behavior for super resolution failures. Default: `true`. [See docs](https://docs.imgix.com/apis/rendering/super-resolution/upscale-fallback). */
+  readonly upscaleFallback: InputMaybe<Scalars['Boolean']>;
   /** Sharpens the source image using an unsharp mask. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/usm). */
   readonly usm: InputMaybe<Scalars['Int']>;
   /** Specifies the radius for an unsharp mask operation. Default: `2.5`. [See docs](https://docs.imgix.com/apis/url/adjustment/usmrad). */
