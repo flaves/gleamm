@@ -1,11 +1,14 @@
 import React, { ReactNode } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Maybe } from '../../types/Maybe';
+import { PageVariant } from '../../types/PageVariant';
 
 type Meta = JSX.IntrinsicElements[`meta`];
 
 export interface Props {
   children?: ReactNode;
+  currentPage: PageVariant;
+  pageVariants: PageVariant[];
   title?: Maybe<string>;
   description?: Maybe<string>;
   lang?: string;
@@ -14,6 +17,7 @@ export interface Props {
 }
 
 export function Seo(props: Props) {
+  const { currentPage, pageVariants } = props;
   const { site } = useStaticQuery(query);
 
   const metaTitle = props.title || (site.siteMetadata.title as string);
@@ -21,7 +25,29 @@ export function Seo(props: Props) {
   const metaDescription =
     props.description || (site.siteMetadata.description as string);
 
-  const currentUrl = site.siteMetadata.siteUrl;
+  const currentUrl = currentPage
+    ? `${site.siteMetadata.siteUrl}${currentPage.path}`
+    : ``;
+  const renderCurrentPage = () => {
+    return <link rel="canonical" href={currentUrl} />;
+  };
+
+  const renderPageVariants = () => {
+    if (currentPage) {
+      return [currentPage, ...(pageVariants || [])].map((pageVariant, key) => {
+        return (
+          <link
+            key={key}
+            rel="alternate"
+            href={`${site.siteMetadata.siteUrl}${pageVariant.path}`}
+            hrefLang={pageVariant.lang}
+          />
+        );
+      });
+    }
+    return <link />;
+  };
+
   return (
     <>
       <title>
@@ -36,11 +62,23 @@ export function Seo(props: Props) {
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={props.title || ``} />
       {props.children}
+      {renderCurrentPage()}
+      <link
+        rel="alternate"
+        href={site.siteMetadata.siteUrl}
+        hrefLang="x-default"
+      />
+      {renderPageVariants()}
     </>
   );
 }
 
 export const query = graphql`
+  fragment AlternateLanguageFragment on PrismicAlternateLanguage {
+    lang
+    uid
+    type
+  }
   query {
     site {
       siteMetadata {

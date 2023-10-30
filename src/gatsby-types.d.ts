@@ -1374,6 +1374,8 @@ type PrismicContactPage = Node & {
   readonly tags: ReadonlyArray<Scalars['String']>;
   /** The type of the Prismic document. */
   readonly type: Scalars['String'];
+  /** The unique identifier for the Prismic document. It is guaranteed to be unique within all documents of the same type from the same Prismic repository. */
+  readonly uid: Scalars['String'];
   /** The URL of the Prismic document determined using the configured Route Resolvers or Link Resolver. If Route Resolvers or a Link Resolver is not given, this field is `null`. */
   readonly url: Maybe<Scalars['String']>;
 };
@@ -1525,6 +1527,7 @@ type PrismicContactPageFieldSelector = {
   readonly raw: InputMaybe<FieldSelectorEnum>;
   readonly tags: InputMaybe<FieldSelectorEnum>;
   readonly type: InputMaybe<FieldSelectorEnum>;
+  readonly uid: InputMaybe<FieldSelectorEnum>;
   readonly url: InputMaybe<FieldSelectorEnum>;
 };
 
@@ -1545,6 +1548,7 @@ type PrismicContactPageFilterInput = {
   readonly raw: InputMaybe<JSONQueryOperatorInput>;
   readonly tags: InputMaybe<StringQueryOperatorInput>;
   readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<StringQueryOperatorInput>;
   readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -1606,6 +1610,7 @@ type PrismicContactPageSortInput = {
   readonly raw: InputMaybe<SortOrderEnum>;
   readonly tags: InputMaybe<SortOrderEnum>;
   readonly type: InputMaybe<SortOrderEnum>;
+  readonly uid: InputMaybe<SortOrderEnum>;
   readonly url: InputMaybe<SortOrderEnum>;
 };
 
@@ -3204,6 +3209,10 @@ type PrismicImgixURLParams = {
   readonly txtx: InputMaybe<Scalars['Int']>;
   /** Alias for `txtY`. */
   readonly txty: InputMaybe<Scalars['Int']>;
+  /** Uses generative AI fill to upscale low resolution images. Default: `false`. [See docs](https://docs.imgix.com/apis/rendering/super-resolution/upscale). */
+  readonly upscale: InputMaybe<Scalars['Boolean']>;
+  /** Overrides default fallback behavior for super resolution failures. Default: `true`. [See docs](https://docs.imgix.com/apis/rendering/super-resolution/upscale-fallback). */
+  readonly upscaleFallback: InputMaybe<Scalars['Boolean']>;
   /** Sharpens the source image using an unsharp mask. Default: `0`. [See docs](https://docs.imgix.com/apis/url/adjustment/usm). */
   readonly usm: InputMaybe<Scalars['Int']>;
   /** Specifies the radius for an unsharp mask operation. Default: `2.5`. [See docs](https://docs.imgix.com/apis/url/adjustment/usmrad). */
@@ -4059,6 +4068,7 @@ type Query_prismicContactPageArgs = {
   raw: InputMaybe<JSONQueryOperatorInput>;
   tags: InputMaybe<StringQueryOperatorInput>;
   type: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<StringQueryOperatorInput>;
   url: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -5021,9 +5031,13 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type AlternateLanguageFragmentFragment = { readonly lang: string, readonly uid: string | null, readonly type: string };
+
 type ContactPageFormSectionFragmentFragment = { readonly heading: { readonly richText: any }, readonly contact_success_heading: { readonly text: string | null }, readonly contact_success_text: { readonly text: string | null } };
 
 type ContactPageInformationsSectionFragmentFragment = { readonly email_label: { readonly text: string | null }, readonly email: { readonly text: string | null }, readonly phone_number_label: { readonly text: string | null }, readonly phone_number: { readonly text: string | null }, readonly address_label: { readonly text: string | null }, readonly address: { readonly richText: any } };
+
+type FooterFragmentFragment = { readonly data: { readonly contact_address: { readonly richText: any }, readonly contact_email: { readonly text: string | null }, readonly anchors_heading: { readonly text: string | null }, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly legal_heading: { readonly text: string | null }, readonly legal_links: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly socials: ReadonlyArray<{ readonly social: string | null, readonly path: string | null }> } };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -5065,12 +5079,9 @@ type HomePageProcessSectionFragmentFragment = { readonly process_heading: { read
 
 type HomePageTeamSectionFragmentFragment = { readonly team_heading: { readonly richText: any }, readonly team_members: ReadonlyArray<{ readonly team_member_name: { readonly text: string | null }, readonly team_member_job: { readonly text: string | null }, readonly team_member_image: { readonly gatsbyImageData: Record<string, unknown> | null, readonly alt: string | null } | null }> };
 
-type LayoutQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LayoutQueryQuery = { readonly navigation: { readonly data: { readonly button_label: string | null, readonly button_path: string | null, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }> } } | null, readonly footer: { readonly data: { readonly contact_address: { readonly richText: any }, readonly contact_email: { readonly text: string | null }, readonly anchors_heading: { readonly text: string | null }, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly legal_heading: { readonly text: string | null }, readonly legal_links: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }>, readonly socials: ReadonlyArray<{ readonly social: string | null, readonly path: string | null }> } } | null };
-
 type LegalPageBodySectionFragmentFragment = { readonly heading: { readonly text: string | null }, readonly body: { readonly richText: any } };
+
+type NavigationFragmentFragment = { readonly data: { readonly button_label: string | null, readonly button_path: string | null, readonly anchors: ReadonlyArray<{ readonly label: string | null, readonly path: string | null }> } };
 
 
 }
